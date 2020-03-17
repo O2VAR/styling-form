@@ -23,4 +23,17 @@
               },
               "web/src/favicon.ico",
               "web/src/manifest.json",
-              "web/src/browserconfig.x
+              "web/src/browserconfig.xml"
+            ],
+            "styles": [
+              {
+                "input": "web/src/styles.scss"
+              }
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "src": "web
