@@ -14,4 +14,13 @@
             "index": "web/src/index.html",
             "main": "web/src/main.ts",
             "polyfills": "web/src/polyfills.ts",
-            "tsConfig": "web
+            "tsConfig": "web/src/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "web/src/assets",
+                "output": "/assets"
+              },
+              "web/src/favicon.ico",
+              "web/src/manifest.json",
+              "web/src/browserconfig.x
