@@ -36,4 +36,12 @@
             "production": {
               "fileReplacements": [
                 {
-                  "src": "web
+                  "src": "web/src/environments/environment.ts",
+                  "replaceWith": "web/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false
