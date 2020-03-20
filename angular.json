@@ -54,4 +54,12 @@
             "electron": {
               "fileReplacements": [
                 {
-                  "src": "web/src/environm
+                  "src": "web/src/environments/environment.ts",
+                  "replaceWith": "web/src/environments/environment.electron.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": f
