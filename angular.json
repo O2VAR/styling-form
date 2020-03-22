@@ -72,4 +72,13 @@
           }
         },
         "serve": {
-          "builder": "@angular-de
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "musicalypse:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "musicalypse:build:production"
+            },
+            "electron": {
+              "brows
