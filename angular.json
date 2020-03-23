@@ -92,4 +92,10 @@
           }
         },
         "test": {
-          
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "web/src/test.ts",
+            "polyfills": "web/src/polyfills.ts",
+            "tsConfig": "web/src/tsconfig.spec.json",
+            "karmaConfig": "web/src/karma.conf.js",
+            "styles":
