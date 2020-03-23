@@ -110,4 +110,14 @@
                 "input": "web/src/assets",
                 "output": "/assets"
               },
-              "web/src/fav
+              "web/src/favicon.ico",
+              "web/src/manifest.json",
+              "web/src/browserconfig.xml"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "web/src/
