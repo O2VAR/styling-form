@@ -98,4 +98,16 @@
             "polyfills": "web/src/polyfills.ts",
             "tsConfig": "web/src/tsconfig.spec.json",
             "karmaConfig": "web/src/karma.conf.js",
-            "styles":
+            "styles": [
+              {
+                "input": "styles.scss"
+              }
+            ],
+            "scripts": [],
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "web/src/assets",
+                "output": "/assets"
+              },
+              "web/src/fav
