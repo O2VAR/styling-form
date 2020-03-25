@@ -134,4 +134,12 @@
       "root": "web/e2e/",
       "projectType": "application",
       "architect": {
-   
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "web/e2e/protractor.conf.js",
+            "devServerTarget": "musicalypse:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angu
