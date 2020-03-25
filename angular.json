@@ -120,4 +120,18 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "web/src/
+              "web/src/tsconfig.app.json",
+              "web/src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "musicalypse-e2e": {
+      "root": "web/e2e/",
+      "projectType": "application",
+      "architect": {
+   
