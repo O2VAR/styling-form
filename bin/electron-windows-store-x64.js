@@ -33,4 +33,16 @@ const options = {
 //           publisherName: options.publisher,
 //           certFilePath: __dirname + '/../dist/',
 //           certFileName: 'creasource',
-//           pr
+//           program: options2,
+//           install: false
+//         }).then(() => resolve());
+//       } else {
+//         resolve()
+//       }
+//     } catch (e) {
+//       reject(e);
+//     }
+//   });
+// }
+
+convertToWindowsStore(options);

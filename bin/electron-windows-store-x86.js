@@ -1,0 +1,1 @@
+const convertToWindowsStore = require('electron-windows-stor
