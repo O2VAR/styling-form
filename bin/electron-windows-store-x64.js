@@ -15,4 +15,15 @@ const options = {
   packageDescription: 'A modern audio player built with Web technologies.',
   packageExecutable: 'app/Musicalypse.exe',
   assets: __dirname + '/../build/UWP/assets',
-  manifest: __dirname + '/../bu
+  manifest: __dirname + '/../build/UWP/AppXManifest_x64.xml',
+  deploy: false,
+  publisher: 'CN=482ACF73-DAC8-4D98-BA01-FA590F32FB7E',
+  publisherDisplayName: 'CreaSource',
+  windowsKit: windowsKit,
+  devCert: __dirname + '/../dist/creasource.pfx',
+  certPass: '',
+  makePri: true,
+};
+
+// function createCertIfNeeded() {
+//   return 
