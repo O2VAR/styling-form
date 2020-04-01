@@ -9,4 +9,10 @@ const options = {
   containerVirtualization: false,
   inputDirectory: __dirname + '/../dist/electron/win-ia32-unpacked',
   outputDirectory: __dirname + '/../dist',
-  packageVer
+  packageVersion: '1.0.0.0',
+  packageName: '53695CreaSource.Musicalypse',
+  packageDisplayName: 'Musicalypse',
+  packageDescription: 'A modern audio player built with Web technologies.',
+  packageExecutable: 'app/Musicalypse.exe',
+  assets: __dirname + '/../build/UWP/assets',
+  manifest: __di
