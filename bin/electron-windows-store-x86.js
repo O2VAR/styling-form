@@ -26,4 +26,12 @@ const options = {
 };
 
 // function createCertIfNeeded() {
+//   return new Promise((resolve, reject) => {
+//     try {
+//       if (!fs.existsSync(options.devCert)) {
+//         sign.makeCert({
+//           publisherName: options.publisher,
+//           certFilePath: __dirname + '/../dist/',
+//           certFileName: 'creasource',
+//           program: options2,
 // 
