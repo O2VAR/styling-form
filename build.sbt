@@ -23,4 +23,8 @@ lazy val root = (project in file(".")).
     scalacOptions   := Seq("-unchecked", "-deprecation", "-feature"),
     resolvers       += "jaudiotagger-repository" at "https://dl.bintray.com/ijabz/maven",
     libraryDependencies ++= Seq(
-      "com.typesa
+      "com.typesafe.akka" %% "akka-http"            % akkaHttpVersion,
+      "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
+      "com.typesafe.akka" %% "akka-http-xml"        % akkaHttpVersion,
+      "com.typesafe.akka" %% "akka-stream"          % akkaVersion,
+      "com.typesafe.akka" %% "akka-actor"           
