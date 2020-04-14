@@ -17,4 +17,10 @@ lazy val root = (project in file(".")).
   settings(
     name            := "Musicalypse",
     version         := "1.0.0",
-    licenses        := Seq("MIT" -> new URL("
+    licenses        := Seq("MIT" -> new URL("https://choosealicense.com/licenses/mit/")),
+    organization    := "net.creasource",
+    scalaVersion    := "2.12.8",
+    scalacOptions   := Seq("-unchecked", "-deprecation", "-feature"),
+    resolvers       += "jaudiotagger-repository" at "https://dl.bintray.com/ijabz/maven",
+    libraryDependencies ++= Seq(
+      "com.typesa
