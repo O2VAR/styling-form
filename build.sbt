@@ -33,4 +33,7 @@ lazy val root = (project in file(".")).
       "com.mpatric"       %  "mp3agic"              % "0.9.1",
       "net.jthink"        %  "jaudiotagger"         % "2.2.3",
 
-  
+      "com.typesafe.akka" %% "akka-http-testkit"    % akkaHttpVersion % Test,
+      "com.typesafe.akka" %% "akka-testkit"         % akkaVersion     % Test,
+      "com.typesafe.akka" %% "akka-stream-testkit"  % akkaVersion     % Test,
+      "org.scalatest"     %% "scalatest"         
