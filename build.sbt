@@ -43,3 +43,14 @@ lazy val root = (project in file(".")).
 //    ng := {
 //      import complete.DefaultParsers._
 //      val args = spaceDelimited("<arg>").parsed.mkString(" ")
+//      val command = {
+//        if (System.getProperty("os.name").toLowerCase().contains("win")) {
+//          s"powershell -Command ng $args"
+//        } else {
+//          s"ng $args"
+//        }
+//      }
+//      Process(command, new File(".").getAbsoluteFile).!
+//    },
+//    ngBuild := {
+//      val log = stre
