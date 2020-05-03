@@ -53,4 +53,13 @@ lazy val root = (project in file(".")).
 //      Process(command, new File(".").getAbsoluteFile).!
 //    },
 //    ngBuild := {
-//      val log = stre
+//      val log = streams.value.log
+//      log.info("Building Angular application...")
+//      val command = {
+//        if (System.getProperty("os.name").toLowerCase().contains("win")) {
+//          s"powershell -Command ng build -prod -aot"
+//        } else {
+//          s"ng build -prod -aot"
+//        }
+//      }
+//      
