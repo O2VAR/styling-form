@@ -77,4 +77,10 @@ lazy val root = (project in file(".")).
 
     // https://www.scala-sbt.org/sbt-native-packager/formats/universal.html#filter-remove-mappings
     // we specify the name for our fat jar
-//    assemblyJarName in assembly := name.value.toLowerCase + "_
+//    assemblyJarName in assembly := name.value.toLowerCase + "_" + version.value + ".jar",
+//    test in assembly := {},
+//    // removes all jar mappings in universal and appends the fat jar
+//    mappings in Universal := {
+//      val universalMappings = (mappings in Universal).value
+//      val fatJar = (assembly in Compile).value
+//      val filte
