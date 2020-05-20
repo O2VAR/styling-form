@@ -90,4 +90,10 @@ lazy val root = (project in file(".")).
 //    },
 //    // the bash scripts classpath only needs the fat jar
 //    scriptClasspath := Seq((assemblyJarName in assembly).value),
-    // Copy the jr
+    // Copy the jre folder for bundling with the exe
+//    jreMappings := {
+//      val dir = file("C:\\Program Files\\Java\\jre1.8.0_161")
+//      val jreMappings = (dir ** "*") pair (f => relativeTo(dir)(f).map("jre/" + _))
+//      jreMappings
+//    },
+//    mappings in Universal in Deploy := (
