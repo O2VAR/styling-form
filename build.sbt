@@ -83,4 +83,11 @@ lazy val root = (project in file(".")).
 //    mappings in Universal := {
 //      val universalMappings = (mappings in Universal).value
 //      val fatJar = (assembly in Compile).value
-//      val filte
+//      val filtered = universalMappings filter {
+//        case (_, n) => !n.endsWith(".jar")
+//      }
+//      filtered :+ (fatJar -> ("lib/" + fatJar.getName))
+//    },
+//    // the bash scripts classpath only needs the fat jar
+//    scriptClasspath := Seq((assemblyJarName in assembly).value),
+    // Copy the jr
