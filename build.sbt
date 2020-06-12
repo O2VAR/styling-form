@@ -96,4 +96,13 @@ lazy val root = (project in file(".")).
 //      val jreMappings = (dir ** "*") pair (f => relativeTo(dir)(f).map("jre/" + _))
 //      jreMappings
 //    },
-//    mappings in Universal in Deploy := (
+//    mappings in Universal in Deploy := (mappings in Universal).value,
+//    mappings in Universal in Deploy ++= jreMappings.value,
+//
+//    javaOptions in Universal ++= Seq(
+//      "-java-home ${app_home}/../jre"
+//    ),
+
+//    launch4j := {
+//      // val log = streams.value.log
+//      s"launch4j.exe ${file(".").getAbsoluteFile
