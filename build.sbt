@@ -105,4 +105,12 @@ lazy val root = (project in file(".")).
 
 //    launch4j := {
 //      // val log = streams.value.log
-//      s"launch4j.exe ${file(".").getAbsoluteFile
+//      s"launch4j.exe ${file(".").getAbsoluteFile.toString}/l4j.xml".!
+//    },
+
+//    mappings in Universal := {
+//      val universalMappings = (mappings in Universal).value
+//      if ((target.value / "musicalypse.exe").exists())
+//        universalMappings :+ (target.value / "musicalypse.exe" -> "musicalypse.exe")
+//      else
+//        universa
