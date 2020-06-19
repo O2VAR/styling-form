@@ -113,4 +113,13 @@ lazy val root = (project in file(".")).
 //      if ((target.value / "musicalypse.exe").exists())
 //        universalMappings :+ (target.value / "musicalypse.exe" -> "musicalypse.exe")
 //      else
-//        universa
+//        universalMappings
+//    },
+
+    // stage := stage.dependsOn(launch4j).value,
+//    packageBin in Windows := (packageBin in Windows).dependsOn(launch4j).value,
+
+    // general package information (can be scoped to Windows)
+//    maintainer := "Thomas Gambet <thomas.gambet@gmail.com>",
+//    packageSummary := "Musicalypse",
+/
