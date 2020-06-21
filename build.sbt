@@ -130,4 +130,9 @@ lazy val root = (project in file(".")).
 //
 //    wixFeatures += WindowsFeature(
 //      id="Shortcut",
-//      title="Start 
+//      title="Start menu shortcut",
+//      desc="Adds a shortcut to Windows start menu.",
+//      components = Seq(AddShortCuts(Seq("musicalypse.exe")))
+//    ),
+
+  ).enablePlugins(JavaAppPackaging)
