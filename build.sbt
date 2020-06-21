@@ -122,4 +122,12 @@ lazy val root = (project in file(".")).
     // general package information (can be scoped to Windows)
 //    maintainer := "Thomas Gambet <thomas.gambet@gmail.com>",
 //    packageSummary := "Musicalypse",
-/
+//    packageDescription := """An HTML5 audio player.""",
+//
+//    // wix build information
+//    wixProductId := "237e6cfb-fdc6-4727-acee-4ab6f9279aff",
+//    wixProductUpgradeId := "3abe2b39-796b-48f3-a0ab-91163f263828",
+//
+//    wixFeatures += WindowsFeature(
+//      id="Shortcut",
+//      title="Start 
