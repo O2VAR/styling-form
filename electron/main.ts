@@ -10,4 +10,14 @@ const ipc = require('electron').ipcMain;
 const dialog = require('electron').dialog;
 const spawn = require('child_process').spawn;
 
-const serve = proc
+const serve = process.argv.slice(1).some(val => val === '--serve');
+
+const isPackaged: boolean = __dirname.indexOf('app.asar') !== -1;
+
+const rootDirectory: string = path.normalize(
+  isPackaged ?
+    path.join(__dirname, '../../../../../') :
+    path.join(__dirname, '../../../')
+);
+
+const cacheFolder = app.getPath('userData
