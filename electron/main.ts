@@ -20,4 +20,16 @@ const rootDirectory: string = path.normalize(
     path.join(__dirname, '../../../')
 );
 
-const cacheFolder = app.getPath('userData
+const cacheFolder = app.getPath('userData') + '/data';
+
+const windowFile = path.join(cacheFolder, 'window.json');
+
+let win: BrowserWindow;
+let serverProcess: ChildProcess;
+let appSuspensionId: number;
+
+function createWindow() {
+
+  const screenSize: Size = screen.getPrimaryDisplay().workAreaSize;
+
+  const bounds = getSavedWindowBounds(screenS
