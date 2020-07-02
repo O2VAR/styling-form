@@ -32,4 +32,15 @@ function createWindow() {
 
   const screenSize: Size = screen.getPrimaryDisplay().workAreaSize;
 
-  const bounds = getSavedWindowBounds(screenS
+  const bounds = getSavedWindowBounds(screenSize);
+
+  win = new BrowserWindow({
+    frame: false,
+    width: Math.min(bounds.width, screenSize.width),
+    height: Math.min(bounds.height, screenSize.height),
+    x: Math.max(bounds.x, 0),
+    y: Math.max(bounds.y, 0),
+    minHeight: 450,
+    minWidth: 350,
+    show: false,
+    b
