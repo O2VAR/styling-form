@@ -43,4 +43,11 @@ function createWindow() {
     minHeight: 450,
     minWidth: 350,
     show: false,
-    b
+    backgroundColor: '#000',
+    icon: path.join(rootDirectory, 'build/electron/assets/icons/64x64.png')
+  });
+
+  if (serve) {
+    // dirname is target/electron/dist
+    require('electron-reload')(__dirname, {electron: require(`${__dirname}/../../../node_modules/electron`)});
+    win.loadURL('http://localhost:4200');
