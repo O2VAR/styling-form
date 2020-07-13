@@ -66,4 +66,23 @@ function createWindow() {
   });
 
   win.once('ready-to-show', () => {
-   
+    win.show();
+  });
+
+  win.on('resize', () =>
+    saveWindowBounds()
+  );
+
+  win.on('move', () =>
+    saveWindowBounds()
+  );
+
+  powerMonitor.on('suspend', () => {
+    win.webContents.send('suspend');
+  });
+
+}
+
+function initialize() {
+
+  ipc.on('open-file-dialog', function (even
