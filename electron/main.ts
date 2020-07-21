@@ -85,4 +85,18 @@ function createWindow() {
 
 function initialize() {
 
-  ipc.on('open-file-dialog', function (even
+  ipc.on('open-file-dialog', function (event) {
+    dialog.showOpenDialog({
+      properties: ['openDirectory']
+    }, function (directory) {
+      if (directory) {
+        event.sender.send('selected-directory', directory);
+      }
+    });
+  });
+
+  app.on('ready', () => {
+    createWindow();
+  });
+
+  app.on('window-all-c
