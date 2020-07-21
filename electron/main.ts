@@ -115,4 +115,19 @@ function initialize() {
     }
   });
 
-  app.on('second-instance', (event, commandLine, workin
+  app.on('second-instance', (event, commandLine, workingDirectory) => {
+    if (win) {
+      if (win.isMinimized()) {
+        win.restore();
+      }
+      win.focus();
+    }
+  });
+
+  if (!serve) {
+    startServer();
+  }
+
+  ipc.on('prevent-app-suspension-on', () => {
+    // console.log('preventing the computer from going to sleep');
+    appSuspensionId
