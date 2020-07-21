@@ -99,4 +99,20 @@ function initialize() {
     createWindow();
   });
 
-  app.on('window-all-c
+  app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+      stopServerAndQuit();
+    }
+  });
+
+  app.on('will-quit', () => {
+    stopServerAndQuit();
+  });
+
+  app.on('activate', () => {
+    if (win === null) {
+      createWindow();
+    }
+  });
+
+  app.on('second-instance', (event, commandLine, workin
