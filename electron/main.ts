@@ -130,4 +130,11 @@ function initialize() {
 
   ipc.on('prevent-app-suspension-on', () => {
     // console.log('preventing the computer from going to sleep');
-    appSuspensionId
+    appSuspensionId = powerSaveBlocker.start('prevent-app-suspension');
+    // event.sender.send('prevent-app-suspension-on');
+  });
+
+  ipc.on('prevent-app-suspension-off', () => {
+    // console.log('stopping preventing the computer from going to sleep');
+    powerSaveBlocker.stop(appSuspensionId);
+    // event.sender.send('prevent-app-
