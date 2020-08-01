@@ -137,4 +137,22 @@ function initialize() {
   ipc.on('prevent-app-suspension-off', () => {
     // console.log('stopping preventing the computer from going to sleep');
     powerSaveBlocker.stop(appSuspensionId);
-    // event.sender.send('prevent-app-
+    // event.sender.send('prevent-app-suspension-off');
+  });
+
+}
+
+function startServer() {
+
+  function isJavaOnPath(): boolean {
+    try {
+      require('child_process').execSync('java -version');
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  const musicFolder = app.getPath('music');
+
+  const j
