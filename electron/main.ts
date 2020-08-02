@@ -155,4 +155,10 @@ function startServer() {
 
   const musicFolder = app.getPath('music');
 
-  const j
+  const javaExecutable = (process.platform === 'win32') ? 'java.exe' : 'java';
+  const javaPath = path.join(rootDirectory, '/target/jre/bin/' + javaExecutable);
+  const JAVACMD = fs.existsSync(javaPath) ? javaPath : 'java';
+
+  if (JAVACMD === 'java' && !isJavaOnPath()) {
+    dialog.showErrorBox(
+      'Jav
