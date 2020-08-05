@@ -180,4 +180,16 @@ function startServer() {
 
   serverProcess = spawn(
     JAVACMD,
-    [`-Dmusic.library=${musicFolder}`, `-Dmusic.cacheFolder=${cacheFolder}`, '-cp', classP
+    [`-Dmusic.library=${musicFolder}`, `-Dmusic.cacheFolder=${cacheFolder}`, '-cp', classPath, 'net.creasource.Main'],
+    {
+      cwd: stagePath
+    }
+  ).addListener('exit', code => {
+    if (code === 1) {
+      app.exit(1);
+      throw Error('Server exited unexpectedly.');
+    } else {
+      app.exit(0);
+    }
+  }).addListener('error', (err: Error) => {
+    dialog.showError
