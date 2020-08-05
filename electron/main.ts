@@ -173,4 +173,11 @@ function startServer() {
 
   const separator = (process.platform === 'win32') ? ';' : ':';
   const libs = fs.readdirSync(stagePath + '/lib').map(val => 'lib/' + val);
-  
+  const classPath = [
+    libs.filter(lib => lib.indexOf('musicalypse') !== -1),
+    ...libs.filter(lib => lib.indexOf('musicalypse') === -1)
+  ].join(separator);
+
+  serverProcess = spawn(
+    JAVACMD,
+    [`-Dmusic.library=${musicFolder}`, `-Dmusic.cacheFolder=${cacheFolder}`, '-cp', classP
