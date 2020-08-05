@@ -165,4 +165,12 @@ function startServer() {
       'Please go to https://www.java.com/download/ and download and install Java before running Musicalypse. ' +
       'If you think this message is an error, please check your PATH environment variable to see if "java.exe" is accessible.'
     );
+    console.error('Java couldn\'t be found');
+    app.exit(1);
+  }
+
+  const stagePath = path.join(rootDirectory, 'target/universal/stage');
+
+  const separator = (process.platform === 'win32') ? ';' : ':';
+  const libs = fs.readdirSync(stagePath + '/lib').map(val => 'lib/' + val);
   
