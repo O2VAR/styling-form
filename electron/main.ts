@@ -161,4 +161,8 @@ function startServer() {
 
   if (JAVACMD === 'java' && !isJavaOnPath()) {
     dialog.showErrorBox(
-      'Jav
+      'Java is not installed or can\'t be found',
+      'Please go to https://www.java.com/download/ and download and install Java before running Musicalypse. ' +
+      'If you think this message is an error, please check your PATH environment variable to see if "java.exe" is accessible.'
+    );
+  
