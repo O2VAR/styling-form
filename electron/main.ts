@@ -192,4 +192,15 @@ function startServer() {
       app.exit(0);
     }
   }).addListener('error', (err: Error) => {
-    dialog.showError
+    dialog.showErrorBox(
+      'Error',
+      err.message
+    );
+    app.exit(1);
+  });
+
+  serverProcess.stdout.addListener('data', chunk => {
+    console.log(chunk.toString().replace(/\n$/, ''));
+    /*dialog.showMessageBox(
+      {message: chunk.toString().replace(/\n$/, '')}
+    );*/
