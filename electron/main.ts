@@ -246,4 +246,17 @@ function saveWindowBounds(): void {
 function getSavedWindowBounds(screenSize: Size): Rectangle {
   const defaultWindow = {
     width: screenSize.width - 50,
-    height: screenSi
+    height: screenSize.height - 50,
+    x: 25,
+    y: 25
+  };
+  if (fs.existsSync(windowFile)) {
+    try {
+      return JSON.parse(fs.readFileSync(windowFile));
+    } catch (e) {
+      return defaultWindow;
+    }
+  } else {
+    return defaultWindow;
+  }
+}
