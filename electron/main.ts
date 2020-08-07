@@ -204,3 +204,17 @@ function startServer() {
     /*dialog.showMessageBox(
       {message: chunk.toString().replace(/\n$/, '')}
     );*/
+  });
+
+  serverProcess.stderr.addListener('data', chunk => {
+    console.error(chunk.toString().replace(/\n$/, ''));
+    /*dialog.showMessageBox(
+      {message: chunk.toString().replace(/\n$/, '')}
+    );*/
+  });
+}
+
+function stopServerAndQuit() {
+  if (serverProcess) {
+    serverProcess.stdin.write('\n');
+    serverProces
