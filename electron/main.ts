@@ -217,4 +217,22 @@ function startServer() {
 function stopServerAndQuit() {
   if (serverProcess) {
     serverProcess.stdin.write('\n');
-    serverProces
+    serverProcess.on('exit', app.quit);
+  } else {
+    app.quit();
+  }
+}
+
+if (!app.requestSingleInstanceLock()) {
+  app.quit();
+} else {
+  try {
+    initialize();
+  } catch (e) {
+    dialog.showErrorBox(
+      'Error', e.toString()
+    );
+    console.error('An error occurred!');
+    console.error(e);
+    app.exit(1);
+ 
