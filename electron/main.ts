@@ -235,4 +235,15 @@ if (!app.requestSingleInstanceLock()) {
     console.error('An error occurred!');
     console.error(e);
     app.exit(1);
- 
+  }
+}
+
+function saveWindowBounds(): void {
+  const bounds = JSON.stringify(win.getBounds());
+  fs.writeFileSync(windowFile, bounds);
+}
+
+function getSavedWindowBounds(screenSize: Size): Rectangle {
+  const defaultWindow = {
+    width: screenSize.width - 50,
+    height: screenSi
