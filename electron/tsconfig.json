@@ -1,4 +1,12 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "
+    "baseUrl": "./",
+    "outDir": "../target/electron/out-tsc",
+    "sourceMap": false,
+    "moduleResolution": "node",
+    "typeRoots": [
+      "../node_modules/@types"
+    ]
+  }
+}
