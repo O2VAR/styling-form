@@ -1,3 +1,11 @@
 {
   "name": "musicalypse",
-  "description": "A modern audio player built
+  "description": "A modern audio player built with Web technologies.",
+  "version": "1.0.0",
+  "author": "Thomas Gambet <thomas.gambet@gmail.com> (https://github.com/tgambet/)",
+  "license": "MIT",
+  "main": "target/electron/out-tsc/main.js",
+  "scripts": {
+    "ng": "ng",
+    "ng:serve": "ng serve --progress",
+    "ng:serve:electron": "ng serve
