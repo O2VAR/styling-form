@@ -15,4 +15,11 @@
     "ng:test": "ng test",
     "ng:lint": "ng lint",
     "ng:e2e": "ng e2e",
-   
+    "sbt:run": "sbt run",
+    "sbt:clean": "sbt clean",
+    "sbt:compile": "sbt compile",
+    "sbt:stage": "sbt stage",
+    "sbt:stage:zip": "sbt universal:packageBin",
+    "sbt:stage:tar": "sbt universal:packageZipTarball",
+    "web:run": "npm-run-all ng:build:prod sbt:run",
+    "we
