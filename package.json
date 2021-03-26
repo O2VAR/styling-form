@@ -26,4 +26,8 @@
     "web:serve:electron": "npm-run-all --parallel ng:serve:electron sbt:run",
     "web:build": "npm-run-all ng:build:prod sbt:compile",
     "web:stage": "npm-run-all ng:build:prod sbt:stage",
-    "web:stage:zip": "npm-run-all ng:build:prod
+    "web:stage:zip": "npm-run-all ng:build:prod sbt:stage:zip",
+    "web:stage:tar": "npm-run-all ng:build:prod sbt:stage:tar",
+    "electron:run": "npm-run-all electron:build && electron .",
+    "electron:run:dev": "npm run electron:tsc && electron .",
+    "electron:serve": "npm run electron:tsc && npm-run-all --p
