@@ -22,4 +22,8 @@
     "sbt:stage:zip": "sbt universal:packageBin",
     "sbt:stage:tar": "sbt universal:packageZipTarball",
     "web:run": "npm-run-all ng:build:prod sbt:run",
-    "we
+    "web:serve": "npm-run-all --parallel ng:serve sbt:run",
+    "web:serve:electron": "npm-run-all --parallel ng:serve:electron sbt:run",
+    "web:build": "npm-run-all ng:build:prod sbt:compile",
+    "web:stage": "npm-run-all ng:build:prod sbt:stage",
+    "web:stage:zip": "npm-run-all ng:build:prod
