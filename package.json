@@ -38,4 +38,8 @@
     "electron:windows:store:x64": "node bin/electron-windows-store-x64.js",
     "electron:windows:store:x86": "node bin/electron-windows-store-x86.js",
     "electron:windows:build": "electron-builder build --windows --config build/electron/electron-builder.json",
-    "electron:linux:build": "electron-builder build --l
+    "electron:linux:build": "electron-builder build --linux --config build/electron/electron-builder.json",
+    "electron:stage:windows": "npm-run-all electron:build electron:windows:build",
+    "electron:stage:linux": "npm-run-all electron:build electron:linux:build",
+    "postinstall": "electron-builder install-app-deps",
+    "heroku-postbuild
