@@ -60,4 +60,13 @@
     "@angular/language-service": "^7.1.4",
     "@angular/material": "^7.2.0",
     "@angular/platform-browser": "^7.1.4",
-    "@angular/platform-browser-d
+    "@angular/platform-browser-dynamic": "^7.1.4",
+    "@angular/pwa": "^0.11.4",
+    "@angular/router": "^7.1.4",
+    "@angular/service-worker": "^7.1.4",
+    "@ngrx/effects": "^7.0.0",
+    "@ngrx/entity": "^7.0.0",
+    "@ngrx/router-store": "^7.0.0",
+    "@ngrx/store": "^7.0.0",
+    "@ngrx/store-devtools": "^7.0.0",
+    "@types/jasmin
