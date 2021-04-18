@@ -2,4 +2,10 @@
 
   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <file>${music.cacheFolder:-./data}/logs/application.log</file>
-    <rol
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/application.%d{yyyy-MM-dd}.log</fileNamePattern>
+      <maxHistory>10</maxHistory>
+      <totalSizeCap>10MB</totalSizeCap>
+    </rollingPolicy>
+    <encoder>
+      <!--<pattern>%d
