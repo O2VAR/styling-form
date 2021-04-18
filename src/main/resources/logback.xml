@@ -8,4 +8,11 @@
       <totalSizeCap>10MB</totalSizeCap>
     </rollingPolicy>
     <encoder>
-      <!--<pattern>%d
+      <!--<pattern>%date{ISO8601} %-5level [%logger] [%X{sourceThread}] [%X{akkaSource}] - %msg%n</pattern>-->
+      <pattern>%date{ISO8601} %-5level [%logger] [%X{akkaSource}] - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+     
