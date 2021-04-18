@@ -1,0 +1,5 @@
+<configuration>
+
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${music.cacheFolder:-./data}/logs/application.log</file>
+    <rol
