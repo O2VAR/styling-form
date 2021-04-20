@@ -23,4 +23,12 @@
     <appender-ref ref="FILE" />
   </appender>
 
-  <appender name="ASYNCSTDOUT" class="ch.qos.logback.classic.AsyncAp
+  <appender name="ASYNCSTDOUT" class="ch.qos.logback.classic.AsyncAppender">
+    <appender-ref ref="STDOUT" />
+  </appender>
+
+  <logger name="net.creasource.web.LibraryActor" level="INFO" />
+  <logger name="net.creasource.io" level="INFO" />
+  <logger name="net.creasource.web.SettingsActor" level="INFO" />
+
+  <logger name="akka.event.slf
