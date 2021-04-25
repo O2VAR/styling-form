@@ -31,4 +31,11 @@
   <logger name="net.creasource.io" level="INFO" />
   <logger name="net.creasource.web.SettingsActor" level="INFO" />
 
-  <logger name="akka.event.slf
+  <logger name="akka.event.slf4j.Slf4jLogger" level="WARN" />
+
+  <root level="INFO">
+    <appender-ref ref="ASYNCFILE" />
+    <appender-ref ref="ASYNCSTDOUT" />
+  </root>
+
+</configuration>
