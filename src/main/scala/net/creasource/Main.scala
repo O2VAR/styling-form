@@ -23,3 +23,10 @@ object Main extends App with SPAWebServer with SocketWebServer {
   private val apiRoutes = new APIRoutes(app)
   private val libraryRoutes = new AudioLibraryRoutes(app)
 
+  override implicit val system: ActorSystem = app.system
+  override val socketActorProps: Props = SocketActor.props(apiRoutes.routes)
+  override val routes: Route = libraryRoutes.routes ~ apiRoutes.routes ~ super.routes
+
+  val startFuture = start(host, port)
+
+  startFuture.failed.for
