@@ -40,4 +40,9 @@ object Main extends App with SPAWebServer with SocketWebServer {
   startFuture foreach { _ =>
     if (stopOnReturn) {
       system.log.info(s"Press RETURN to stop...")
-      StdIn.readLine
+      StdIn.readLine()
+      stop().onComplete(_ => app.shutdown())
+    }
+  }
+
+}
