@@ -29,4 +29,15 @@ object Main extends App with SPAWebServer with SocketWebServer {
 
   val startFuture = start(host, port)
 
-  startFuture.failed.for
+  startFuture.failed.foreach(t => {
+    stop().onComplete(_ => {
+      system.log.error(t, "An error occurred while starting the server!")
+      app.shutdown()
+      System.exit(1)
+    })
+  })
+
+  startFuture foreach { _ =>
+    if (stopOnReturn) {
+      system.log.info(s"Press RETURN to stop...")
+      StdIn.readLine
