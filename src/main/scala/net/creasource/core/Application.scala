@@ -16,4 +16,14 @@ object Application {
 /**
   * Represents an application. This is where you'll instantiate your top actors, connect to a database, etc...
   */
-class App
+class Application {
+
+  val config: Config = ConfigFactory.load()
+
+  implicit val system: ActorSystem = ActorSystem("MySystem", config)
+  implicit val materializer: ActorMaterializer = ActorMaterializer()
+
+  system.log.info("Application starting.")
+
+  val libraryActor: ActorRef = system.actorOf(LibraryActor.props()(this), "library")
+  val
