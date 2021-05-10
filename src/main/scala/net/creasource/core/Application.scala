@@ -26,4 +26,10 @@ class Application {
   system.log.info("Application starting.")
 
   val libraryActor: ActorRef = system.actorOf(LibraryActor.props()(this), "library")
-  val
+  val settingsActor: ActorRef = system.actorOf(SettingsActor.props()(this), "settings")
+  val lyricsActor: ActorRef = system.actorOf(LyricsActor.props()(this), "lyrics")
+
+  def shutdown() {
+    system.log.info("Shutting down Akka materializer and system.")
+    import scala.concurrent.duration._
+    m
