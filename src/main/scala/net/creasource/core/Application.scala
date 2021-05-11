@@ -32,4 +32,8 @@ class Application {
   def shutdown() {
     system.log.info("Shutting down Akka materializer and system.")
     import scala.concurrent.duration._
-    m
+    materializer.shutdown()
+    Await.result(system.terminate(), 30.seconds)
+  }
+
+}
