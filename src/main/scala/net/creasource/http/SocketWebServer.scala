@@ -11,4 +11,14 @@ import akka.stream.scaladsl.{Flow, Keep, Sink, Source}
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
-import net.creasource.http.actors.{SocketSinkActor, 
+import net.creasource.http.actors.{SocketSinkActor, SocketSinkSupervisor}
+
+/**
+  * A WebServer that supports WebSockets connections on the path /socket.
+  * Concrete classes must define a socketActorProps that will receive socket messages.
+  */
+trait SocketWebServer extends WebServer { self: WebServer =>
+
+  protected val socketActorProps: Props
+
+  private lazy v
