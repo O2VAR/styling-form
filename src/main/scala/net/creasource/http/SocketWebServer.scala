@@ -21,4 +21,8 @@ trait SocketWebServer extends WebServer { self: WebServer =>
 
   protected val socketActorProps: Props
 
-  private lazy v
+  private lazy val sinkActorProps: Props = SocketSinkActor.props(socketActorProps)
+  private lazy val socketsKillSwitch: SharedKillSwitch = KillSwitches.shared("sockets")
+  private lazy val supervisor = system.actorOf(SocketSinkSupervisor.props(), "sockets")
+
+  def socketFlow(sinkActor: ActorRef): Flow[Message, M
