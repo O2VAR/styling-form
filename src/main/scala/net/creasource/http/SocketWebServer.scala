@@ -32,4 +32,13 @@ trait SocketWebServer extends WebServer { self: WebServer =>
     )(Keep.right).mapMaterializedValue(sourceActor => sinkActor ! sourceActor)
   }
 
-  override def stop(): Futur
+  override def stop(): Future[Done] = {
+    system.log.info("Killing open sockets.")
+    socketsKillSwitch.shutdown()
+    super.stop()
+  }
+
+  override def routes: Route =
+    path("socket") {
+      extractUpgradeToWebSocket { _ =>
+        onSuccess((supervisor ? sinkActorProps)(1.second).mapTo[ActorRef]) { sinkAc
