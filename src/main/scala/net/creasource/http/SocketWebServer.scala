@@ -25,4 +25,11 @@ trait SocketWebServer extends WebServer { self: WebServer =>
   private lazy val socketsKillSwitch: SharedKillSwitch = KillSwitches.shared("sockets")
   private lazy val supervisor = system.actorOf(SocketSinkSupervisor.props(), "sockets")
 
-  def socketFlow(sinkActor: ActorRef): Flow[Message, M
+  def socketFlow(sinkActor: ActorRef): Flow[Message, Message, Unit] = {
+    Flow.fromSinkAndSourceMat(
+      Sink.actorRef(sinkActor, Status.Success(())),
+      Source.actorRef(1000, OverflowStrategy.fail)
+    )(Keep.right).mapMaterializedValue(sourceActor => sinkActor ! sourceActor)
+  }
+
+  override def stop(): Futur
