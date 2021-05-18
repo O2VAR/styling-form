@@ -17,4 +17,12 @@ object SocketSinkActor {
 class SocketSinkActor(socketActorProps: Props)(implicit materializer: ActorMaterializer) extends Actor with Stash {
   private val logger = Logging(context.system, this)
 
-  logger.debug("S
+  logger.debug("Socket opened. Actor created.")
+
+  override def receive: Receive = {
+    case sourceActor: ActorRef =>
+      val user = context.watch(context.actorOf(socketActorProps, "user"))
+      unstashAll()
+      context.become {
+        case TextMessage.Strict(data)        => user ! JsonParser(data)
+        case Binar
