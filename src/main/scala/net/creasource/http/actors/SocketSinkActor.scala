@@ -25,4 +25,8 @@ class SocketSinkActor(socketActorProps: Props)(implicit materializer: ActorMater
       unstashAll()
       context.become {
         case TextMessage.Strict(data)        => user ! JsonParser(data)
-        case Binar
+        case BinaryMessage.Strict(_)         => // ignore
+        case TextMessage.Streamed(stream)    => stream.runWith(Sink.ignore)
+        case BinaryMessage.Streamed(stream)  => stream.runWith(Sink.ignore)
+        case msg: JsValue if sender() == user => sourceActor ! TextMessage(msg.compactPrint)
+        case Terminated(`user`) =>
