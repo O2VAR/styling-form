@@ -30,3 +30,11 @@ class SocketSinkActor(socketActorProps: Props)(implicit materializer: ActorMater
         case BinaryMessage.Streamed(stream)  => stream.runWith(Sink.ignore)
         case msg: JsValue if sender() == user => sourceActor ! TextMessage(msg.compactPrint)
         case Terminated(`user`) =>
+          logger.debug("UserActor terminated. Terminating.")
+          sourceActor ! Status.Success(())
+          context.stop(self)
+        case s @ Status.Success(_) =>
+          logger.debug("Socket closed. Terminating.")
+          sourceActor ! s
+          context.stop(self)
+        c
