@@ -37,4 +37,13 @@ class SocketSinkActor(socketActorProps: Props)(implicit materializer: ActorMater
           logger.debug("Socket closed. Terminating.")
           sourceActor ! s
           context.stop(self)
-        c
+        case f @ Status.Failure(cause) =>
+          logger.error(cause, "Socket failed. Terminating.")
+          sourceActor ! f
+          context.stop(self)
+        case m => logger.warning("Unsupported message: {}", m.toString)
+      }
+    case _ => stash()
+  }
+
+  override val supervisorStrategy: OneForOneStrategy
