@@ -46,4 +46,14 @@ class SocketSinkActor(socketActorProps: Props)(implicit materializer: ActorMater
     case _ => stash()
   }
 
-  override val supervisorStrategy: OneForOneStrategy
+  override val supervisorStrategy: OneForOneStrategy =
+    OneForOneStrategy(maxNrOfRetries = 5, withinTimeRange = 1.minute, loggingEnabled = true) {
+      case _: Exception => SupervisorStrategy.Stop
+    }
+
+  override def postStop(): Unit = {
+    logger.debug("SocketActor killed")
+    super.postStop()
+  }
+
+}
