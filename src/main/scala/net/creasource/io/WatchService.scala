@@ -13,4 +13,12 @@ import java.nio.file._
 import akka.Done
 import akka.actor.ActorRef
 import akka.event.LoggingAdapter
-import 
+import akka.stream.Materializer
+import akka.stream.scaladsl.{Sink, StreamConverters}
+
+import scala.collection.JavaConverters._
+import scala.concurrent.Future
+
+class WatchService(notifyActor: ActorRef, logger: LoggingAdapter)(implicit materializer: Materializer) extends Runnable {
+
+  private val watchS
