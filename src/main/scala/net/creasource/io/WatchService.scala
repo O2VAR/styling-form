@@ -21,4 +21,12 @@ import scala.concurrent.Future
 
 class WatchService(notifyActor: ActorRef, logger: LoggingAdapter)(implicit materializer: Materializer) extends Runnable {
 
-  private val watchS
+  private val watchService = FileSystems.getDefault.newWatchService()
+
+  private def register(path: Path): WatchKey = path.register(watchService, ENTRY_CREATE, ENTRY_DELETE)
+
+  def watch(root: Path): Future[Done] = {
+    logger.debug("Watching folder: " + root)
+    register(root)
+    StreamConverters
+      .
