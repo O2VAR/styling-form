@@ -29,4 +29,12 @@ class WatchService(notifyActor: ActorRef, logger: LoggingAdapter)(implicit mater
     logger.debug("Watching folder: " + root)
     register(root)
     StreamConverters
-      .
+      .fromJavaStream(() => Files.walk(root))
+      .recover {
+        case _: UncheckedIOException => root
+      }
+      .runWith(Sink.foreach(path =>
+        if (path.toFile.isDirectory && path != root) {
+          logger.debug("Registering folder: " + path)
+          register(path)
+        }
