@@ -38,3 +38,15 @@ class WatchService(notifyActor: ActorRef, logger: LoggingAdapter)(implicit mater
           logger.debug("Registering folder: " + path)
           register(path)
         }
+      )
+    )
+  }
+
+  def run() {
+    try {
+      logger.debug("Waiting for file system events...")
+      while (!Thread.currentThread().isInterrupted) {
+        val key = watchService.take()
+        key.pollEvents().asScala foreach {
+          event =>
+            val relativePat
