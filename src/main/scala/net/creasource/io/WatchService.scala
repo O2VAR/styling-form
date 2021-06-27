@@ -49,4 +49,10 @@ class WatchService(notifyActor: ActorRef, logger: LoggingAdapter)(implicit mater
         val key = watchService.take()
         key.pollEvents().asScala foreach {
           event =>
-            val relativePat
+            val relativePath = event.context().asInstanceOf[Path]
+            val path = key.watchable().asInstanceOf[Path].resolve(relativePath)
+            event.kind() match {
+              case ENTRY_CREATE =>
+                if (path.toFile.isDirectory) {
+                  StreamConverters
+                    .fromJavaStream(() => Files.w
