@@ -55,4 +55,10 @@ class WatchService(notifyActor: ActorRef, logger: LoggingAdapter)(implicit mater
               case ENTRY_CREATE =>
                 if (path.toFile.isDirectory) {
                   StreamConverters
-                    .fromJavaStream(() => Files.w
+                    .fromJavaStream(() => Files.walk(path))
+                    .runWith(Sink.foreach(path =>
+                      if (path.toFile.isDirectory) {
+                        logger.debug("Registering folder: " + path)
+                        register(path)
+                      } else {
+                        // Ugly hack to wait fo
