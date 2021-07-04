@@ -66,4 +66,11 @@ class WatchService(notifyActor: ActorRef, logger: LoggingAdapter)(implicit mater
                           Thread.sleep(100)
                         }
                         notifyActor ! FileSystemChange.Created(path)
-                        logger.debug("Entry 
+                        logger.debug("Entry created: " + path)
+                      }
+                    ))
+                } else {
+                  // Ugly hack to wait for the file to be unlocked
+                  while (path.toFile.exists() && !path.toFile.renameTo(path.toFile)) {
+                    Thread.sleep(100)
+                  
