@@ -82,4 +82,16 @@ class WatchService(notifyActor: ActorRef, logger: LoggingAdapter)(implicit mater
                 notifyActor ! FileSystemChange.Deleted(path)
                 logger.debug("Entry deleted: " + path)
 
-      
+              case e =>
+                logger.warning("Unknown event received: " + e.toString)
+            }
+        }
+        key.reset()
+      }
+    } catch {
+      case _: InterruptedException => logger.debug("Interrupted.")
+    } finally {
+      watchService.close()
+    }
+  }
+}
