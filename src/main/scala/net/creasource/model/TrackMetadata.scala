@@ -9,4 +9,5 @@ case class TrackMetadata(
                           albumArtist: Option[String],
                           album: Option[String],
                           year: Option[String],
-      
+                          duration: Int,
+                          cover: Option[AlbumCover])
