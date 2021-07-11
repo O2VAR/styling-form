@@ -9,4 +9,11 @@ case class Track(
                   location: String,
                   title: Option[String],
                   artist: Option[String],
-                  albumArtist: Option[String
+                  albumArtist: Option[String],
+                  album: Option[String],
+                  year: Option[String],
+                  duration: Int)
+
+object Track {
+  implicit val formatter: RootJsonFormat[Track] = jsonFormat9(Track.apply)
+}
