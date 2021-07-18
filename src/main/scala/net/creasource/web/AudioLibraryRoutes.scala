@@ -28,4 +28,11 @@ class AudioLibraryRoutes(application: Application) {
     cacheFolderFile.mkdirs()
   }
 
-  if (!cac
+  if (!cacheFolderFile.isDirectory) {
+    throw new IllegalArgumentException(s"Config music.cacheFolder ($cacheFolder) is not a folder!")
+  }
+
+  def routes: Route =
+    pathPrefix("music") {
+      onSuccess((application.libraryActor ? GetLibraries).mapTo[Libraries]) { libraries =>
+        //val libs = libraries.libraries.map(_.toStrin
