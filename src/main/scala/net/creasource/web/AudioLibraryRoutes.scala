@@ -16,4 +16,16 @@ class AudioLibraryRoutes(application: Application) {
 
   implicit val settings: RoutingSettings = RoutingSettings.apply(application.config)
 
-  implicit val askTimeout: akka.util.Timeout = 2.sec
+  implicit val askTimeout: akka.util.Timeout = 2.seconds
+
+  var cacheFolder: String = application.config.getString("music.cacheFolder")
+
+  // val uploadFolder: String = application.config.getString("music.uploadFolder")
+
+  val cacheFolderFile = new File(cacheFolder)
+
+  if(!cacheFolderFile.exists()) {
+    cacheFolderFile.mkdirs()
+  }
+
+  if (!cac
