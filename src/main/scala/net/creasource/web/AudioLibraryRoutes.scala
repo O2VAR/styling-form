@@ -35,4 +35,11 @@ class AudioLibraryRoutes(application: Application) {
   def routes: Route =
     pathPrefix("music") {
       onSuccess((application.libraryActor ? GetLibraries).mapTo[Libraries]) { libraries =>
-        //val libs = libraries.libraries.map(_.toStrin
+        //val libs = libraries.libraries.map(_.toString) +: uploadFolder
+        val libs = libraries.libraries.map(_.toString)
+        Route.seal(libs.map(getFromBrowseableDirectory).fold(reject())(_ ~ _))
+      }
+    } ~ pathPrefix("cache") {
+      respondWithHeader(RawHeader("Cache-Control", "max-age=604800")) {
+        encodeResponse {
+          getFromBrowseableDirectory
