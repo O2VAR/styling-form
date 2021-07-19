@@ -42,4 +42,9 @@ class AudioLibraryRoutes(application: Application) {
     } ~ pathPrefix("cache") {
       respondWithHeader(RawHeader("Cache-Control", "max-age=604800")) {
         encodeResponse {
-          getFromBrowseableDirectory
+          getFromBrowseableDirectory(cacheFolder)
+        }
+      }
+    }
+
+}
