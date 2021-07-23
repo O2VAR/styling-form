@@ -236,3 +236,274 @@ class LibraryActor()(implicit application: Application) extends Actor with Stash
       import context.dispatcher
       tracks = Seq.empty
       val a: Source[Track, NotUsed] = getTrackSource
+        .watchTermination()((_, f) => {
+          f.onComplete(_ => self ! MarkForSaving)
+          NotUsed
+        })
+      sender() ! a
+
+    case AddTrack(track, broadcast) =>
+      if (!tracks.map(_.url).contains(track.url)) {
+        logger.debug("New track added: " + track.location)
+        tracks +:= track
+        if (broadcast) {
+          listeners.foreach(_ ! NewTracks(Seq(track)))
+        }
+        markedForSaving = true
+      }
+
+    case FileSystemChange.Created(path) =>
+      logger.debug("File creation: " + path.toAbsolutePath)
+      if (!path.toFile.isDirectory && !tracks.exists(track => track.location == path.toAbsolutePath.toString)) {
+        val libOpt = libraries.find(lib => path.startsWith(lib))
+        libOpt match {
+          case Some(lib) =>
+            Source(Seq(path))
+              .via(extractMetadataFlow)
+              .via(metadataToTrackFlow(lib))
+              .runWith(Sink.foreach(track => self ! AddTrack(track, broadcast = true)))
+              .onComplete {
+                case Success(Done) =>
+                case Failure(t) => logger.error(t, "An error occurred!")
+              }
+          case None => logger.warning("Got noticed for a file not in libraries: " + path.toAbsolutePath)
+        }
+      } else {
+        logger.debug("Ignoring file creation notification: " + path.toAbsolutePath)
+      }
+
+    case FileSystemChange.Deleted(file) =>
+      logger.debug("File deletion notification: " + file.toString)
+      tracks.filter(track => track.location.startsWith(file.toString)).foreach { track =>
+        logger.debug("Deleting track: " + track.toString)
+        tracks = tracks diff List(track)
+        listeners.foreach(listener => listener ! DeletedTracks(Seq(track)))
+        markedForSaving = true
+      }
+
+/*    case CheckTracks =>
+      tracks.map(track => new File(track.metadata.location))
+            .filter(file => !file.exists())
+            .foreach(deleted => self ! Deleted(deleted))*/
+
+  }
+
+  def extractMetadataFlow: Flow[Path, TrackMetadata, NotUsed] = {
+    val supportedFormats: Seq[String] = Seq("mp3", "ogg", "flac", "wav")
+    def isSupportedFile(path: Path): Boolean = {
+      val extension = path.getFileName.toString.split("""\.""").last.toLowerCase
+      supportedFormats.contains(extension)
+    }
+    Flow[Path]
+      .filter(path => !path.toFile.isDirectory && isSupportedFile(path))
+      .map(path => path.toFile)
+      .map(file => Try(getMetadata2(file)).recover{case _ => getMetadata(file)})
+      .collect {
+        case tr if tr.isSuccess => tr.get
+      }
+  }
+
+  def metadataToTrackFlow(libraryFolder: Path): Flow[TrackMetadata, Track, NotUsed] = {
+    Flow[TrackMetadata].map { metadata =>
+      val relativePath = libraryFolder
+        .relativize(metadata.location)
+        .toString
+        .replaceAll("""\\""", "/")
+      val url = s"/music/$relativePath"
+      Track(
+        url = url,
+        coverUrl = metadata.cover.flatMap(coverToFile(_, metadata)).map(f => "/cache/covers/" + f.getName),
+        location = metadata.location.toString,
+        title = metadata.title,
+        artist = metadata.artist,
+        albumArtist = metadata.albumArtist,
+        album = metadata.album,
+        year = metadata.year,
+        duration = metadata.duration
+      )
+    }
+  }
+
+  def scan(folder: Path): Source[Track, NotUsed] = {
+    StreamConverters
+      .fromJavaStream(() => Files.walk(folder))
+      .via(extractMetadataFlow)
+      .via(metadataToTrackFlow(folder))
+  }
+
+  def getTrackSource: Source[Track, NotUsed] = {
+    libraries // Add upload folder here whn reimplemented
+      .map(scan)
+      .fold(Source.empty)(_ concat _)
+      .alsoTo(Sink.foreach(track => self ! AddTrack(track)))
+  }
+
+  // https://github.com/mpatric/mp3agic-examples/blob/master/src/main/java/com/mpatric/mp3agic/app/Mp3Pics.java
+  def coverToFile(albumCover: AlbumCover, metadata: TrackMetadata): Option[File] = {
+
+    def toCompressedString(s: String): String = {
+      val compressed = new StringBuffer
+      var i = 0
+      while (i < s.length) {
+        val ch = s.charAt(i)
+        if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9') || (ch == '&') || (ch == '+') || (ch == '(') || (ch == ')'))
+          compressed.append(ch)
+        i += 1
+      }
+      val res = compressed.toString
+      res.substring(0, scala.math.min(res.length, 50))
+    }
+
+    val cover = albumCover.bytes
+    val mimeType = albumCover.mimeType
+    if ((metadata.artist.isDefined || metadata.albumArtist.isDefined) && metadata.album.isDefined) {
+      val file: File = {
+        val extension = if (mimeType.indexOf("/") > 0) {
+          "." + mimeType.substring(mimeType.indexOf("/") + 1).toLowerCase
+        } else {
+          "." + mimeType.toLowerCase
+        }
+
+        val artistName = metadata.albumArtist.flatMap(albumArtist => {
+          if (albumArtist == "")
+            None
+          else
+            Some(albumArtist)
+        }).orElse(metadata.artist).get
+
+        coversFolder
+          .resolve(toCompressedString(artistName) + "-" + toCompressedString(metadata.album.get) + extension)
+          .toAbsolutePath
+          .toFile
+      }
+
+      try {
+        if (!file.exists()) {
+          val randomAccessFile = new RandomAccessFile(file, "rw")
+          randomAccessFile.write(cover)
+          randomAccessFile.close()
+        }
+        Some(file)
+      } catch {
+        case _: Throwable => None
+      }
+
+    } else {
+      logger.warning("Found a mp3 with a cover but no tags, ignoring: " + metadata.location)
+      None
+    }
+
+  }
+
+  def loadTracksFile(): Future[Seq[Track]] = {
+    tracksFile.createNewFile()
+    val f = StreamConverters
+      .fromInputStream(() => new FileInputStream(tracksFile))
+      .via(Framing.delimiter(ByteString("\n"), maximumFrameLength = Int.MaxValue, allowTruncation = false))
+      .map(_.utf8String)
+      .map(_.parseJson.convertTo[Track])
+      .runWith(Sink.seq)
+    f.onComplete {
+      case Success(_) => logger.debug("Successfully read the tracks file.")
+      case Failure(t) => logger.error(t, "Failure reading the tracks file.")
+    }
+    f
+  }
+
+  def saveTracks(tracks: Seq[Track]): Future[Done] = {
+    val f = Source(tracks)
+      .map(t => ByteString(t.toJson.compactPrint + "\n"))
+      .runWith(StreamConverters.fromOutputStream(() => new FileOutputStream(tracksFile), autoFlush = true))
+      .transform {
+        case Success(result) => result.status
+        case Failure(t) => Failure(t)
+      }
+    f.onComplete {
+      case Success(Done) => logger.debug("Successfully wrote the tracks file.")
+      case Failure(t) => logger.error(t, "Error writing the tracks file.")
+    }
+    f
+  }
+
+  def loadLibrariesFile(): Future[List[Path]] = {
+    librariesFile.createNewFile()
+    val result: Future[List[Path]] = StreamConverters
+      .fromInputStream(() => new FileInputStream(librariesFile))
+      .via(Framing.delimiter(ByteString("\n"), maximumFrameLength = Int.MaxValue, allowTruncation = false))
+      .map(_.utf8String)
+      .map(_.parseJson.convertTo[String])
+      .runWith(Sink.fold(List.empty[String])((list, value) => list :+ value))
+      .map(_.map(l => Paths.get(l)))
+    result.onComplete {
+      case Success(_) => logger.debug("Successfully read the libraries file.")
+      case Failure(t) => logger.error(t, "Failure reading the libraries file.")
+    }
+    result
+  }
+
+  def saveLibraries(libraries: Seq[Path]): Future[Done] = {
+    val sink: Sink[ByteString, Future[IOResult]] =
+      StreamConverters.fromOutputStream(() => new FileOutputStream(librariesFile), autoFlush = true)
+    val f = Source(libraries)
+      .map(_.toString)
+      .map(t => ByteString(t.toJson.compactPrint + "\n"))
+      .runWith(sink)
+      .transform {
+        case Success(result) => result.status
+        case Failure(t) => Failure(t)
+      }
+    f.onComplete {
+      case Success(Done) => logger.debug("Successfully wrote the libraries file.")
+      case Failure(t) => logger.error(t, "Error writing the libraries file.")
+    }
+    f
+  }
+
+  def loadLibraries(): Future[Seq[Path]] = {
+    for {
+      libs <- loadLibrariesFile()
+    } yield {
+      libs match {
+        case Nil =>
+          application.config.getString("music.library") match {
+            case "" =>
+              Try(Paths.get(System.getProperty("user.home")).resolve("music")) match {
+                case Success(musicFolder) if musicFolder.toFile.exists() => List(musicFolder)
+                case _ => Nil
+              }
+            case lib => List(Paths.get(lib))
+          }
+        case list => list
+      }
+    }
+  }
+
+  def loadTracks(): Future[Seq[Track]] = loadTracksFile()
+
+  def loadNewTracks(oldTracks: Seq[Track], libraries: Seq[Path]): Future[Seq[Track]] = {
+    libraries
+      .map(lib =>
+        StreamConverters.fromJavaStream(() => Files.walk(lib))
+          .filter(path => !path.toFile.isDirectory)
+          .filter(path => !oldTracks.exists(track => track.location == path.toString))
+          .via(extractMetadataFlow)
+          .via(metadataToTrackFlow(lib))
+          .map(Some(_))
+          .recover {
+            case _: UncheckedIOException => None
+          }.collect{
+            case opt if opt.isDefined => opt.get
+          }
+      )
+      .fold(Source.empty)(_ concat _)
+      .runWith(Sink.seq)
+      .map(_ ++: oldTracks)
+  }
+
+  def watchLibraryFolders(libraryFolders: Seq[Path]): Future[Done] = {
+    import akka.pattern.ask
+    val fs = libraryFolders.map(lib => (watchActor ? FileSystemChange.WatchDir(lib))(120.seconds).mapTo[Done])
+    Future.sequence(fs).map(_ => Done)
+  }
+
+}
