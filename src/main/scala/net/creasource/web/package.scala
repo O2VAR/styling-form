@@ -18,4 +18,11 @@ package object web {
   }
 
   trait JsonSupport extends SprayJsonSupport with DefaultJsonProtocol {
-   
+    implicit val jsonMessageFormat: RootJsonFormat[JsonMessage] = jsonFormat3(JsonMessage.apply)
+    implicit val httpHeaderWriter: RootJsonWriter[HttpHeader] = (obj: HttpHeader) => {
+      JsObject(
+        "name" -> JsString(obj.name()),
+        "value" -> JsString(obj.value())
+      )
+    }
+    impl
