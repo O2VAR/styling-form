@@ -11,4 +11,11 @@ package object web {
 
   case class JsonMessage(method: String, id: Int, entity: JsValue)
 
-  object Json
+  object JsonMessage extends JsonSupport {
+    def unapply(arg: JsValue): Option[(String, Int, JsValue)] = {
+      Try(arg.convertTo[JsonMessage]).toOption.map(m => (m.method, m.id, m.entity))
+    }
+  }
+
+  trait JsonSupport extends SprayJsonSupport with DefaultJsonProtocol {
+   
