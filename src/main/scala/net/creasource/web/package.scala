@@ -25,4 +25,8 @@ package object web {
         "value" -> JsString(obj.value())
       )
     }
-    impl
+    implicit val httpResponseFormat: RootJsonWriter[HttpResponse] = (obj: HttpResponse) => JsObject(
+      "status" -> JsNumber(obj.status.intValue),
+      "statusText" -> JsString(obj.status.reason),
+      "entity" -> (obj.entity match {
+        case HttpEntity.Strict(ct@ContentTypes.`application/json`, body) => JsonParser(body.decodeSt
