@@ -33,4 +33,9 @@ package object web {
         case HttpEntity.Strict(ct@ContentTypes.`text/plain(UTF-8)`, body) => JsString(body.decodeString(ct.charset.value))
         case _ => throw new UnsupportedOperationException("Only strict application/json and text/plain endpoints are supported.")
       })
-      //"h
+      //"headers" -> JsArray(obj.headers.map(_.toJson).toVector)
+    )
+    implicit val httpRequestFormat: RootJsonReader[HttpRequest] = (json: JsValue) => {
+      val (method, uri, headers, entity) = json match {
+        case js: JsObject =>
+          val method = js.fields.get("method") match {
