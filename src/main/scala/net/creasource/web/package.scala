@@ -29,4 +29,8 @@ package object web {
       "status" -> JsNumber(obj.status.intValue),
       "statusText" -> JsString(obj.status.reason),
       "entity" -> (obj.entity match {
-        case HttpEntity.Strict(ct@ContentTypes.`application/json`, body) => JsonParser(body.decodeSt
+        case HttpEntity.Strict(ct@ContentTypes.`application/json`, body) => JsonParser(body.decodeString(ct.charset.value))
+        case HttpEntity.Strict(ct@ContentTypes.`text/plain(UTF-8)`, body) => JsString(body.decodeString(ct.charset.value))
+        case _ => throw new UnsupportedOperationException("Only strict application/json and text/plain endpoints are supported.")
+      })
+      //"h
