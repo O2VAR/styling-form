@@ -43,4 +43,9 @@ package object web {
             case Some(JsString("POST")) => HttpMethods.POST
             case Some(JsString("PUT")) => HttpMethods.PUT
             case Some(JsString("DELETE")) => HttpMethods.DELETE
-            case Some(JsString("OPTIONS")) => HttpM
+            case Some(JsString("OPTIONS")) => HttpMethods.OPTIONS
+            case Some(JsString("HEAD")) => HttpMethods.HEAD
+            case Some(m) => throw new UnsupportedOperationException(s"Method $m is not supported.")
+            case _ => throw new UnsupportedOperationException(s"No Method header found.")
+          }
+          val uri = js.fields.get("url") match {
