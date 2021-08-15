@@ -39,3 +39,8 @@ package object web {
       val (method, uri, headers, entity) = json match {
         case js: JsObject =>
           val method = js.fields.get("method") match {
+            case Some(JsString("GET")) => HttpMethods.GET
+            case Some(JsString("POST")) => HttpMethods.POST
+            case Some(JsString("PUT")) => HttpMethods.PUT
+            case Some(JsString("DELETE")) => HttpMethods.DELETE
+            case Some(JsString("OPTIONS")) => HttpM
