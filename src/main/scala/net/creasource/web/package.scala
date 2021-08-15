@@ -49,3 +49,9 @@ package object web {
             case _ => throw new UnsupportedOperationException(s"No Method header found.")
           }
           val uri = js.fields.get("url") match {
+            case Some(JsString(url)) => Uri(url)
+            case _ => throw new UnsupportedOperationException(s"No string url parameter found.")
+          }
+          val entity = js.fields.get("entity") match {
+            case None => HttpEntity.Empty
+            case Some(value: JsValue) 
