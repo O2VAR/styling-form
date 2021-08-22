@@ -12,4 +12,12 @@ import scala.concurrent.{Await, Future}
 
 class TagExtractorTest extends SimpleTest {
 
-  "A LibraryScanner"
+  "A LibraryScanner" should {
+
+    "find audio files in a folder" in {
+
+      //val scanner = new LibraryScanner(new File("D:\\Musique\\Metallica"))
+
+      //val files = scanner.getAudioFiles(new File("C:\\Users\\Thomas\\Workspace\\musicalypse\\web\\src\\assets\\music"))
+      //files.foreach(println)
+      //val metas = scann
