@@ -54,4 +54,9 @@ package object web {
           }
           val entity = js.fields.get("entity") match {
             case None => HttpEntity.Empty
-            case Some(value: JsValue) 
+            case Some(value: JsValue) => HttpEntity.Strict(ContentTypes.`application/json`, ByteString(value.compactPrint))
+          }
+          (method, uri, Nil, entity)
+        case _ => throw new UnsupportedOperationException("The body of an HttpRequest message must be a JsObject.")
+      }
+      HttpReque
