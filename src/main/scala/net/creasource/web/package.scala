@@ -59,4 +59,10 @@ package object web {
           (method, uri, Nil, entity)
         case _ => throw new UnsupportedOperationException("The body of an HttpRequest message must be a JsObject.")
       }
-      HttpReque
+      HttpRequest(method = method, uri = uri, headers = headers, entity = entity)
+    }
+  }
+
+  object JsonSupport extends JsonSupport
+
+}
