@@ -6,3 +6,5 @@ abstract class SimpleTest
   extends WordSpecLike
     with Matchers
     with BeforeAndAfterAll {
+
+}
