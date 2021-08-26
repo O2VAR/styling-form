@@ -20,4 +20,10 @@ class TagExtractorTest extends SimpleTest {
 
       //val files = scanner.getAudioFiles(new File("C:\\Users\\Thomas\\Workspace\\musicalypse\\web\\src\\assets\\music"))
       //files.foreach(println)
-      //val metas = scann
+      //val metas = scanner.scanLibrary(new File("D:\\Musique\\Metallica"))
+      //metas.foreach(println)
+
+//      implicit val actorSystem: ActorSystem = ActorSystem()
+//      implicit val materializer: ActorMaterializer = ActorMaterializer()
+//
+//      val sink = Sink.foreach[TrackMetadat
