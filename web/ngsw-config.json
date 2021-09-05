@@ -1,3 +1,18 @@
 {
   "appData": {
-   
+    "version": "1.0.0"
+  },
+  "index": "/index.html",
+  "assetGroups": [{
+    "name": "app",
+    "installMode": "prefetch",
+    "resources": {
+      "files": [
+        "/favicon.ico",
+        "/index.html",
+        "/*.css",
+        "/*.js"
+      ]
+    }
+  }, {
+    "name": "asse
