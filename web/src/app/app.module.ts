@@ -11,4 +11,10 @@ import {routes} from './routes';
 import {CoreModule} from './core/core.module';
 import {CoreComponent} from './core/core.component';
 import {LibraryModule} from './library/library.module';
-import {
+import {SettingsModule} from './settings/settings.module';
+import {metaReducers, reducers} from './app.reducers';
+import {environment} from '@env/environment';
+// import {EditorModule} from '@app/editor/editor.module';
+// import {MyMusicModule} from '@app/my-music/my-music.module';
+import {PlayerModule} from '@app/player/player.module';
+import {PlaylistsMo
