@@ -34,4 +34,22 @@ import {CustomSerializer} from './app.serializer';
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 50, // Retains last 50 states
-      logOnly: environment.pro
+      logOnly: environment.production // Restrict extension to log-only mode
+    }),
+
+    // My Modules
+    CoreModule,
+    LibraryModule,
+    SettingsModule,
+    // EditorModule,
+    // MyMusicModule,
+    PlayerModule,
+    PlaylistsModule
+  ],
+  bootstrap: [CoreComponent]
+})
+export class AppModule { }
+
+
+
+
