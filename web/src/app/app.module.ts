@@ -24,4 +24,14 @@ import {CustomSerializer} from './app.serializer';
   imports: [
     // Angular Modules
     RouterModule.forRoot(routes),
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production && !environment
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production && !environment.electron }),
+
+    // Ngrx Modules
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer
+    }),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 50, // Retains last 50 states
+      logOnly: environment.pro
