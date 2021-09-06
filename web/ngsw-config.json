@@ -15,4 +15,21 @@
       ]
     }
   }, {
-    "name": "asse
+    "name": "assets",
+    "installMode": "lazy",
+    "updateMode": "prefetch",
+    "resources": {
+      "files": [
+        "/**/*.woff2",
+        "/assets/**"
+      ]
+    }
+  }],
+  "dataGroups": [{
+    "name": "covers",
+    "version": 0,
+    "urls": [
+      "/cache/covers/**"
+    ],
+    "cacheConfig": {
+      "maxSize": 1000
