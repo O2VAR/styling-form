@@ -17,4 +17,11 @@ import {environment} from '@env/environment';
 // import {EditorModule} from '@app/editor/editor.module';
 // import {MyMusicModule} from '@app/my-music/my-music.module';
 import {PlayerModule} from '@app/player/player.module';
-import {PlaylistsMo
+import {PlaylistsModule} from '@app/playlists/playlists.module';
+import {CustomSerializer} from './app.serializer';
+
+@NgModule({
+  imports: [
+    // Angular Modules
+    RouterModule.forRoot(routes),
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production && !environment
