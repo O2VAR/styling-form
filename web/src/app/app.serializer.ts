@@ -9,4 +9,13 @@ export interface RouterStateUrl {
 }
 
 export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
-  serialize(routerState: RouterStateSnapsh
+  serialize(routerState: RouterStateSnapshot): RouterStateUrl {
+    let route = routerState.root;
+    while (route.firstChild) {
+      route = route.firstChild;
+    }
+    // Only return an object including the URL, params and query params instead of the entire snapshot
+    return {
+      url: routerState.url,
+      params: route.paramMap,
+   
