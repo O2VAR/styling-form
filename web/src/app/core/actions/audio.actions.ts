@@ -12,4 +12,14 @@ export enum AudioActionTypes {
 
 export class SetAudioSource implements Action {
   readonly type = AudioActionTypes.SetAudioSource;
-  const
+  constructor(public payload: string) {}
+}
+
+export class SetAudioVolume implements Action {
+  readonly type = AudioActionTypes.SetAudioVolume;
+  constructor(public payload: number) {}
+}
+
+export class SetAudioMuted implements Action {
+  readonly type = AudioActionTypes.SetAudioMuted;
+  c
