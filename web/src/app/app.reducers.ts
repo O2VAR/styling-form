@@ -31,4 +31,9 @@ export const reducers: ActionReducerMap<State> = {
  * the root meta-reducer. To add more meta-reducers, provide an array of meta-reducers
  * that will be composed to form the root meta-reducer.
  */
-export const metaReducers: MetaReducer<State>[] = !environment.production
+export const metaReducers: MetaReducer<State>[] = !environment.production ? [/*logger*/] : [];
+
+export const getRouterState =  createSelector(
+  createFeatureSelector<RouterReducerState<RouterStateUrl>>('router'),
+  (state) => state.state
+);
