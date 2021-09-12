@@ -32,3 +32,14 @@ export class SetAudioLoading implements Action {
 
 export class SetAudioPlaying implements Action {
   readonly type = AudioActionTypes.SetAudioPlaying;
+  constructor(public payload: boolean) {}
+}
+
+export class SetAudioDuration implements Action {
+  readonly type = AudioActionTypes.SetAudioDuration;
+  constructor(public payload: number) {}
+}
+
+export class SetAudioError implements Action {
+  readonly type = AudioActionTypes.SetAudioError;
+  constructor(public payload: str
