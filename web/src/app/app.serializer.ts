@@ -18,4 +18,8 @@ export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
     return {
       url: routerState.url,
       params: route.paramMap,
-   
+      queryParams: route.queryParamMap,
+      data: route.data
+    };
+  }
+}
