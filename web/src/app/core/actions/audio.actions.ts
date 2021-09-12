@@ -22,4 +22,13 @@ export class SetAudioVolume implements Action {
 
 export class SetAudioMuted implements Action {
   readonly type = AudioActionTypes.SetAudioMuted;
-  c
+  constructor(public payload: boolean) {}
+}
+
+export class SetAudioLoading implements Action {
+  readonly type = AudioActionTypes.SetAudioLoading;
+  constructor(public payload: boolean) {}
+}
+
+export class SetAudioPlaying implements Action {
+  readonly type = AudioActionTypes.SetAudioPlaying;
