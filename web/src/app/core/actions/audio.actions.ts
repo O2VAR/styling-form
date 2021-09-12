@@ -42,4 +42,14 @@ export class SetAudioDuration implements Action {
 
 export class SetAudioError implements Action {
   readonly type = AudioActionTypes.SetAudioError;
-  constructor(public payload: str
+  constructor(public payload: string) {}
+}
+
+export type AudioActionsUnion =
+  SetAudioSource |
+  SetAudioVolume |
+  SetAudioMuted |
+  SetAudioLoading |
+  SetAudioPlaying |
+  SetAudioDuration |
+  SetAudioError;
