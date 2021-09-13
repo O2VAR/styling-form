@@ -13,4 +13,16 @@ export class OpenSidenav implements Action {
 }
 
 export class CloseSidenav implements Action {
-  readonly type
+  readonly type = CoreActionTypes.CloseSidenav;
+}
+
+export class ToggleSidenav implements Action {
+  readonly type = CoreActionTypes.ToggleSidenav;
+}
+
+export class ChangeTheme implements Action {
+  readonly type = CoreActionTypes.ChangeTheme;
+  constructor(public payload: Theme) {}
+}
+
+export type CoreActionsUnio
