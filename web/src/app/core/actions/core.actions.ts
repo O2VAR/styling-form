@@ -25,4 +25,8 @@ export class ChangeTheme implements Action {
   constructor(public payload: Theme) {}
 }
 
-export type CoreActionsUnio
+export type CoreActionsUnion =
+  OpenSidenav |
+  CloseSidenav |
+  ToggleSidenav |
+  ChangeTheme;
