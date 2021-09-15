@@ -18,4 +18,19 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
     .app-loader {
       position: absolute;
       left: 0;
-      r
+      right: 0;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    .app-loader mat-spinner {
+      margin-bottom: 0.5rem;
+    }
+    .app-loader .error-icon {
+      height: 50px;
+      width: 50px;
+      line-
