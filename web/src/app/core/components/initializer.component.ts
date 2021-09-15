@@ -47,4 +47,9 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
 export class InitializerComponent {
 
   @Input() initializing = true;
-  @Input
+  @Input() hasErrors: boolean;
+  @Input() initializingLog: string;
+
+  @Output() retry = new EventEmitter<void>();
+
+}
