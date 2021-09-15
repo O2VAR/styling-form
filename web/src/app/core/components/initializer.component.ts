@@ -33,4 +33,18 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
     .app-loader .error-icon {
       height: 50px;
       width: 50px;
-      line-
+      line-height: 50px;
+      font-size: 50px;
+      margin-bottom: 0.5rem;
+    }
+    .app-loader .retry {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class InitializerComponent {
+
+  @Input() initializing = true;
+  @Input
