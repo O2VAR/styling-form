@@ -45,4 +45,10 @@ import {Theme} from '@app/core/core.utils';
         <mat-icon>format_color_fill</mat-icon>
       </button>
       <div class="theme-chooser-backdrop" *ngIf="themeChooser" (click)="themeChooser = false"></div>
-      <div class="theme-chooser" [class.visible]="themeChooser" (click)="t
+      <div class="theme-chooser" [class.visible]="themeChooser" (click)="themeChooser = false">
+        <ol>
+          <li *ngFor="let theme of themes">
+            <button mat-icon-button (click)="changeTheme.emit(theme)" [style]="getThemeStyle(theme)">
+              <mat-icon *ngIf="theme.cssClass === currentTheme.cssClass" color="primary">check</mat-icon>
+            </button>
+        
