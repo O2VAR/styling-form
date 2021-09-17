@@ -35,3 +35,9 @@ import {Theme} from '@app/core/core.utils';
         <mat-icon class="electron-theme" (click)="themeChooser = true">format_color_fill</mat-icon>
         <mat-icon (click)="minimizeWindow.emit()">remove</mat-icon>
         <mat-icon (click)="maximizeWindow.emit()" *ngIf="!isMaximized">crop_square</mat-icon>
+        <mat-icon (click)="unmaximizeWindow.emit()" *ngIf="isMaximized">crop_16_9</mat-icon>
+        <mat-icon class="close" (click)="closeWindow.emit()">close</mat-icon>
+      </div>
+      <button mat-button mat-icon-button
+              class="theme-button"
+              (click)="themeC
