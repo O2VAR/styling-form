@@ -31,4 +31,7 @@ import {Theme} from '@app/core/core.utils';
       </div>
       <div class="electron-buttons" *ngIf="isElectron">
         <mat-icon (click)="pause.emit()" *ngIf="isPlaying">pause</mat-icon>
-        <mat-icon (click)="play.emit()" *ngI
+        <mat-icon (click)="play.emit()" *ngIf="!isPlaying">play_arrow</mat-icon>
+        <mat-icon class="electron-theme" (click)="themeChooser = true">format_color_fill</mat-icon>
+        <mat-icon (click)="minimizeWindow.emit()">remove</mat-icon>
+        <mat-icon (click)="maximizeWindow.emit()" *ngIf="!isMaximized">crop_square</mat-icon>
