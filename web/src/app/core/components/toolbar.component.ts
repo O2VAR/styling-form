@@ -17,4 +17,12 @@ import {Theme} from '@app/core/core.utils';
       <button mat-button
               class="install-button"
               *ngIf="showInstallPrompt"
-              (click)="i
+              (click)="install.emit()">
+        <mat-icon>get_app</mat-icon>
+        Install
+      </button>
+      <div class="micro-player" *ngIf="!isElectron">
+        <button mat-icon-button *ngIf="isPlaying" (click)="pause.emit()">
+          <mat-icon>pause</mat-icon>
+        </button>
+        <button mat-icon-b
