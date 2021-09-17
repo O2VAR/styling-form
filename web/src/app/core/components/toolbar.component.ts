@@ -25,4 +25,10 @@ import {Theme} from '@app/core/core.utils';
         <button mat-icon-button *ngIf="isPlaying" (click)="pause.emit()">
           <mat-icon>pause</mat-icon>
         </button>
-        <button mat-icon-b
+        <button mat-icon-button *ngIf="!isPlaying" (click)="play.emit()">
+          <mat-icon>play_arrow</mat-icon>
+        </button>
+      </div>
+      <div class="electron-buttons" *ngIf="isElectron">
+        <mat-icon (click)="pause.emit()" *ngIf="isPlaying">pause</mat-icon>
+        <mat-icon (click)="play.emit()" *ngI
