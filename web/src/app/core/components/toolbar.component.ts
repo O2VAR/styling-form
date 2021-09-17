@@ -40,4 +40,9 @@ import {Theme} from '@app/core/core.utils';
       </div>
       <button mat-button mat-icon-button
               class="theme-button"
-              (click)="themeC
+              (click)="themeChooser = true"
+              *ngIf="!isElectron">
+        <mat-icon>format_color_fill</mat-icon>
+      </button>
+      <div class="theme-chooser-backdrop" *ngIf="themeChooser" (click)="themeChooser = false"></div>
+      <div class="theme-chooser" [class.visible]="themeChooser" (click)="t
