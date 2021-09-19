@@ -51,4 +51,18 @@ import {Theme} from '@app/core/core.utils';
             <button mat-icon-button (click)="changeTheme.emit(theme)" [style]="getThemeStyle(theme)">
               <mat-icon *ngIf="theme.cssClass === currentTheme.cssClass" color="primary">check</mat-icon>
             </button>
-        
+          </li>
+        </ol>
+      </div>
+    </mat-toolbar>
+  `,
+  styleUrls: ['toolbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class ToolbarComponent {
+
+  constructor (private sanitizer: DomSanitizer) {}
+
+  themeChooser = false;
+
+  @Input() sideNavOpened: boolean
