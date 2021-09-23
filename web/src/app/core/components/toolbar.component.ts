@@ -65,4 +65,13 @@ export class ToolbarComponent {
 
   themeChooser = false;
 
-  @Input() sideNavOpened: boolean
+  @Input() sideNavOpened: boolean;
+  @Input() themes: Theme[];
+  @Input() currentTheme: Theme;
+  @Input() isElectron: boolean;
+  @Input() isMaximized: boolean;
+  @Input() showInstallPrompt: boolean;
+  @Input() isPlaying: boolean;
+
+  @Output() toggleSidenav = new EventEmitter<void>();
+  @Output() changeTheme = new EventEmitter
