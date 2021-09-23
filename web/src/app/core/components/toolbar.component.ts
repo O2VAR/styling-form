@@ -74,4 +74,10 @@ export class ToolbarComponent {
   @Input() isPlaying: boolean;
 
   @Output() toggleSidenav = new EventEmitter<void>();
-  @Output() changeTheme = new EventEmitter
+  @Output() changeTheme = new EventEmitter<Theme>();
+  @Output() closeWindow = new EventEmitter<void>();
+  @Output() maximizeWindow = new EventEmitter<void>();
+  @Output() minimizeWindow = new EventEmitter<void>();
+  @Output() unmaximizeWindow = new EventEmitter<void>();
+  @Output() install = new EventEmitter<void>();
+  @Output() play 
