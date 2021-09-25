@@ -80,4 +80,11 @@ export class ToolbarComponent {
   @Output() minimizeWindow = new EventEmitter<void>();
   @Output() unmaximizeWindow = new EventEmitter<void>();
   @Output() install = new EventEmitter<void>();
-  @Output() play 
+  @Output() play = new EventEmitter<void>();
+  @Output() pause = new EventEmitter<void>();
+
+  getThemeStyle(theme: Theme) {
+    return this.sanitizer.bypassSecurityTrustStyle(`background-color: ${theme.color}`);
+  }
+
+}
