@@ -118,3 +118,162 @@ export class CoreComponent implements OnInit {
   currentThemeCssClass$: Observable<string>;
 
   isElectron = environment.electron;
+  isElectronFocused: boolean;
+  isMaximized = false;
+
+  featuredThemes: Theme[] = CoreUtils.featuredThemes;
+
+  isPlaying$: Observable<boolean>;
+  initializing$: Observable<boolean>;
+  logs$: Observable<string>;
+  hasErrors$: Observable<boolean>;
+
+  installPromptEvent: any = null;
+
+  constructor(
+    private ref: ChangeDetectorRef,
+    private store: Store<fromCore.State>,
+    private loader: LoaderService,
+    private audioService: AudioService,
+    private renderer: Renderer2,
+    private appRoot: ElementRef,
+    private updateService: UpdateService,
+    private electronService: ElectronService
+  ) {
+    this.isPlaying$ = this.audioService.getPlaying();
+    this.initializing$ = this.loader.initializing$;
+    this.hasErrors$ = this.loader.hasErrors$;
+    this.logs$ = this.loader.log$;
+
+    this.loader.initialize();
+    this.updateService.initialize();
+  }
+
+  ngOnInit(): void {
+    // Set up electron listeners
+    this.electronService.onIpc('suspend', this.audioService.pause);
+    this.electronService.onWindow('focus', () => {
+      this.isElectronFocused = true;
+      this.ref.detectChanges();
+    });
+    this.electronService.onWindow('blur', () => {
+      this.isElectronFocused = false;
+      this.ref.detectChanges();
+    });
+    this.electronService.onWindow('maximize', () => {
+      this.isMaximized = true;
+      this.ref.detectChanges();
+    });
+    this.electronService.onWindow('unmaximize', () => {
+      this.isMaximized = false;
+      this.ref.detectChanges();
+    });
+
+    // Set up core observables
+    this.showSidenav$ = this.store.pipe(select(fromCore.getShowSidenav));
+    this.currentTheme$ = this.store.pipe(select(fromCore.getCurrentTheme));
+    this.currentThemeCssClass$ = this.currentTheme$.pipe(map(t => t.cssClass));
+
+    // Configure Audio Service
+    this.audioService.renderer = this.renderer;
+    this.audioService.appRoot = this.appRoot;
+
+    // Load and save volume
+    CoreUtils.restoreAndSave(
+      'volume',
+      v => this.store.dispatch(new SetAudioVolume(v)),
+      this.store.select(fromCore.getAudioVolume)
+    );
+
+    // Load and save theme
+    CoreUtils.restoreAndSave(
+      'theme',
+      t => this.store.dispatch(new ChangeTheme(t)),
+      this.store.select(fromCore.getCurrentTheme),
+      () => this.store.dispatch(new ChangeTheme(CoreUtils.featuredThemes[0]))
+    );
+
+    CoreUtils.restoreAndSave(
+      'lyricsOptions',
+      t => this.store.dispatch(new SetLyricsOptions(t)),
+      this.store.select(getLyricsOptions)
+    );
+
+  }
+
+  @HostListener('window:beforeinstallprompt', ['$event'])
+  beforeInstallPrompt(event: Event) {
+    this.installPromptEvent = event;
+    event.preventDefault();
+  }
+
+  install() {
+    if (this.installPromptEvent) {
+      this.installPromptEvent.prompt();
+      this.installPromptEvent.userChoice
+        .then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+          } else {
+            console.log('User dismissed the A2HS prompt');
+          }
+          this.installPromptEvent = null;
+        });
+    }
+  }
+
+  initialize() {
+    this.loader.initialize();
+  }
+
+  @HostListener('window:storage', ['$event'])
+  onStorage(event) {
+    if (event.key === 'theme') {
+      this.changeTheme(JSON.parse(event.newValue));
+    }
+  }
+
+  getLoading(): Observable<number> {
+    return this.loader.getLoading();
+  }
+
+  closeSidenav(): void {
+    this.store.select(fromCore.getShowSidenav).pipe(
+      take(1),
+      tap(showSidenav => showSidenav ? this.store.dispatch(new CloseSidenav()) : {})
+    ).subscribe();
+  }
+
+  toggleSidenav(): void {
+    this.store.dispatch(new ToggleSidenav());
+  }
+
+  changeTheme(theme: Theme): void {
+    this.store.dispatch(new ChangeTheme(theme));
+  }
+
+  closeWindow(): void {
+    this.electronService.getWindow().close();
+  }
+
+  minimizeWindow(): void {
+    this.electronService.getWindow().minimize();
+  }
+
+  maximizeWindow(): void {
+    this.electronService.getWindow().maximize();
+  }
+
+  unmaximizeWindow(): void {
+    this.electronService.getWindow().unmaximize();
+  }
+
+  play() {
+    this.audioService.play();
+  }
+
+  pause() {
+    this.audioService.pause();
+  }
+
+}
