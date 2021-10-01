@@ -56,4 +56,4 @@ export function reducer(
  * Selectors
  */
 export const getShowSidenav = (state: State) => state.showSidenav;
-expo
+export const getCurrentTheme = (state: State) => state.currentTheme;
