@@ -38,4 +38,22 @@ export function reducer(
     case CoreActionTypes.ToggleSidenav:
       return {
         ...state,
-        showSidenav:
+        showSidenav: !state.showSidenav,
+      };
+
+    case CoreActionTypes.ChangeTheme:
+      return {
+        ...state,
+        currentTheme: action.payload,
+      };
+
+    default:
+      return state;
+  }
+}
+
+/**
+ * Selectors
+ */
+export const getShowSidenav = (state: State) => state.showSidenav;
+expo
