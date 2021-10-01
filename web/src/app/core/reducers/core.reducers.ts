@@ -4,4 +4,23 @@
 import {CoreUtils, Theme} from '@app/core/core.utils';
 import {CoreActionsUnion, CoreActionTypes} from '@app/core/actions/core.actions';
 
-export interface Stat
+export interface State {
+  showSidenav: boolean;
+  currentTheme: Theme;
+}
+
+const initialState: State = {
+  showSidenav: false,
+  currentTheme: CoreUtils.allThemes[0],
+};
+
+/**
+ * Reducer
+ */
+export function reducer(
+  state: State = initialState,
+  action: CoreActionsUnion
+): State {
+  switch (action.type) {
+
+    case Cor
