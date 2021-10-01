@@ -23,4 +23,19 @@ export function reducer(
 ): State {
   switch (action.type) {
 
-    case Cor
+    case CoreActionTypes.OpenSidenav:
+      return {
+        ...state,
+        showSidenav: true,
+      };
+
+    case CoreActionTypes.CloseSidenav:
+      return {
+        ...state,
+        showSidenav: false,
+      };
+
+    case CoreActionTypes.ToggleSidenav:
+      return {
+        ...state,
+        showSidenav:
