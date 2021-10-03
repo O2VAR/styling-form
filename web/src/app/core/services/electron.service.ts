@@ -11,4 +11,16 @@ export class ElectronService {
   constructor() {
     if (environment.electron) {
       const electron = (<any>window).require('electron');
-      this.ipcRenderer = electron.ip
+      this.ipcRenderer = electron.ipcRenderer;
+      this.remote = electron.remote;
+      this.shell = electron.shell;
+    }
+  }
+
+  onIpc(channel: string, listener: (event, ...args) => void): void {
+    if (environment.electron) {
+      this.ipcRenderer.on(channel, listener);
+    }
+  }
+
+  removeIpc(channel?: string): void
