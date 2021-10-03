@@ -23,4 +23,17 @@ export class ElectronService {
     }
   }
 
-  removeIpc(channel?: string): void
+  removeIpc(channel?: string): void {
+    if (environment.electron) {
+      this.ipcRenderer.removeAllListeners(channel);
+    }
+  }
+
+  send(message: string): void {
+    if (environment.electron) {
+      this.ipcRenderer.send(message);
+    }
+  }
+
+  onWindow(event: string, listener: () => void): void {
+    if (environment.e
