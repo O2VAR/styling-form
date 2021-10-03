@@ -36,4 +36,19 @@ export class ElectronService {
   }
 
   onWindow(event: string, listener: () => void): void {
-    if (environment.e
+    if (environment.electron) {
+      this.remote.getCurrentWindow().addListener(event, listener);
+    }
+  }
+
+  getWindow(): any {
+    if (environment.electron) {
+      return this.remote.getCurrentWindow();
+    }
+  }
+
+  openExternal(url: string): void {
+    this.shell.openExternal(url);
+  }
+
+}
