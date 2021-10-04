@@ -5,3 +5,17 @@ import {concat, Observable, Subject} from 'rxjs';
 import {filter, map, share, take} from 'rxjs/operators';
 
 import {environment} from '@env/environment';
+
+@Injectable()
+export class HttpSocketClientService implements OnDestroy {
+
+  constructor(private httpClient: HttpClient) { }
+
+  public id = 1;
+
+  private socketOpened = false;
+
+  private preferHttpOverSocket = false;
+
+  private socket: Subject<Object> = webSocket({
+    url: H
