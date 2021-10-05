@@ -18,4 +18,13 @@ export class HttpSocketClientService implements OnDestroy {
   private preferHttpOverSocket = false;
 
   private socket: Subject<Object> = webSocket({
-    url: H
+    url: HttpSocketClientService.getSocketUrl(),
+    openObserver: {
+      next: () => this.socketOpened = true
+    },
+    closeObserver: {
+      next: () => this.socketOpened = false
+    }
+  });
+
+  private socketObs: Observable<SocketMessage> = this.socket.asObservable().pipe(share()) 
