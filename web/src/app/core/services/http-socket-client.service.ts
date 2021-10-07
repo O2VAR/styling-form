@@ -27,4 +27,11 @@ export class HttpSocketClientService implements OnDestroy {
     }
   });
 
-  private socketObs: Observable<SocketMessage> = this.socket.asObservable().pipe(share()) 
+  private socketObs: Observable<SocketMessage> = this.socket.asObservable().pipe(share()) as Observable<SocketMessage>;
+
+  private static getSocketUrl() {
+    let socketUrl = '';
+    if (environment.electron) {
+      socketUrl += 'ws://localhost:' + environment.httpPort;
+    } else {
+      socketUrl += window.location.protocol === 'http:' ? 'ws://' : 'ws
