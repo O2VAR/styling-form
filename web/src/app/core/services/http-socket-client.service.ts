@@ -102,4 +102,17 @@ export class HttpSocketClientService implements OnDestroy {
         { headers: {'Content-Type': 'application/json'}}
       );
     } else {
-      const request: HttpRequest 
+      const request: HttpRequest = {
+        method: 'HttpRequest',
+        entity: {
+          method: 'POST',
+          url: HttpSocketClientService.getAPIUrl(path),
+          entity: entity
+        },
+        id: this.id++
+      };
+      return this.sendRequest(request);
+    }
+  }
+
+  postFiles(path: string, files: File[
