@@ -121,4 +121,14 @@ export class HttpSocketClientService implements OnDestroy {
 
     // const acknowledgment = Observable.create(observer => {
     //   observer.next({ event: { type: 10 }});
-    //   obs
+    //   observer.complete();
+    //   return () => {};
+    // });
+
+    return filesObs.reduce((obs1: Observable<Object>, obs2) => concat(obs1, obs2));
+
+  }
+
+  postFile(path: string, file: File): Observable<Object> {
+    const formData = new FormData();
+    formData.append('file', file, f
