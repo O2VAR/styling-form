@@ -34,4 +34,15 @@ export class HttpSocketClientService implements OnDestroy {
     if (environment.electron) {
       socketUrl += 'ws://localhost:' + environment.httpPort;
     } else {
-      socketUrl += window.location.protocol === 'http:' ? 'ws://' : 'ws
+      socketUrl += window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+      socketUrl += window.location.hostname;
+      if (environment.production) {
+        if (window.location.port) {
+          socketUrl += ':' + window.location.port;
+        }
+      } else {
+        socketUrl += ':' + environment.httpPort;
+      }
+    }
+    socketUrl += '/socket';
+    retur
