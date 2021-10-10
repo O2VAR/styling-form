@@ -115,4 +115,10 @@ export class HttpSocketClientService implements OnDestroy {
     }
   }
 
-  postFiles(path: string, files: File[
+  postFiles(path: string, files: File[]): Observable<Object> {
+    const filesObs: Observable<Object>[] =
+      files.map( file => this.postFile(path, file).pipe(map(event => ({event: event, file: file }))));
+
+    // const acknowledgment = Observable.create(observer => {
+    //   observer.next({ event: { type: 10 }});
+    //   obs
