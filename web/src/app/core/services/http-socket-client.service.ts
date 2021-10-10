@@ -54,4 +54,20 @@ export class HttpSocketClientService implements OnDestroy {
       url += 'http://localhost:' + environment.httpPort;
     } else {
       url += window.location.protocol + '//' + window.location.hostname;
-      if (environment.production) 
+      if (environment.production) {
+        if (window.location.port) {
+          url += ':' + window.location.port;
+        }
+      } else {
+        url += ':' + environment.httpPort;
+      }
+    }
+    url += path;
+    return url;
+  }
+
+  getSocket(): Observable<SocketMessage> {
+    return this.socketObs;
+  }
+
+  send(message:
