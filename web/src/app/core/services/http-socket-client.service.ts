@@ -70,4 +70,15 @@ export class HttpSocketClientService implements OnDestroy {
     return this.socketObs;
   }
 
-  send(message:
+  send(message: any): void {
+    this.socket.next(message);
+  }
+
+  ngOnDestroy(): void {
+    this.socket.unsubscribe();
+  }
+
+  get(path: string): Observable<Object> {
+    if (this.preferHttpOverSocket || !this.socketOpened) {
+      return this.httpClient.get(HttpSocketClientService.getAPIUrl(path));
+    } e
