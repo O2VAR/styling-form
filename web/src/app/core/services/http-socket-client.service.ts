@@ -131,4 +131,14 @@ export class HttpSocketClientService implements OnDestroy {
 
   postFile(path: string, file: File): Observable<Object> {
     const formData = new FormData();
-    formData.append('file', file, f
+    formData.append('file', file, file.name);
+    return this.httpClient.post(
+      HttpSocketClientService.getAPIUrl(path),
+      formData,
+      {reportProgress: true, observe: 'events'}
+    );
+  }
+
+  delete(path: string): Observable<Object> {
+    if (this.preferHttpOverSocket || !this.socketOpened) {
+     
