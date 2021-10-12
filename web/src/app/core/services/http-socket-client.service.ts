@@ -141,4 +141,13 @@ export class HttpSocketClientService implements OnDestroy {
 
   delete(path: string): Observable<Object> {
     if (this.preferHttpOverSocket || !this.socketOpened) {
-     
+      return this.httpClient.delete(
+        HttpSocketClientService.getAPIUrl(path)/*,
+        { headers: {'Content-Type': 'application/json'}}*/
+      );
+    } else {
+      const request: HttpRequest = {
+        method: 'HttpRequest',
+        entity: {
+          method: 'DELETE',
+          url: Http
