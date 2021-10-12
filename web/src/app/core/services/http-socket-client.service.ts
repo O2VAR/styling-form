@@ -150,4 +150,17 @@ export class HttpSocketClientService implements OnDestroy {
         method: 'HttpRequest',
         entity: {
           method: 'DELETE',
-          url: Http
+          url: HttpSocketClientService.getAPIUrl(path),
+        },
+        id: this.id++
+      };
+      return this.sendRequest(request);
+    }
+  }
+
+
+  private sendRequest(request: HttpRequest): Observable<Object> {
+    const expectResponse =
+      this.getSocket()
+        .pipe(
+          filter((r: HttpResponse) => 
