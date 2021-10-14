@@ -163,4 +163,10 @@ export class HttpSocketClientService implements OnDestroy {
     const expectResponse =
       this.getSocket()
         .pipe(
-          filter((r: HttpResponse) => 
+          filter((r: HttpResponse) => r.method === 'HttpResponse' && r.id === request.id),
+          map((r: HttpResponse) => {
+            const status = r.entity.status;
+            const statusText = r.entity.statusText;
+            const entity = r.entity.entity;
+            if (status >= 400) {
+              throw ne
