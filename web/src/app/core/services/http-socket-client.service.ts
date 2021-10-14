@@ -169,4 +169,12 @@ export class HttpSocketClientService implements OnDestroy {
             const statusText = r.entity.statusText;
             const entity = r.entity.entity;
             if (status >= 400) {
-              throw ne
+              throw new HttpErrorResponse({error: entity, status: status, statusText: statusText, url: request.entity.url});
+            }
+            return entity;
+          }),
+          take(1)
+        );
+    const sendRequest = Observable.create(observer => {
+      this.send(request);
+      ob
