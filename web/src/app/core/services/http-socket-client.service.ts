@@ -177,4 +177,22 @@ export class HttpSocketClientService implements OnDestroy {
         );
     const sendRequest = Observable.create(observer => {
       this.send(request);
-      ob
+      observer.complete();
+      return () => {};
+    });
+    return concat(sendRequest, expectResponse);
+  }
+
+}
+
+export interface SocketMessage {
+  id: number;
+  method: string;
+  entity: any;
+}
+
+export interface HttpRequest {
+  method: string;
+  id: number;
+  entity: {
+    me
