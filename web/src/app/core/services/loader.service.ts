@@ -37,3 +37,14 @@ export class LoaderService {
   }
 
   /* errors => errors.pipe(
+      switchMap(() => {
+        if (window.navigator.onLine) {
+          console.warn(`WebSocket failed. Retrying in 500ms.`);
+          return timer(500);
+        } else {
+          return fromEvent(window, 'online').pipe(take(1));
+        }
+      }),
+    ))*/
+
+  getSharedSocket(): Observable<SocketMessage>
