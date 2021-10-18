@@ -195,4 +195,18 @@ export interface HttpRequest {
   method: string;
   id: number;
   entity: {
-    me
+    method: string,
+    url: string,
+    entity?: Object
+  };
+}
+
+export interface HttpResponse {
+  method: string;
+  id: number;
+  entity: {
+    status: number,
+    statusText: string,
+    entity: Object
+  };
+}
