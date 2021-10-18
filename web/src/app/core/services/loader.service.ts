@@ -25,4 +25,7 @@ export class LoaderService {
     private httpSocketClient: HttpSocketClientService,
     private snack: MatSnackBar
   ) {
-    this.loadings
+    this.loadings$ = this.loading.asObservable().pipe(publishReplay(1), refCount());
+    this.initializing$ = this.initializing.asObservable().pipe(publishReplay(1), refCount());
+    // this.initializing$ = this.httpSocketClient.socketOpened$.pipe(map(opened => !opened), publishReplay(1), refCount())
+    this.log$ = this
