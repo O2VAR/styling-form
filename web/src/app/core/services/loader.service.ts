@@ -14,4 +14,15 @@ export class LoaderService {
   private hasErrors = new Subject<boolean>();
 
   log$: Observable<string>;
-  priv
+  private log = new Subject<string>();
+
+  initializing$: Observable<boolean>;
+  private initializing = new Subject<boolean>();
+
+  private socketObs$: Observable<SocketMessage>;
+
+  constructor(
+    private httpSocketClient: HttpSocketClientService,
+    private snack: MatSnackBar
+  ) {
+    this.loadings
