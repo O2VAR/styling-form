@@ -28,4 +28,12 @@ export class LoaderService {
     this.loadings$ = this.loading.asObservable().pipe(publishReplay(1), refCount());
     this.initializing$ = this.initializing.asObservable().pipe(publishReplay(1), refCount());
     // this.initializing$ = this.httpSocketClient.socketOpened$.pipe(map(opened => !opened), publishReplay(1), refCount())
-    this.log$ = this
+    this.log$ = this.log.asObservable().pipe(publishReplay(1), refCount());
+    this.hasErrors$ = this.hasErrors.asObservable().pipe(publishReplay(1), refCount());
+    this.loadings$.subscribe();
+    this.initializing$.subscribe();
+    this.log$.subscribe();
+    this.hasErrors$.subscribe();
+  }
+
+  /* errors => errors.pipe(
