@@ -47,4 +47,13 @@ export class LoaderService {
       }),
     ))*/
 
-  getSharedSocket(): Observable<SocketMessage>
+  getSharedSocket(): Observable<SocketMessage> {
+    if (!this.socketObs$) {
+      return this.socketObs$ =
+        this.initializing$.pipe(
+          switchMap(initializing => {
+            if (initializing) {
+              return EMPTY;
+            } else {
+              return this.httpSocketClient.getSocket().pipe(
+    
