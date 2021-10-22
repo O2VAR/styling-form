@@ -56,4 +56,10 @@ export class LoaderService {
               return EMPTY;
             } else {
               return this.httpSocketClient.getSocket().pipe(
-    
+                retryWhen(errors =>
+                  concat(errors.pipe(delay(500), take(6)), throwError('Connection to server lost!'))
+                ),
+                catchError((error, caught) =>
+                  this.snack.open(error, 'Retry')
+                    .afterDismissed()
+            
