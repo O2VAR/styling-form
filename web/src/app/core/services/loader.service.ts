@@ -62,4 +62,20 @@ export class LoaderService {
                 catchError((error, caught) =>
                   this.snack.open(error, 'Retry')
                     .afterDismissed()
-            
+                    .pipe(mergeMap(() => caught))
+                )
+              );
+            }
+          }),
+          share()
+        );
+    } else {
+      return this.socketObs$;
+    }
+  }
+
+  getLoading(): Observable<number> {
+    return this.loadings$;
+  }
+
+  load(value
