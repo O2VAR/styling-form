@@ -78,4 +78,18 @@ export class LoaderService {
     return this.loadings$;
   }
 
-  load(value
+  load(value: number) {
+    this.loading.next(value);
+  }
+
+  unload() {
+    this.loading.next(0);
+  }
+
+  initialize() {
+    this.initializing.next(true);
+    this.hasErrors.next(false);
+    this.log.next('Loading...');
+    this.httpSocketClient.getSocket().pipe(
+      retryWhen(
+        errors => concat(errors.pipe(del
