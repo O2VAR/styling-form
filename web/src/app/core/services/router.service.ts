@@ -9,4 +9,13 @@ import {getRouterState} from '@app/app.reducers';
 @Injectable()
 export class RouterService {
 
-  construct
+  constructor(
+    private store: Store<fromRoot.State>
+  ) {
+  }
+
+  getRouterState(): Observable<RouterStateUrl> {
+    return this.store.select(getRouterState);
+  }
+
+}
