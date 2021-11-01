@@ -10,4 +10,9 @@ export class UpdateService {
 
   initialize(): void {
     this.updates.available.subscribe(event => {
-      // console.log('current version 
+      // console.log('current version is', event.current);
+      // console.log('available version is', event.available);
+      const dialogRef = this.dialog.open(ConfirmComponent, {
+        data: {
+          title: 'New version available!',
+          message: `Do you want to activate the new version of Musicalypse (${event.current.appData['versi
