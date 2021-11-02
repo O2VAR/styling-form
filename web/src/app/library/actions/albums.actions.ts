@@ -24,3 +24,26 @@ export class SelectAlbum implements Action {
 export class SelectAlbums implements Action {
   readonly type = AlbumsActionTypes.SelectAlbums;
   constructor(public payload: Album[]) {}
+}
+
+export class SelectAlbumsByIds implements Action {
+  readonly type = AlbumsActionTypes.SelectAlbumsByIds;
+  constructor(public payload: (string | number)[]) {}
+}
+
+export class DeselectAlbum implements Action {
+  readonly type = AlbumsActionTypes.DeselectAlbum;
+  constructor(public payload: Album) {}
+}
+
+export class DeselectAllAlbums implements Action {
+  readonly type = AlbumsActionTypes.DeselectAllAlbums;
+}
+
+export type AlbumsActionsUnion =
+  LoadAlbums |
+  SelectAlbum |
+  SelectAlbums |
+  SelectAlbumsByIds |
+  DeselectAlbum |
+  DeselectAllAlbums;
