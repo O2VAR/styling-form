@@ -25,4 +25,8 @@ export class UpdateService {
       });
     });
     /*this.updates.activated.subscribe(event => {
-      // console.log('old version was', e
+      // console.log('old version was', event.previous);
+      // console.log('new version is', event.current);
+    });*/
+  }
+}
