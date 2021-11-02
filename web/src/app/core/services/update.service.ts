@@ -15,4 +15,14 @@ export class UpdateService {
       const dialogRef = this.dialog.open(ConfirmComponent, {
         data: {
           title: 'New version available!',
-          message: `Do you want to activate the new version of Musicalypse (${event.current.appData['versi
+          message: `Do you want to activate the new version of Musicalypse (${event.current.appData['version']})?`
+        }
+      });
+      dialogRef.afterClosed().subscribe(confirmed => {
+        if (confirmed) {
+          this.updates.activateUpdate().then(() => document.location.reload());
+        }
+      });
+    });
+    /*this.updates.activated.subscribe(event => {
+      // console.log('old version was', e
