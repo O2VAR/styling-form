@@ -4,4 +4,12 @@ import {Artist} from '@app/model';
 export enum ArtistsActionTypes {
   LoadArtists        = 'library/artists/load',
   SelectArtist       = 'library/artists/select-add',
-  SelectArtists      = 'library/artists/sele
+  SelectArtists      = 'library/artists/select',
+  SelectArtistsByIds = 'library/artists/select-by-id',
+  DeselectArtist     = 'library/artists/deselect',
+  DeselectAllArtists = 'library/artists/deselect-all',
+}
+
+export class LoadArtists implements Action {
+  readonly type = ArtistsActionTypes.LoadArtists;
+  constructor(public payload:
