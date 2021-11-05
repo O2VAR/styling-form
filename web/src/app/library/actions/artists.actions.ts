@@ -12,4 +12,17 @@ export enum ArtistsActionTypes {
 
 export class LoadArtists implements Action {
   readonly type = ArtistsActionTypes.LoadArtists;
-  constructor(public payload:
+  constructor(public payload: Artist[]) {}
+}
+
+export class SelectArtist implements Action {
+  readonly type = ArtistsActionTypes.SelectArtist;
+  constructor(public payload: Artist) {}
+}
+
+export class SelectArtists implements Action {
+  readonly type = ArtistsActionTypes.SelectArtists;
+  constructor(public payload: Artist[]) {}
+}
+
+export class SelectArtists
