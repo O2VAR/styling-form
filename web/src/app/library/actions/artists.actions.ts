@@ -32,4 +32,17 @@ export class SelectArtistsByIds implements Action {
 
 export class DeselectArtist implements Action {
   readonly type = ArtistsActionTypes.DeselectArtist;
-  constructor(public payload: Artist) 
+  constructor(public payload: Artist) {}
+}
+
+export class DeselectAllArtists implements Action {
+  readonly type = ArtistsActionTypes.DeselectAllArtists;
+}
+
+export type ArtistsActionsUnion =
+  LoadArtists |
+  DeselectArtist |
+  SelectArtist |
+  SelectArtists |
+  SelectArtistsByIds |
+  DeselectAllArtists;
