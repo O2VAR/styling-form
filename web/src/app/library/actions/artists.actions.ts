@@ -25,4 +25,11 @@ export class SelectArtists implements Action {
   constructor(public payload: Artist[]) {}
 }
 
-export class SelectArtists
+export class SelectArtistsByIds implements Action {
+  readonly type = ArtistsActionTypes.SelectArtistsByIds;
+  constructor(public payload: (string | number)[]) {}
+}
+
+export class DeselectArtist implements Action {
+  readonly type = ArtistsActionTypes.DeselectArtist;
+  constructor(public payload: Artist) 
