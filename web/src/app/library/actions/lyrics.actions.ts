@@ -18,4 +18,11 @@ export class LoadLyricsSuccess implements Action {
 }
 
 export class LoadLyricsFailure implements Action {
-  readonly type = Lyric
+  readonly type = LyricsActionTypes.LoadLyricsFailure;
+  constructor(public error: string) {}
+}
+
+export type LyricsActionsUnion =
+  LoadLyrics |
+  LoadLyricsSuccess |
+  LoadLyricsFailure;
