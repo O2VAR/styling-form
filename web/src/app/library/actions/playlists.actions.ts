@@ -38,3 +38,13 @@ export class AddToPlaylist implements Action {
 
 export class RemoveFromPlaylist implements Action {
   readonly type = PlaylistsActionTypes.RemoveFromPlaylist;
+  constructor(public track: Track, public playlistName: string) {}
+}
+
+export type PlaylistsActionUnion =
+  LoadPlaylists |
+  LoadPlaylist |
+  SavePlaylist |
+  DeletePlaylist |
+  AddToPlaylist |
+  RemoveFromPlaylist;
