@@ -9,3 +9,13 @@ export enum LyricsActionTypes {
 
 export class LoadLyrics implements Action {
   readonly type = LyricsActionTypes.LoadLyrics;
+  constructor(public payload: Track) {}
+}
+
+export class LoadLyricsSuccess implements Action {
+  readonly type = LyricsActionTypes.LoadLyricsSuccess;
+  constructor(public lyrics: string, public source: string) {}
+}
+
+export class LoadLyricsFailure implements Action {
+  readonly type = Lyric
