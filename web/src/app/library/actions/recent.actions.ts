@@ -8,3 +8,6 @@ export enum RecentActionTypes {
 export class AddToRecent implements Action {
   readonly type = RecentActionTypes.AddToRecent;
   constructor(public payload: Track[]) {}
+}
+
+export type RecentActionsUnion = AddToRecent;
