@@ -25,4 +25,14 @@ export class LoadTracks implements Action {
 }
 
 export class LoadTrackSuccess implements Action {
-  readonly type = TracksActionTypes.LoadTrac
+  readonly type = TracksActionTypes.LoadTracksSuccess;
+  constructor(public payload: Track[]) {}
+}
+
+export class LoadTrackFailure implements Action {
+  readonly type = TracksActionTypes.LoadTracksFailure;
+  constructor(public payload: string) {}
+}
+
+export class ScanTracks implements Action {
+  readonly type = Tracks
