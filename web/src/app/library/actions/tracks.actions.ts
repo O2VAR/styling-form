@@ -15,4 +15,14 @@ export class AddTracks implements Action {
   constructor(public payload: Track[]) {}
 }
 
-export class RemoveTracks 
+export class RemoveTracks implements Action {
+  readonly type = TracksActionTypes.RemoveTracks;
+  constructor(public payload: Track[]) {}
+}
+
+export class LoadTracks implements Action {
+  readonly type = TracksActionTypes.LoadTracks;
+}
+
+export class LoadTrackSuccess implements Action {
+  readonly type = TracksActionTypes.LoadTrac
