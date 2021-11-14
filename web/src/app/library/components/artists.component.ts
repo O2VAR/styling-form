@@ -205,3 +205,39 @@ export class ArtistsComponent implements OnChanges {
     const listItems: Element[] = Array.from(this.list.nativeElement.getElementsByClassName('list-item'));
     const elem = listItems.find((artist: Element) => {
       return artist.getElementsByClassName('item-name')[0].textContent.toLowerCase().startsWith(letter.toLowerCase());
+    });
+    if (elem) {
+      elem.scrollIntoView(scrollOptions);
+    }
+  }
+
+  selectAll() {
+    this.library.selectArtists(this.artists);
+  }
+
+  selectOnly(artist: Artist) {
+    this.library.selectArtists([artist]);
+    this.showChipList = false;
+  }
+
+  select(artist: Artist) {
+    this.library.selectArtist(artist);
+  }
+
+  isSelected(artist: Artist): Observable<boolean> {
+    return this.library.isSelectedArtist(artist);
+  }
+
+  deselect(artist: Artist) {
+    this.library.deselectArtist(artist);
+    if (this.selectedArtists.length < 4) {
+      this.showChipList = false;
+    }
+  }
+
+  deselectAll() {
+    this.library.deselectAllArtists();
+    this.showChipList = false;
+  }
+
+}
