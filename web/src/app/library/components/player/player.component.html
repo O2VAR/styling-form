@@ -1,3 +1,10 @@
 <div class="player">
   <div class="back-metadata">
-    <button mat-button mat-ico
+    <button mat-button mat-icon-button class="back" (click)="previous.emit()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div class="metadata">
+      <span class="title" [matTooltip]="currentTrack ? currentTrack.title : ''">
+        {{ currentTrack ? currentTrack.title : '' }}
+      </span>
+      <span class="artist" [ma
