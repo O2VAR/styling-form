@@ -35,4 +35,13 @@ export class LoadTrackFailure implements Action {
 }
 
 export class ScanTracks implements Action {
-  readonly type = Tracks
+  readonly type = TracksActionTypes.ScanTracks;
+}
+
+export type TracksActionsUnion =
+  AddTracks |
+  RemoveTracks |
+  LoadTracks |
+  LoadTrackSuccess |
+  LoadTrackFailure |
+  ScanTracks;
