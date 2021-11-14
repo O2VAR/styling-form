@@ -115,3 +115,113 @@ import {DisplayType} from '@app/library/library.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlbumsComponent implements OnChanges {
+
+  @Output() next: EventEmitter<void> = new EventEmitter();
+  @Output() previous: EventEmitter<void> = new EventEmitter();
+
+  @Input() private albums: Album[];
+  @Input() selectedAlbums: Album[];
+  @Input() displayType: DisplayType;
+
+  filteredAlbums: Album[];
+
+  @ViewChild('list')
+  list: ElementRef;
+
+  showChipList = false;
+
+  _search = '';
+  get search() {
+    return this._search;
+  }
+  set search(val: string) {
+    this._search = val;
+    this.filteredAlbums = this.albums.filter(this.filter);
+  }
+
+  filter = ((album: Album) => {
+    if (this.search !== '') {
+      return album.title.toLowerCase().includes(this.search.toLowerCase());
+    }
+    return true;
+  });
+
+  constructor(
+    public settings: SettingsService,
+    private sanitizer: DomSanitizer,
+    private library: LibraryService
+  ) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.albums) {
+      this.filteredAlbums = changes.albums.currentValue.filter(this.filter);
+    }
+  }
+
+  trackByTitle(index: number, album: Album) {
+    return album.title + album.artist;
+  }
+
+  getAvatarStyle(album: Album) {
+    return album.avatarUrl ? this.sanitizer.bypassSecurityTrustStyle(`background-image: url("${album.avatarUrl}")`) : '';
+  }
+
+  getSecondaryHTML(album: Album) {
+    switch (this.displayType) {
+      case DisplayType.Default: {
+        return album.songs + ' songs • ' + album.artist;
+      }
+      case DisplayType.Recent: {
+        return '<em>Recently played</em>';
+      }
+      case DisplayType.Favorites: {
+        return '<em>Has favorites</em>';
+      }
+    }
+  }
+
+  scrollTo(letter: string) {
+    const scrollOptions: ScrollIntoViewOptions = { block: 'start', inline: 'nearest', behavior: 'smooth' };
+    if (letter === '#') {
+      this.list.nativeElement.getElementsByClassName('list-item')[0].scrollIntoView(scrollOptions);
+      return;
+    }
+    const listItems: Element[] = Array.from(this.list.nativeElement.getElementsByClassName('list-item'));
+    const elem = listItems.find(album => {
+      return album.getElementsByClassName('item-name')[0].textContent.toLowerCase().startsWith(letter.toLowerCase());
+    });
+    if (elem) {
+      elem.scrollIntoView(scrollOptions);
+    }
+  }
+
+  selectAll() {
+    this.library.selectAlbums(this.albums);
+  }
+
+  selectOnly(album: Album) {
+    this.library.selectAlbums([album]);
+    this.showChipList = false;
+  }
+
+  select(album: Album) {
+    this.library.selectAlbum(album);
+  }
+
+  isSelected(album: Album): Observable<boolean> {
+    return this.library.isSelectedAlbum(album);
+  }
+
+  deselect(album: Album) {
+    this.library.deselectAlbum(album);
+    if (this.selectedAlbums.length < 4) {
+      this.showChipList = false;
+    }
+  }
+
+  deselectAll() {
+    this.library.deselectAllAlbums();
+    this.showChipList = false;
+  }
+
+}
