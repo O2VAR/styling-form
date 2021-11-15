@@ -7,4 +7,12 @@
       <span class="title" [matTooltip]="currentTrack ? currentTrack.title : ''">
         {{ currentTrack ? currentTrack.title : '' }}
       </span>
-      <span class="artist" [ma
+      <span class="artist" [matTooltip]="currentTrack ? currentTrack.artist : ''">
+        {{ currentTrack ? currentTrack.artist : '' }}
+      </span>
+    </div>
+    <button mat-button mat-icon-button
+            class="mute"
+            (click)="setMuted(!muted)"
+            [disabled]="viewLoading">
+      <mat-icon *ngIf=
