@@ -66,4 +66,7 @@
           </ng-container>
         </mat-list>
         <ul *ngIf="!smallScreen && !viewLoading" class="playlist-long" (swipeleft)="swipeLeft()" (swiperight)="swipeRight()" #playlistUl>
-          <ng-container *ngFor="
+          <ng-container *ngFor="let track of playlist; trackBy: trackByURL">
+            <li #listItem [class.current]="isTrackCurrent(track)" class="divider track-list-item" (click)="playTrack(track)" [attr.data-url]="track.url">
+              <span class="title c">
+                <mat-icon *ngIf="isTrackCurrent(tr
