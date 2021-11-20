@@ -54,4 +54,10 @@
                              (click)="playTrack(track)">
                 <span matLine class="title">
                   <mat-icon *ngIf="isTrackCurrent(track) && playing">equalizer</mat-icon>
-     
+                  <span>{{ track.title }}</span>
+                </span>
+                <span matLine class="meta">
+                  {{ track.artist }} • {{ track.album }}
+                </span>
+                <!--<span class="year">{{ track.year }}</span>-->
+                <span class="duration">{{ tra
