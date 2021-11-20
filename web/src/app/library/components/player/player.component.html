@@ -46,4 +46,7 @@
           <span>Playlist</span>
         </ng-template>
         <app-loader [show]="viewLoading"></app-loader>
-        <mat-list *ngIf="smallScreen && !view
+        <mat-list *ngIf="smallScreen && !viewLoading" class="playlist" (swipeleft)="swipeLeft()" (swiperight)="swipeRight()" #playlistMatList>
+          <ng-container *ngFor="let track of playlist; trackBy: trackByURL">
+            <div #listItem [attr.data-url]="track.url" class="track-list-item divider">
+              <mat-list-i
