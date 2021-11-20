@@ -73,4 +73,10 @@
                 <span [matTooltip]="track.title">{{ track.title }}</span>
               </span>
               <span class="artist c" [matTooltip]="track.artist">{{ track.artist }}</span>
-              <span class="album c" [matTooltip]="track.a
+              <span class="album c" [matTooltip]="track.album">{{ track.album }}</span>
+              <span class="year c">{{ track.year | sgYear }}</span>
+              <span class="duration c">{{ track.duration | sgTime }}</span>
+            </li>
+          </ng-container>
+          <li class="status-bar">
+            <span class="status-total-time">Total du
