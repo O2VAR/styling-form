@@ -32,4 +32,11 @@
     <button mat-button mat-icon-button
             class="mute"
             (click)="setMuted(!muted)">
-      <mat-icon *ngIf="!muted && volume > 0.50">
+      <mat-icon *ngIf="!muted && volume > 0.50">volume_up</mat-icon>
+      <mat-icon *ngIf="!muted && volume > 0 && volume <= 0.50">volume_down</mat-icon>
+      <mat-icon *ngIf="!muted && volume == 0">volume_mute</mat-icon>
+      <mat-icon *ngIf="muted">volume_off</mat-icon>
+    </button>
+  </div>
+  <div class="carousel">
+    <ma
