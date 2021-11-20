@@ -39,4 +39,11 @@
     </button>
   </div>
   <div class="carousel">
-    <ma
+    <mat-tab-group #carousel [(selectedIndex)]="selectedCarouselIndex">
+      <mat-tab label="Playlist">
+        <ng-template mat-tab-label>
+          <mat-icon>playlist_play</mat-icon>
+          <span>Playlist</span>
+        </ng-template>
+        <app-loader [show]="viewLoading"></app-loader>
+        <mat-list *ngIf="smallScreen && !view
