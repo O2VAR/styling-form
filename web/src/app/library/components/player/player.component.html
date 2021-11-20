@@ -49,4 +49,9 @@
         <mat-list *ngIf="smallScreen && !viewLoading" class="playlist" (swipeleft)="swipeLeft()" (swiperight)="swipeRight()" #playlistMatList>
           <ng-container *ngFor="let track of playlist; trackBy: trackByURL">
             <div #listItem [attr.data-url]="track.url" class="track-list-item divider">
-              <mat-list-i
+              <mat-list-item class="hover"
+                             [class.current]="isTrackCurrent(track)"
+                             (click)="playTrack(track)">
+                <span matLine class="title">
+                  <mat-icon *ngIf="isTrackCurrent(track) && playing">equalizer</mat-icon>
+     
