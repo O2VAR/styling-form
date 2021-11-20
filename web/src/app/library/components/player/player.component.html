@@ -60,4 +60,10 @@
                   {{ track.artist }} • {{ track.album }}
                 </span>
                 <!--<span class="year">{{ track.year }}</span>-->
-                <span class="duration">{{ tra
+                <span class="duration">{{ track.duration | sgTime }}</span>
+              </mat-list-item>
+            </div>
+          </ng-container>
+        </mat-list>
+        <ul *ngIf="!smallScreen && !viewLoading" class="playlist-long" (swipeleft)="swipeLeft()" (swiperight)="swipeRight()" #playlistUl>
+          <ng-container *ngFor="
