@@ -79,4 +79,13 @@
             </li>
           </ng-container>
           <li class="status-bar">
-            <span class="status-total-time">Total du
+            <span class="status-total-time">Total duration: {{ getTotalDuration() | sgTime }}</span>
+          </li>
+        </ul>
+      </mat-tab>
+      <mat-tab label="Cover">
+        <ng-template mat-tab-label>
+          <mat-icon>photo</mat-icon>
+          <span>Cover</span>
+        </ng-template>
+        <div class="albumArt" (swipeleft)="swipeLeft()" (swiperight)=
