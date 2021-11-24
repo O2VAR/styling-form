@@ -94,4 +94,13 @@
         </div>
       </mat-tab>
       <mat-tab label="Lyrics" >
-        <ng-tem
+        <ng-template mat-tab-label>
+          <mat-icon>format_align_center</mat-icon>
+          <span>Lyrics</span>
+        </ng-template>
+        <div class="lyrics"
+             #lyricsDiv
+             *ngIf="lyrics !== null || showError == false"
+             (swipeleft)="swipeLeft()"
+             (swiperight)="swipeRight()"
+             [att
