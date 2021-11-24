@@ -88,4 +88,10 @@
           <mat-icon>photo</mat-icon>
           <span>Cover</span>
         </ng-template>
-        <div class="albumArt" (swipeleft)="swipeLeft()" (swiperight)=
+        <div class="albumArt" (swipeleft)="swipeLeft()" (swiperight)="swipeRight()">
+          <img *ngIf="currentTrack && currentTrack.coverUrl" src="{{ currentTrack.coverUrl }}" alt="Album Cover" />
+          <mat-icon *ngIf="!currentTrack || !currentTrack.coverUrl">music_note</mat-icon>
+        </div>
+      </mat-tab>
+      <mat-tab label="Lyrics" >
+        <ng-tem
