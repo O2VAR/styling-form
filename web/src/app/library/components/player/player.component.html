@@ -116,4 +116,14 @@
           {{ lyricsError }}<br>
           <span *ngIf="!smallScreen">You can copy/paste some lyrics here.</span>
         </div>
-        <div class="lyrics loading" *ngIf="lyr
+        <div class="lyrics loading" *ngIf="lyricsLoading">
+          <mat-spinner diameter="30"></mat-spinner>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <app-progress [loading]="loading$ | async"
+                [currentTime]="currentTime$ | async"
+                [duration]="duration$ | async"
+                (seekTo)="seekTo($event)">
+ 
