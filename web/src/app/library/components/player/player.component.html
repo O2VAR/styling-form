@@ -103,4 +103,11 @@
              *ngIf="lyrics !== null || showError == false"
              (swipeleft)="swipeLeft()"
              (swiperight)="swipeRight()"
-             [att
+             [attr.contenteditable]="!smallScreen"
+             spellcheck="false"
+             (blur)="lyricsEdited($event)"
+             (paste)="lyricsPasted($event)"
+             (keydown)="onKeyDown($event)">{{ lyrics }}</div>
+        <div class="lyrics error"
+             *ngIf="lyricsError && showError"
+   
