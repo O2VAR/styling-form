@@ -110,4 +110,10 @@
              (keydown)="onKeyDown($event)">{{ lyrics }}</div>
         <div class="lyrics error"
              *ngIf="lyricsError && showError"
-   
+             (click)="errorClicked()"
+             (swipeleft)="swipeLeft()"
+             (swiperight)="swipeRight()">
+          {{ lyricsError }}<br>
+          <span *ngIf="!smallScreen">You can copy/paste some lyrics here.</span>
+        </div>
+        <div class="lyrics loading" *ngIf="lyr
