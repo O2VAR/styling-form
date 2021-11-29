@@ -134,4 +134,13 @@
             [disabled]="viewLoading"
             (click)="setShuffle(!shuffle)">
       <mat-icon>shuffle</mat-icon>
-    </b
+    </button>
+    <button mat-button mat-icon-button
+            class="repeat"
+            [color]="repeat ? 'primary' : ''"
+            [disabled]="viewLoading"
+            (click)="setRepeat(!repeat)">
+      <mat-icon>repeat</mat-icon>
+    </button>
+    <button mat-button mat-icon-button
+         
