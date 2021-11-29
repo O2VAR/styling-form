@@ -143,4 +143,12 @@
       <mat-icon>repeat</mat-icon>
     </button>
     <button mat-button mat-icon-button
-         
+            class="previous"
+            (click)="playPrevious()"
+            [disabled]="!currentTrack || playlist.length <= 1">
+      <mat-icon>skip_previous</mat-icon>
+    </button>
+    <button mat-button mat-icon-button
+            class="playPause"
+            [disabled]="playlist.length === 0 && !currentTrack"
+  
