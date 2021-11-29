@@ -126,4 +126,12 @@
                 [currentTime]="currentTime$ | async"
                 [duration]="duration$ | async"
                 (seekTo)="seekTo($event)">
- 
+  </app-progress>
+  <div class="menu">
+    <button mat-button mat-icon-button
+            class="shuffle"
+            [color]="shuffle ? 'primary' : ''"
+            [disabled]="viewLoading"
+            (click)="setShuffle(!shuffle)">
+      <mat-icon>shuffle</mat-icon>
+    </b
