@@ -151,4 +151,10 @@
     <button mat-button mat-icon-button
             class="playPause"
             [disabled]="playlist.length === 0 && !currentTrack"
-  
+            (click)="playing ? pause() : (currentTrack ? resume() : playNext())">
+      <mat-icon>{{ playing ? 'pause' : 'play_arrow' }}</mat-icon>
+    </button>
+    <button mat-button mat-icon-button
+            class="next"
+            (click)="playNext()"
+            [disabled]="!cur
