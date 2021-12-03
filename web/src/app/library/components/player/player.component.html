@@ -164,4 +164,11 @@
             class="favorites"
             [disabled]="!currentTrack"
             [color]="(isFavorite(currentTrack) | async) ? 'warn' : ''"
-            (click)="a
+            (click)="addOrRemoveFromFavorites(currentTrack)">
+      <mat-icon>{{ (isFavorite(currentTrack) | async) ? 'favorite' : 'favorite_border' }}</mat-icon>
+    </button>
+    <button mat-button
+            mat-icon-button
+            [matMenuTriggerFor]="playerMenu"
+            class="more"
+            (click)="$event.stop
