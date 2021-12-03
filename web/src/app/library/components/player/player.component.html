@@ -157,4 +157,11 @@
     <button mat-button mat-icon-button
             class="next"
             (click)="playNext()"
-            [disabled]="!cur
+            [disabled]="!currentTrack || playlist.length <= 1">
+      <mat-icon>skip_next</mat-icon>
+    </button>
+    <button mat-button mat-icon-button
+            class="favorites"
+            [disabled]="!currentTrack"
+            [color]="(isFavorite(currentTrack) | async) ? 'warn' : ''"
+            (click)="a
