@@ -171,4 +171,11 @@
             mat-icon-button
             [matMenuTriggerFor]="playerMenu"
             class="more"
-            (click)="$event.stop
+            (click)="$event.stopPropagation()"
+            [disabled]="viewLoading">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+  <mat-menu #playerMenu="matMenu" [overlapTrigger]="false">
+    <button mat-menu-item [disabled]="!currentTrack" (click)="addOrRemoveFromFavorites(currentTrack)">
+      <mat-icon>{{ (isFavorite(
