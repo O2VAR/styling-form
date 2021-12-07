@@ -178,4 +178,8 @@
   </div>
   <mat-menu #playerMenu="matMenu" [overlapTrigger]="false">
     <button mat-menu-item [disabled]="!currentTrack" (click)="addOrRemoveFromFavorites(currentTrack)">
-      <mat-icon>{{ (isFavorite(
+      <mat-icon>{{ (isFavorite(currentTrack) | async) ? 'favorite' : 'favorite_border' }}</mat-icon>
+      <span>{{ (isFavorite(currentTrack) | async) ? 'Remove from favorites' : 'Add to favorites' }}</span>
+    </button>
+    <button mat-menu-item [disabled]="!currentTrack" (click)="openDetailsDialog(currentTrack)">
+      <mat-ic
