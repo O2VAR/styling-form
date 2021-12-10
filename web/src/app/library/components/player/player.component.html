@@ -182,4 +182,13 @@
       <span>{{ (isFavorite(currentTrack) | async) ? 'Remove from favorites' : 'Add to favorites' }}</span>
     </button>
     <button mat-menu-item [disabled]="!currentTrack" (click)="openDetailsDialog(currentTrack)">
-      <mat-ic
+      <mat-icon>details</mat-icon>
+      <span>Details</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="setShuffle(!shuffle)">
+      <mat-icon>shuffle</mat-icon>
+      <span>Shuffle</span>
+    </button>
+    <button mat-menu-item (click)="setRepeat(!repeat)">
+      <ma
