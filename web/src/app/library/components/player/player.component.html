@@ -191,4 +191,12 @@
       <span>Shuffle</span>
     </button>
     <button mat-menu-item (click)="setRepeat(!repeat)">
-      <ma
+      <mat-icon>repeat</mat-icon>
+      <span>Repeat</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item [matMenuTriggerFor]="LoadPlaylist" [disabled]="playlists.length === 0">
+      <mat-icon>playlist_play</mat-icon>
+      <span>Load playlist</span>
+    </button>
+    <button mat-menu-
