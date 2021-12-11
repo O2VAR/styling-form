@@ -199,4 +199,9 @@
       <mat-icon>playlist_play</mat-icon>
       <span>Load playlist</span>
     </button>
-    <button mat-menu-
+    <button mat-menu-item [matMenuTriggerFor]="AddToPlaylist" [disabled]="playlists.length === 0">
+      <mat-icon>playlist_add</mat-icon>
+      <span>Add all to playlist</span>
+    </button>
+    <button mat-menu-item (click)="showInLibrary()" [disabled]="playlist.length == 0">
+      <mat-icon>queue_music</mat-icon
