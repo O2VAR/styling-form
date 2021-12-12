@@ -204,4 +204,11 @@
       <span>Add all to playlist</span>
     </button>
     <button mat-menu-item (click)="showInLibrary()" [disabled]="playlist.length == 0">
-      <mat-icon>queue_music</mat-icon
+      <mat-icon>queue_music</mat-icon>
+      <span>Select in library</span>
+    </button>
+    <button mat-menu-item (click)="clearPlaylist()" [disabled]="playlist.length == 0">
+      <mat-icon>delete</mat-icon>
+      <span>Clear playlist</span>
+    </button>
+    <button mat-menu-item (click)="savePlaylist()" [disabled]="playlist.l
