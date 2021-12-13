@@ -211,4 +211,14 @@
       <mat-icon>delete</mat-icon>
       <span>Clear playlist</span>
     </button>
-    <button mat-menu-item (click)="savePlaylist()" [disabled]="playlist.l
+    <button mat-menu-item (click)="savePlaylist()" [disabled]="playlist.length == 0">
+      <mat-icon>save</mat-icon>
+      <span>Save playlist</span>
+    </button>
+  </mat-menu>
+  <mat-menu #LoadPlaylist="matMenu">
+    <ng-container *ngFor="let pl of playlists">
+      <button mat-menu-item (click)="loadPlaylist(pl)">
+        <mat-icon>album</mat-icon>
+        {{pl.name}}
+      </butto
