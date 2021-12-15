@@ -231,4 +231,10 @@
     <!--</button>-->
     <!--<mat-divider></mat-divider>-->
     <ng-container *ngFor="let pl of playlists">
-      <button mat-menu-it
+      <button mat-menu-item (click)="addAllToPlaylist(pl)">
+        <mat-icon>album</mat-icon>
+        {{pl.name}}
+      </button>
+    </ng-container>
+  </mat-menu>
+</div>
