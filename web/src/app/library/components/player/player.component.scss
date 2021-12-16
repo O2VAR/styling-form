@@ -43,4 +43,25 @@
 }
 
 .volume, .progress {
-  padding: 0
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  mat-slider {
+    flex-grow: 1;
+    margin: 0 8px;
+  }
+}
+
+.volume {
+  position: absolute;
+  right: 0;
+  top: 72px;
+  display: none;
+  z-index: 5;
+}
+
+.progress {
+  height: 36px;
+  min-height: 36px;
+  mat-p
