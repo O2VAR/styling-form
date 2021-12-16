@@ -25,4 +25,22 @@
   min-height: 45px;
   display: flex;
   flex-direction: column;
-  justify-content: ce
+  justify-content: center;
+  align-items: center;
+  .title {
+    font-size: 18px;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .artist {
+    font-size: 14px;
+    font-weight: 300;
+    //margin-top: 0.25rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+.volume, .progress {
+  padding: 0
