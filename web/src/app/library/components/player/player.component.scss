@@ -83,4 +83,20 @@
   .lyrics {
     text-align: center;
     white-space: pre-wrap;
-    over
+    overflow-x: hidden;
+    min-height: 100%;
+    padding: 1rem 0;
+    box-sizing: border-box;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &:focus {
+      outline: none;
+    }
+    &.error {
+      cursor: text;
+    }
+  }
+ 
