@@ -99,4 +99,19 @@
       cursor: text;
     }
   }
- 
+  .playlist {
+    height: 100%;
+    font-size: 0;
+    padding-top: 0;
+    .mat-list-item {
+      height: 55px;
+      cursor: pointer;
+    }
+    .track-list-item:last-child {
+      border-bottom: none;
+    }
+    .title {
+      font-size: 14px;
+      mat-icon {
+        font-size: 16px;
+        height: 16px;
