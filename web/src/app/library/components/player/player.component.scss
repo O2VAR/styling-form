@@ -64,4 +64,23 @@
 .progress {
   height: 36px;
   min-height: 36px;
-  mat-p
+  mat-progress-bar {
+    margin: 0 22px;
+    height: 2px;
+    flex-grow: 1;
+  }
+  .time-elapsed, .time-total {
+    width: 2.5rem;
+  }
+  .time-total {
+    text-align: right;
+  }
+}
+
+.carousel {
+  height: 100%;
+  min-height: 230px;
+  .lyrics {
+    text-align: center;
+    white-space: pre-wrap;
+    over
