@@ -174,4 +174,19 @@
       width: 25%;
     }
     .year, .duration {
-    
+      width: 62px;
+      text-align: right;
+    }
+    .status-bar {
+      cursor: auto;
+    }
+  }
+  .albumArt {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    img {
+      max-height: 1
