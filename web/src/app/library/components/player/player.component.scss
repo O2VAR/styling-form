@@ -243,4 +243,25 @@
     mat-icon {
       font-size: 2rem;
       height: 2rem;
-      w
+      width: 2rem;
+      line-height: 2rem;
+    }
+  }
+  .repeat, .favorites {
+    display: none;
+  }
+}
+
+
+@media screen and (min-width: 599px) {
+  .back-metadata {
+    min-height: 62px;
+    .mute {
+      visibility: hidden;
+    }
+  }
+  .volume {
+    display: flex;
+  }
+  .menu {
+   
