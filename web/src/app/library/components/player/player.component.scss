@@ -189,4 +189,25 @@
     justify-content: center;
     align-items: center;
     img {
-      max-height: 1
+      max-height: 100%;
+      max-width: 100%;
+    }
+    mat-icon {
+      font-size: 130px;
+      height: 130px;
+      width: 130px;
+      line-height: 130px;
+    }
+  }
+}
+
+.status-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: .5rem 1rem 0 1rem;
+  font-weight: 300;
+  .status-position {
+
+  }
+  .s
