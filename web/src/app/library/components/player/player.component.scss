@@ -225,4 +225,22 @@
   padding: 0 1rem 1rem 1rem;
   .playPause {
     box-sizing: content-box;
-    border-radi
+    border-radius: 50%;
+    padding: 4px;
+    width: 3rem;
+    height: 3rem;
+    mat-icon {
+      font-size: 3rem;
+      height: 3rem;
+      width: 3rem;
+      line-height: 3rem;
+    }
+  }
+  .next, .previous {
+    box-sizing: content-box;
+    border-radius: 50%;
+    padding: 2px;
+    mat-icon {
+      font-size: 2rem;
+      height: 2rem;
+      w
