@@ -210,4 +210,19 @@
   .status-position {
 
   }
-  .s
+  .status-total-time {
+    margin-left: auto;
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: content-box;
+  min-height: 60px;
+  padding: 0 1rem 1rem 1rem;
+  .playPause {
+    box-sizing: content-box;
+    border-radi
