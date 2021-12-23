@@ -16,4 +16,22 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
         [max]="duration"
         [value]="currentTime"
         (change)="seekTo.emit($event.value)"></mat-slider>
-      <span class="time-total">{{ duration ? (duration | sgTime) : '00:00' }}</span
+      <span class="time-total">{{ duration ? (duration | sgTime) : '00:00' }}</span>
+    </div>
+  `,
+  styles: [`
+    .progress {
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 36px;
+      min-height: 36px;
+    }
+    mat-slider {
+      flex-grow: 1;
+      margin: 0 8px;
+    }
+    mat-progress-bar {
+      margin: 0 22px;
+  
