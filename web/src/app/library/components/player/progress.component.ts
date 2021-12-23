@@ -34,4 +34,20 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
     }
     mat-progress-bar {
       margin: 0 22px;
-  
+      height: 2px;
+      flex-grow: 1;
+    }
+    .time-elapsed, .time-total {
+      width: 2.5rem;
+    }
+    .time-total {
+      text-align: right;
+    }
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class ProgressComponent {
+
+  @Input() currentTime: number;
+  @Input() duration: number;
+  @Input(
