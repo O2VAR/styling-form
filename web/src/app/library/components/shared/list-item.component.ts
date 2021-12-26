@@ -7,4 +7,13 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
 
       <mat-checkbox matListIcon
                     color="primary"
-                 
+                    [checked]="selected"
+                    (change)="checked.emit($event.checked)"
+                    (click)="$event.stopPropagation()">
+      </mat-checkbox>
+
+      <div matListAvatar class="avatar" [style]="avatarStyle">
+        <mat-icon *ngIf="!avatarStyle">music_note</mat-icon>
+      </div>
+
+      <div ma
