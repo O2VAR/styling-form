@@ -50,4 +50,8 @@ export class ProgressComponent {
 
   @Input() currentTime: number;
   @Input() duration: number;
-  @Input(
+  @Input() loading: boolean;
+
+  @Output() seekTo = new EventEmitter<number>();
+
+}
