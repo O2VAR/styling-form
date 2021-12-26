@@ -77,3 +77,9 @@ export class DictionaryComponent {
     'U',
     'V',
     'W',
+    'X',
+    'Y',
+    'Z'
+  ];
+
+}
