@@ -21,4 +21,17 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
         <span class="item-name" [innerHtml]="primaryHTML" [matTooltip]="tooltip"></span>
       </div>
 
-      <div matLine class="secondary-text" [innerHtml]="
+      <div matLine class="secondary-text" [innerHtml]="secondaryHTML"></div>
+
+      <button mat-button mat-icon-button (click)="arrowClicked.emit(); $event.stopPropagation()">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+
+      <mat-divider></mat-divider>
+
+    </a>
+  `,
+  styles: [`
+    .list-item {
+      cursor: pointer;
+      text-decoration
