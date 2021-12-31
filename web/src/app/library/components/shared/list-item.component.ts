@@ -34,4 +34,18 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
   styles: [`
     .list-item {
       cursor: pointer;
-      text-decoration
+      text-decoration: none;
+    }
+    .list-item:hover mat-checkbox {
+      display: block;
+    }
+    .list-item:hover .avatar {
+      display: none;
+    }
+    mat-checkbox {
+      display: none;
+      padding: 0 !important;
+      line-height: 0;
+      width: 20px !important;
+      height: 20px !important;
+  
