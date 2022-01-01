@@ -48,4 +48,17 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
       line-height: 0;
       width: 20px !important;
       height: 20px !important;
-  
+      margin: 0 0.5rem !important;
+    }
+    .mat-checkbox-checked {
+      display: block;
+    }
+    .mat-checkbox-checked ~ .avatar {
+      display: none;
+    }
+    .avatar {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      bac
