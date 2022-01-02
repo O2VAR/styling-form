@@ -61,4 +61,17 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      bac
+      background-size: cover;
+      width: 40px;
+      height: 40px;
+    }
+    .primary-text {
+      font-size: 14px !important;
+    }
+    mat-icon.warn {
+      height: 14px;
+      width: 14px;
+      font-size: 14px;
+      line-height: 14px;
+      vertical-align: middle;
+      margin-right: 0.2rem
