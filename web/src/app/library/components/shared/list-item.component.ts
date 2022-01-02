@@ -88,4 +88,10 @@ export class ListItemComponent {
   @Input() avatarStyle: string;
   @Input() warn: boolean;
   @Input() primaryHTML: string;
-  @Input()
+  @Input() secondaryHTML: string;
+  @Input() tooltip: string;
+
+  @Output() checked = new EventEmitter<boolean>();
+  @Output() arrowClicked = new EventEmitter<void>();
+
+}
