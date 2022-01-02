@@ -74,4 +74,18 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
       font-size: 14px;
       line-height: 14px;
       vertical-align: middle;
-      margin-right: 0.2rem
+      margin-right: 0.2rem;
+    }
+    .secondary-text {
+      font-size: 12px;
+    }
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class ListItemComponent {
+
+  @Input() selected: boolean;
+  @Input() avatarStyle: string;
+  @Input() warn: boolean;
+  @Input() primaryHTML: string;
+  @Input()
