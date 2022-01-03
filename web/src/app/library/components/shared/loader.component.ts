@@ -18,4 +18,10 @@ import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
       overflow-y: scroll;
     }
   `],
-  changeDetection: ChangeDetectionStrate
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class LoaderComponent {
+
+  @Input() show: boolean;
+
+}
