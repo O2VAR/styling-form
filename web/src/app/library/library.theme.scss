@@ -1,0 +1,6 @@
+@import '~@angular/material/theming';
+
+// mixin name will be used in main style.scss
+@mixin library-component-theme($theme) {
+
+  // retrieve varia

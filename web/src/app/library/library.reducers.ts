@@ -191,3 +191,133 @@ export const getCurrentPlaylist = createSelector(
 export const getFavoritesState = createSelector(
   getLibraryState,
   state => state.favorites
+);
+
+export const getFavorites = createSelector(
+  getFavoritesState,
+  fromFavorites.getFavorites
+);
+
+export const isFavorite = createSelector(
+  getFavoritesState,
+  fromFavorites.isFavorite
+);
+
+export const getFavoritesArtists = createSelector(
+  getAllArtists,
+  getFavorites,
+  (artists, favorites) => {
+    const favArtists = favorites.map(fav => fav.albumArtist);
+    return artists.filter(artist => favArtists.includes(artist.name));
+  }
+);
+
+export const getFavoritesAlbums = createSelector(
+  getAllAlbums,
+  getFavorites,
+  (albums, favorites) => {
+    const favAlbums = favorites.map(fav => fav.album);
+    return albums.filter(album => favAlbums.includes(album.title));
+  }
+);
+
+export const getDisplayedFavorites = createSelector(
+  getSelectedAlbumsIds,
+  getFavorites,
+  (ids, tracks) =>
+    tracks.filter(track => ids.includes(track.albumArtist + '-' + track.album))
+);
+
+export const getDisplayedFavoriteAlbums = createSelector(
+  getSelectedArtistsIds,
+  getFavoritesAlbums,
+  (artistsIds, albums) =>
+    albums.filter(album => artistsIds.includes(album.artist))
+);
+
+/**
+ * Recent tracks selectors
+ */
+export const getRecentState = createSelector(
+  getLibraryState,
+  state => state.recent
+);
+
+export const getRecentTracks = createSelector(
+  getRecentState,
+  fromRecent.getRecentTracks
+);
+
+export const getRecentArtists = createSelector(
+  getAllArtists,
+  getRecentTracks,
+  (artists, recentTracks) => {
+    const recentArtists = recentTracks.map(recent => recent.albumArtist);
+    return artists.filter(artist => recentArtists.includes(artist.name));
+  }
+);
+
+export const getRecentAlbums = createSelector(
+  getAllAlbums,
+  getRecentTracks,
+  (albums, recentTracks) => {
+    const recentAlbums = recentTracks.map(recent => recent.album);
+    return albums.filter(album => recentAlbums.includes(album.title));
+  }
+);
+
+export const getDisplayedRecentTracks = createSelector(
+  getSelectedAlbumsIds,
+  getRecentTracks,
+  (ids, tracks) =>
+    tracks.filter(track => ids.includes(track.albumArtist + '-' + track.album))
+);
+
+export const getDisplayedRecentAlbums = createSelector(
+  getSelectedArtistsIds,
+  getRecentAlbums,
+  (artistsIds, albums) =>
+    albums.filter(album => artistsIds.includes(album.artist))
+);
+
+/**
+ * Playlists selectors
+ */
+export const getPlaylistsState = createSelector(
+  getLibraryState,
+  state => state.playlists
+);
+
+export const getPlaylists = createSelector(
+  getPlaylistsState,
+  fromPlaylists.getPlaylists
+);
+
+/**
+ * Lyrics selectors
+ */
+
+export const getLyricsState = createSelector(
+  getLibraryState,
+  state => state.lyrics
+);
+
+export const getLyrics = createSelector(
+  getLyricsState,
+  fromLyrics.getLyrics
+);
+
+export const getLyricsLoading = createSelector(
+  getLyricsState,
+  fromLyrics.getLoading
+);
+
+export const getLyricsError = createSelector(
+  getLyricsState,
+  fromLyrics.getError
+);
+
+export const getLyricsSource = createSelector(
+  getLyricsState,
+  fromLyrics.getSource
+);
