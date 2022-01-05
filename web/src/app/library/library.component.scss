@@ -1,0 +1,137 @@
+
+$sideMenuWidth: 44px;
+
+.container {
+  position: relative;
+  //width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+:host-context(.electron) .container {
+  left: -1px; // account for .main-wrapper border
+}
+
+.content {
+  padding-left: 0;
+  position: absolute;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  transform: translateX(0);
+  transition-property: transform;
+  transition-duration: 0.4s;
+  transition-timing-function: ease;
+  overflow-y: hidden;
+  &.no-animation {
+    transition-property: none;
+    app-mini-player {
+      transition-property: none;
+    }
+  }
+  .column {
+    position: relative;
+    width: 100vw;
+    min-height: 420px; // TODO figure out what to do if screen size is below
+  }
+  .a1, .a2, .a3 {
+    padding-bottom: 72px;
+    transition-property: padding-bottom;
+    transition-duration: 0.4s;
+    transition-timing-function: ease;
+  }
+  app-mini-player {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 72px;
+    transition-property: transform;
+    transition-duration: 0.4s;
+    transition-timing-function: ease;
+    transform-origin: bottom;
+  }
+  &.t1 {
+    transform: translateX(-100vw);
+    app-mini-player {
+      transform: translateX(100vw) scaleY(1);
+    }
+  }
+  &.t2 {
+    transform: translateX(-200vw);
+    app-mini-player {
+      transform: translateX(200vw) scaleY(1);
+    }
+  }
+  &.t3 {
+    transform: translateX(-300vw);
+    app-mini-player {
+      transform: translateX(200vw) scaleY(0);
+    }
+    .a1, .a2, .a3 {
+      padding-bottom: 0;
+    }
+  }
+  &.no-track {
+    .a1, .a2, .a3 {
+      padding-bottom: 0;
+    }
+    app-mini-player {
+      transform: translateX(200vw) scaleY(0);
+    }
+  }
+}
+
+@media screen and (min-width: 599px) {
+  .content {
+    .column {
+      width: calc(50vw - #{$sideMenuWidth} / 2);
+      &.a4 {
+        width: calc(100vw - #{$sideMenuWidth});
+      }
+    }
+    app-mini-player {
+      left: 0;
+      width: calc(100vw - #{$sideMenuWidth});
+    }
+    &.t1 {
+      transform: translateX(calc(-50vw + #{$sideMenuWidth} / 2));
+      app-mini-player {
+        transform: translateX(calc(50vw - #{$sideMenuWidth} / 2)) scaleY(1);
+      }
+    }
+    &.t2 {
+      transform: translateX(calc(-50vw + #{$sideMenuWidth} / 2));
+      app-mini-player {
+        transform: translateX(calc(50vw - #{$sideMenuWidth} / 2)) scaleY(1);
+      }
+    }
+    &.t3 {
+      transform: translateX(calc(-150vw + 1.5 * #{$sideMenuWidth}));
+      app-mini-player {
+        transform: translateX(calc(50vw - #{$sideMenuWidth} / 2)) scaleY(0);
+      }
+    }
+    &.no-track {
+      .a1, .a2, .a3 {
+        padding-bottom: 0;
+      }
+      app-mini-player {
+        transform: translateX(calc(50vw - #{$sideMenuWidth} / 2)) scaleY(0);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 959px) {
+  .content {
+    .column {
+      width: calc(33.33vw - #{$sideMenuWidth} / 3);
+      &.a4 {
+        width: calc(66.66vw - #{$sideMenuWidth} * 2 / 3);
+      }
+    }
+    &.t1 {
+      transform: translateX(0);
+      app-mini-player {
+        transform: scaleY(1);
