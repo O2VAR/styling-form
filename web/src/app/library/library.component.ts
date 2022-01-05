@@ -275,3 +275,58 @@ export class LibraryComponent implements OnInit, OnDestroy {
     // this.subscriptions.push(
     //   this.library.onArtistSelectionChanged.subscribe((artists) => {
     //     this.updateUrlDataFromArtists(artists);
+    //     this.updateUrl();
+    //   })
+    // );
+
+    // On album selection change update url
+    // this.subscriptions.push(
+    //   this.library.onAlbumSelectionChanged.subscribe(albums => {
+    //     this.updateUrlDataFromAlbums(albums);
+    //     this.updateUrl();
+    //   })
+    // );
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
+  // updateUrl() {
+  //   const finalData = this.contentTranslation > 0 ? _.merge({t: this.contentTranslation}, this.urlData) : this.urlData;
+  //   this.router.navigate(['/library', finalData]);
+  // }
+
+  translateContent(n: number) {
+    this.contentTranslation = n;
+    const updateUrl = () => this.routerService.getRouterState().pipe(
+      take(1),
+      filter((state: RouterStateUrl) => state.queryParams.get('t') !== n.toString()),
+      tap(() => {
+        let route;
+        switch (this.displayType) {
+          case DisplayType.Default:
+            route = '/library';
+            break;
+          case DisplayType.Recent:
+            route = '/recent';
+            break;
+          case DisplayType.Favorites:
+            route = '/favorites';
+            break;
+        }
+        this.router.navigate([route], { queryParams: { t: n.toString() }, queryParamsHandling: 'merge' });
+      })
+    ).subscribe();
+    if (!environment.electron) {
+      setTimeout(updateUrl);
+    }
+  }
+
+}
+
+export enum DisplayType {
+  Default,
+  Favorites,
+  Recent
+}
