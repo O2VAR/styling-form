@@ -243,3 +243,42 @@ export class LibraryEffects {
       const currentId = ++this.httpSocketClient.id;
       let total = 0;
       let fetched = 0;
+      const subscription0 = this.httpSocketClient.getSocket()
+        .pipe(
+          filter((r: SocketMessage) => r.method === 'TracksTotal' && r.id === currentId),
+          take(1),
+          map((r: SocketMessage) => r.entity),
+          tap((e: number) => total = e)
+        )
+        .subscribe();
+      const subscription1 = this.httpSocketClient.getSocket()
+        .pipe(
+          filter((r: SocketMessage) => r.method === 'TracksAdded' && r.id === currentId),
+          map((r: SocketMessage) => r.entity),
+          map((e: Track[]) => {
+            fetched += e.length;
+            return e;
+          })
+        )
+        .subscribe(
+          next => observer.next([next, total === 0 ? 0 : fetched / total]),
+          error => observer.error(error)
+        );
+      const subscription2 = this.httpSocketClient.getSocket()
+        .pipe(
+          filter((r: SocketMessage) => r.method === 'TracksRetrieved' && r.id === currentId),
+          take(1)
+        )
+        .subscribe(() => {
+          observer.complete();
+        });
+      this.httpSocketClient.send({method: 'GetTracks', id: currentId, entity: null});
+      return () => {
+        subscription0.unsubscribe();
+        subscription1.unsubscribe();
+        subscription2.unsubscribe();
+      };
+    });
+  }
+
+}
