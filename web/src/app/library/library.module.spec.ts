@@ -8,4 +8,6 @@ describe('LibraryModule', () => {
   });
 
   it('should create an instance', () => {
-    expect(libraryMod
+    expect(libraryModule).toBeTruthy();
+  });
+});
