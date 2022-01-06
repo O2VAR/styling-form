@@ -26,4 +26,17 @@
         color: mat-color($foreground, disabled-text);
         li {
           &:hover {
-            color: ma
+            color: mat-color($foreground, text);
+          }
+        }
+      }
+    }
+  }
+
+  .select-all, .chip-more, .remove-all {
+    color: mat-color($primary, darker-contrast) !important;
+    background-color: mat-color($primary, darker) !important;
+  }
+
+  .mat-chip-list.full-list {
+    background-color: mat-color($back
