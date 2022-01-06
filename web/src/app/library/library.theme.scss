@@ -13,3 +13,17 @@
 
   .list {
     .mat-list-item {
+      .avatar {
+        background-color: mat-color($background, hover);
+        color: mat-color($foreground, disabled-text);
+      }
+    }
+  }
+
+  .wrapper {
+    .alphabet {
+      ol {
+        color: mat-color($foreground, disabled-text);
+        li {
+          &:hover {
+            color: ma
