@@ -39,4 +39,15 @@
   }
 
   .mat-chip-list.full-list {
-    background-color: mat-color($back
+    background-color: mat-color($background, dialog);
+    .mat-chip {
+      background-color: mat-color($background, background);
+    }
+  }
+
+  .mini-player {
+    background-color: mat-color($background, background);
+
+    .avatar {
+      background-color: mat-color($background, hover);
+      color: mat-c
