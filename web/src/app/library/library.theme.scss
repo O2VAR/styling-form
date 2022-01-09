@@ -65,4 +65,15 @@
 
   .player {
     .playlist, .playlist-long {
-      .ma
+      .mat-list-item, li {
+        color: mat-color($foreground, secondary-text);
+        &:not(.status-bar):hover {
+          color: mat-color($foreground, text);
+          background: mat-color($background, hover);
+        }
+      }
+      .current {
+        color: mat-color($primary) !important;
+      }
+    }
+  
