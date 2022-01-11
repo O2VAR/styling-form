@@ -76,4 +76,16 @@
         color: mat-color($primary) !important;
       }
     }
-  
+    .playPause, .next, .previous {
+      background-color: mat-color($background, focused-button);
+    }
+    .albumArt {
+      color: mat-color($foreground, disabled-text);
+    }
+  }
+
+  //.status-bar {
+  //  color: mat-color($foreground, disabled-text);
+  //}
+
+}
