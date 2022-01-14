@@ -10,4 +10,20 @@ export const getAlbumId = (album: Album) => album.artist + '-' + album.title;
  * State
  */
 export interface State extends EntityState<Album> {
-  selectedIds: (stri
+  selectedIds: (string | number)[];
+}
+
+export const adapter: EntityAdapter<Album> = createEntityAdapter<Album>({
+  selectId: getAlbumId,
+  sortComparer: (a, b) => a.title.localeCompare(b.title),
+});
+
+export const initialState: State = adapter.getInitialState({
+  selectedIds: []
+});
+
+/**
+ * Reducer
+ */
+export function reducer(
+  state = 
