@@ -37,4 +37,16 @@ export function reducer(
     case AlbumsActionTypes.DeselectAllAlbums: {
       return {
         ...state,
-        selected
+        selectedIds: []
+      };
+    }
+
+    case AlbumsActionTypes.DeselectAlbum: {
+      return {
+        ...state,
+        selectedIds: state.selectedIds.filter(id => id !== getAlbumId(action.payload))
+      };
+    }
+
+    case AlbumsActionTypes.SelectAlbum: {
+      if (state.selectedIds.indexOf(getAlbumId(action.pa
