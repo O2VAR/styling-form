@@ -26,4 +26,15 @@ export const initialState: State = adapter.getInitialState({
  * Reducer
  */
 export function reducer(
-  state = 
+  state = initialState,
+  action: AlbumsActionsUnion | TracksActionsUnion
+): State {
+  switch (action.type) {
+
+    case AlbumsActionTypes.LoadAlbums:
+      return adapter.upsertMany(action.payload, state);
+
+    case AlbumsActionTypes.DeselectAllAlbums: {
+      return {
+        ...state,
+        selected
