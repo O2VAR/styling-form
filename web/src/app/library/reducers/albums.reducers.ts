@@ -62,4 +62,21 @@ export function reducer(
     case AlbumsActionTypes.SelectAlbums: {
       return {
         ...state,
-        selectedIds: actio
+        selectedIds: action.payload.map(getAlbumId)
+      };
+    }
+
+    case AlbumsActionTypes.SelectAlbumsByIds: {
+      return {
+        ...state,
+        selectedIds: action.payload
+      };
+    }
+
+    case TracksActionTypes.ScanTracks:
+      return adapter.removeAll({
+        ...state,
+        selectedIds: []
+      });
+
+    case TracksAc
