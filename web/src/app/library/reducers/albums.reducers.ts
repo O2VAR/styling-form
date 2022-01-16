@@ -49,4 +49,17 @@ export function reducer(
     }
 
     case AlbumsActionTypes.SelectAlbum: {
-      if (state.selectedIds.indexOf(getAlbumId(action.pa
+      if (state.selectedIds.indexOf(getAlbumId(action.payload)) === -1) {
+        return {
+          ...state,
+          selectedIds: [...state.selectedIds, getAlbumId(action.payload)]
+        };
+      } else {
+        return state;
+      }
+    }
+
+    case AlbumsActionTypes.SelectAlbums: {
+      return {
+        ...state,
+        selectedIds: actio
