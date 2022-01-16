@@ -79,4 +79,12 @@ export function reducer(
         selectedIds: []
       });
 
-    case TracksAc
+    case TracksActionTypes.LoadTracksSuccess: {
+      const albums = LibraryUtils.extractAlbums(action.payload);
+      return adapter.upsertMany(albums, state);
+    }
+
+    case TracksActionTypes.AddTracks: {
+      const albums = LibraryUtils.extractAlbums(action.payload);
+      albums.map(album => {
+        const
