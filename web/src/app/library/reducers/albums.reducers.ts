@@ -87,4 +87,15 @@ export function reducer(
     case TracksActionTypes.AddTracks: {
       const albums = LibraryUtils.extractAlbums(action.payload);
       albums.map(album => {
-        const
+        const old = state.entities[getAlbumId(album)];
+        if (old) {
+          album.songs += old.songs;
+        }
+        return album;
+      });
+      return adapter.upsertMany(albums, state);
+    }
+
+    case TracksActionTypes.RemoveTracks: {
+      const albums = LibraryUtils.extractAlbums(action.payload);
+     
