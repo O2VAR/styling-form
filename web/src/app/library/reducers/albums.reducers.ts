@@ -98,4 +98,11 @@ export function reducer(
 
     case TracksActionTypes.RemoveTracks: {
       const albums = LibraryUtils.extractAlbums(action.payload);
-     
+      const fn: (s: State, album: Album) => State = (s, album) => {
+        const old = s.entities[getAlbumId(album)];
+        if (old) {
+          old.songs -= album.songs;
+          if (old.songs === 0) {
+            return adapter.removeOne(getAlbumId(old), s);
+          } else {
+            
