@@ -105,4 +105,20 @@ export function reducer(
           if (old.songs === 0) {
             return adapter.removeOne(getAlbumId(old), s);
           } else {
-            
+            return adapter.upsertOne(old, s);
+          }
+        }
+      };
+      return albums.reduce(fn, state);
+    }
+
+    default: {
+      return state;
+    }
+  }
+}
+
+/**
+ * Selectors
+ */
+export const getSelectedIds = (state: State) => state.selectedIds;
