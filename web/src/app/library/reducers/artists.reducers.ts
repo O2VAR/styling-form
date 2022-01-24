@@ -81,3 +81,43 @@ export function reducer(
     case TracksActionTypes.LoadTracksSuccess: {
       const artists = LibraryUtils.extractArtists(action.payload);
       return adapter.upsertMany(artists, state);
+    }
+
+    case TracksActionTypes.AddTracks: {
+      const artists = LibraryUtils.extractArtists(action.payload);
+      artists.map(artist => {
+        const old = state.entities[artist.name];
+        if (old) {
+          artist.songs += old.songs;
+        }
+        return artist;
+      });
+      return adapter.upsertMany(artists, state);
+    }
+
+    case TracksActionTypes.RemoveTracks: {
+      const artists = LibraryUtils.extractArtists(action.payload);
+      const fn: (s: State, artist: Artist) => State = (s, artist) => {
+        const old = s.entities[artist.name];
+        if (old) {
+          old.songs -= artist.songs;
+          if (old.songs === 0) {
+            return adapter.removeOne(old.name, s);
+          } else {
+            return adapter.upsertOne(old, s);
+          }
+        }
+      };
+      return artists.reduce(fn, state);
+    }
+
+    default: {
+      return state;
+    }
+  }
+}
+
+/**
+ * Selectors
+ */
+export const getSelectedIds = (state: State) => state.selectedIds;
