@@ -28,4 +28,14 @@ export function reducer(
       const track = toImmutable(action.payload);
       return {
         ...state,
-        favorites: state.fav
+        favorites: state.favorites.contains(track) ? state.favorites.delete(track) : state.favorites
+      };
+    }
+
+    default:
+      return state;
+  }
+}
+
+export const getFavorites = (state: State) => state.favorites.toJS() as Track[];
+export const isFavorite = (state: State, track: Track) => state.favorites.cont
