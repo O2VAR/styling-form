@@ -38,4 +38,6 @@ export function reducer(
 }
 
 export const getFavorites = (state: State) => state.favorites.toJS() as Track[];
-export const isFavorite = (state: State, track: Track) => state.favorites.cont
+export const isFavorite = (state: State, track: Track) => state.favorites.contains(toImmutable(track));
+
+
