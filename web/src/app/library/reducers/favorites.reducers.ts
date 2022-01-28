@@ -17,4 +17,15 @@ export function reducer(
   switch (action.type) {
 
     case FavoritesActionTypes.AddToFavorites: {
-      const tracksToAdd = action.payloa
+      const tracksToAdd = action.payload.map(toImmutable);
+      return {
+        ...state,
+        favorites: state.favorites.concat(tracksToAdd)
+      };
+    }
+
+    case FavoritesActionTypes.RemoveFromFavorites: {
+      const track = toImmutable(action.payload);
+      return {
+        ...state,
+        favorites: state.fav
