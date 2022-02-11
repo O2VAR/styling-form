@@ -43,3 +43,18 @@ export function reducer(
     case LyricsActionTypes.LoadLyricsFailure: {
       return {
         ...state,
+        loading: false,
+        lyrics: null,
+        error: action.error,
+        source: null
+      };
+    }
+
+    default:
+      return state;
+  }
+}
+
+export const getLoading = (state: State) => state.loading;
+export const getLyrics = (state: State) => state.lyrics;
+export const getError = (st
