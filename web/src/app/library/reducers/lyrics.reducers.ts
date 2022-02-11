@@ -26,4 +26,20 @@ export function reducer(
         loading: true,
         lyrics: null,
         error: null,
-        source: 
+        source: null
+      };
+    }
+
+    case LyricsActionTypes.LoadLyricsSuccess: {
+      return {
+        ...state,
+        loading: false,
+        lyrics: action.lyrics,
+        error: null,
+        source: action.source
+      };
+    }
+
+    case LyricsActionTypes.LoadLyricsFailure: {
+      return {
+        ...state,
