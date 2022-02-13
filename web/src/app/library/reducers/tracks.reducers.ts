@@ -36,4 +36,17 @@ export function reducer(
       return adapter.removeMany(action.payload.map(t => t.url), state);
     }
 
-    case TracksActionTypes
+    case TracksActionTypes.LoadTracksSuccess: {
+      return adapter.addMany(action.payload.map(toImmutable), {
+        ...state,
+        loading: false
+      });
+    }
+
+    case TracksActionTypes.LoadTracksFailure: {
+      return {
+        ...state,
+        error: action.payload,
+        loading: false
+      };
+    }
