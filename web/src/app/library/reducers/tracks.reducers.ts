@@ -50,3 +50,25 @@ export function reducer(
         loading: false
       };
     }
+
+    case TracksActionTypes.ScanTracks:
+      return adapter.removeAll(state);
+
+    case TracksActionTypes.LoadTracks: {
+      return {
+        ...state,
+        loading: true,
+        error: ''
+      };
+    }
+
+    default: {
+      return state;
+    }
+  }
+}
+
+/**
+ * Selectors
+ */
+export const getError = (state: State) =
