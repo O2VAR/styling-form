@@ -57,4 +57,7 @@ export function reducer(
 
 export const getLoading = (state: State) => state.loading;
 export const getLyrics = (state: State) => state.lyrics;
-export const getError = (st
+export const getError = (state: State) => state.error;
+export const getSource = (state: State) => state.source;
+
+
