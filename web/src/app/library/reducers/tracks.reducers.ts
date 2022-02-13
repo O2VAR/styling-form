@@ -27,4 +27,13 @@ export function reducer(
   state = initialState,
   action: TracksActionsUnion
 ): State {
-  switch (a
+  switch (action.type) {
+
+    case TracksActionTypes.AddTracks:
+      return adapter.addMany(action.payload.map(toImmutable), state);
+
+    case TracksActionTypes.RemoveTracks: {
+      return adapter.removeMany(action.payload.map(t => t.url), state);
+    }
+
+    case TracksActionTypes
