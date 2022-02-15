@@ -215,3 +215,155 @@ export class LibraryService {
   }
 
   isSelectedAlbum(album: Album): Observable<boolean> {
+    return this.store.select(fromLibrary.isSelectedAlbum(album));
+  }
+
+  setTrack(track: Track) {
+    this.store.dispatch(new SetCurrentTrack(track));
+  }
+
+  playTrack(track: Track) {
+    this.setTrack(track);
+  }
+
+  play() {
+    this.audioService.play();
+  }
+
+  pause() {
+    this.audioService.pause();
+  }
+
+  seekTo(time: number) {
+    this.audioService.seekTo(time);
+  }
+
+  playTrackNext(track: Track): void {
+    this.store.dispatch(new PlayTrackNext(track));
+  }
+
+  setPlaylist(playlist: Track[]) {
+    this.store.dispatch(new SetCurrentPlaylist(playlist));
+  }
+
+  addToCurrentPlaylist(tracks: Track[]) {
+    this.store.dispatch(new AddToCurrentPlaylist(tracks));
+  }
+
+  clearPlaylist() {
+    this.store.dispatch(new SetCurrentPlaylist([]));
+  }
+
+  playPreviousTrack() {
+    this.store.dispatch(new SetPreviousTrack());
+  }
+
+  playNextTrack() {
+    this.store.dispatch(new SetNextTrack());
+  }
+
+  setShuffle(value: boolean) {
+    this.store.dispatch(new SetShuffle(value));
+  }
+
+  setRepeat(value: boolean) {
+    this.store.dispatch(new SetRepeat(value));
+  }
+
+  setMuted(value: boolean) {
+    this.audioService.setMuted(value);
+  }
+
+  setVolume(value: number) {
+    this.audioService.setVolume(value);
+  }
+
+  selectInLibrary(playlist: Track[]) {
+    const artistsIds = LibraryUtils.uniq(playlist.map(track => track.albumArtist));
+    const albumsIds = LibraryUtils.uniq(playlist.map(track => track.albumArtist + '-' + track.album));
+    this.store.dispatch(new SelectArtistsByIds(artistsIds));
+    this.store.dispatch(new SelectAlbumsByIds(albumsIds));
+  }
+
+  addToFavorites(track: Track) {
+    this.store.dispatch(new AddToFavorites([track]));
+  }
+
+  removeFromFavorites(track: Track) {
+    this.store.dispatch(new RemoveFromFavorites(track));
+  }
+
+  isFavorite(track: Track): Observable<boolean> {
+    return this.store.select(fromLibrary.isFavorite, track);
+  }
+
+  getFavorites(): Observable<Track[]> {
+    return this.store.select(fromLibrary.getFavorites);
+  }
+
+  getDisplayedFavorites(): Observable<Track[]> {
+    return this.store.select(fromLibrary.getDisplayedFavorites);
+  }
+
+  getFavoriteArtists(): Observable<Artist[]> {
+    return this.store.select(fromLibrary.getFavoritesArtists);
+  }
+
+  getFavoriteAlbums(): Observable<Album[]> {
+    return this.store.select(fromLibrary.getDisplayedFavoriteAlbums);
+  }
+
+  getRecentTracks(): Observable<Track[]> {
+    return this.store.select(fromLibrary.getRecentTracks);
+  }
+
+  getDisplayedRecentTracks(): Observable<Track[]> {
+    return this.store.select(fromLibrary.getDisplayedRecentTracks);
+  }
+
+  getRecentArtists(): Observable<Artist[]> {
+    return this.store.select(fromLibrary.getRecentArtists);
+  }
+
+  getRecentAlbums(): Observable<Album[]> {
+    return this.store.select(fromLibrary.getDisplayedRecentAlbums);
+  }
+
+  loadPlaylist(playlist: Playlist) {
+    this.store.dispatch(new LoadPlaylist(playlist));
+  }
+
+  savePlaylist(name: string, tracks: Track[]) {
+    this.store.dispatch(new SavePlaylist(name, tracks));
+    this.snack.open('Playlist saved!', 'OK', {duration: 2000});
+  }
+
+  deletePlaylist(name: string) {
+    this.store.dispatch(new DeletePlaylist(name));
+  }
+
+  addToPlaylist(tracks: Track[], playlist: string) {
+    this.store.dispatch(new AddToPlaylist(tracks, playlist));
+  }
+
+  removeFromPlaylist(track: Track, playlist: string) {
+    this.store.dispatch(new RemoveFromPlaylist(track, playlist));
+  }
+
+  getPlaylists(): Observable<Playlist[]> {
+    return this.store.select(fromLibrary.getPlaylists);
+  }
+
+  getTracksByArtist(artist: Artist): Observable<Track[]> {
+    return this.store.select(fromLibrary.getTracksByArtist, artist);
+  }
+
+  getTracksByAlbumId(albumId: String): Observable<Track[]> {
+    return this.store.select(fromLibrary.getTracksByAlbumId, albumId);
+  }
+
+  scanTracks() {
+    this.store.dispatch(new ScanTracks());
+  }
+
+}
