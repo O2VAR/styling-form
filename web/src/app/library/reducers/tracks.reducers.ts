@@ -71,4 +71,5 @@ export function reducer(
 /**
  * Selectors
  */
-export const getError = (state: State) =
+export const getError = (state: State) => state.error;
+export const getLoading = (state: State) => state.loading;
