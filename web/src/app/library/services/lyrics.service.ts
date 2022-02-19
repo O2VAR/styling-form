@@ -24,4 +24,13 @@ export class LyricsService {
       catchError(error => {
         if (opts.useService && opts.services.wikia) {
           return this.getLyricsFromWikia(track).pipe(
-           
+            map(lyrics => [lyrics, 'lyrics.wikia.com'] as [string, string])
+          );
+        } else {
+          throw error;
+        }
+      }),
+      catchError(error => {
+        if (opts.useService && opts.services.lyricsOvh) {
+          return this.getLyricsFromLyricsOvh(track).pipe(
+            map(lyrics => [
