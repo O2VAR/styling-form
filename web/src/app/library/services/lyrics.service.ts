@@ -18,4 +18,10 @@ export class LyricsService {
     private store: Store<fromLibrary.State>
   ) {}
 
-  requestLyrics(track: Track, opts: Lyr
+  requestLyrics(track: Track, opts: LyricsOptions): Observable<[string, string]> {
+    return this.geLyricsFromApi(track).pipe(
+      map(lyrics => [lyrics, 'local'] as [string, string]),
+      catchError(error => {
+        if (opts.useService && opts.services.wikia) {
+          return this.getLyricsFromWikia(track).pipe(
+           
