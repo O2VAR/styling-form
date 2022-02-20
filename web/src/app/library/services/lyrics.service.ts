@@ -33,4 +33,14 @@ export class LyricsService {
       catchError(error => {
         if (opts.useService && opts.services.lyricsOvh) {
           return this.getLyricsFromLyricsOvh(track).pipe(
-            map(lyrics => [
+            map(lyrics => [lyrics, 'lyrics.ovh'] as [string, string])
+          );
+        } else {
+          throw error;
+        }
+      }),
+    );
+  }
+
+  geLyricsFromApi(track: Track): Observable<string> {
+    return this.httpSocketClient.get('/api/lyrics/' + encodeURI(track.artist) + '/' + encodeURI(track.title)).pipe
