@@ -43,4 +43,12 @@ export class LyricsService {
   }
 
   geLyricsFromApi(track: Track): Observable<string> {
-    return this.httpSocketClient.get('/api/lyrics/' + encodeURI(track.artist) + '/' + encodeURI(track.title)).pipe
+    return this.httpSocketClient.get('/api/lyrics/' + encodeURI(track.artist) + '/' + encodeURI(track.title)).pipe(
+      map((response: { lyrics: string }) => response.lyrics),
+      catchError((error: HttpErrorResponse) => { throw new Error(error.message); })
+    );
+  }
+
+  getLyricsFromWikia(track: Track): Observable<string> {
+    const url = 'http://lyrics.wikia.com/wiki/' +
+      encodeURICo
