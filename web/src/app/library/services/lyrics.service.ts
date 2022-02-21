@@ -77,4 +77,8 @@ export class LyricsService {
   }
 
   getLyricsFromLyricsOvh(track: Track): Observable<string> {
-    return this.h
+    return this.httpClient.get('https://api.lyrics.ovh/v1/' + encodeURI(track.artist) + '/' + encodeURI(track.title)).pipe(
+      catchError((httpErrorResponse: HttpErrorResponse) => { throw new Error(httpErrorResponse.message); }),
+      map((response: { lyrics: string }) => response.lyrics),
+      map(lyrics => lyrics
+        .replace(/\r\n/
