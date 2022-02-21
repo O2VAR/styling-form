@@ -59,4 +59,12 @@ export class LyricsService {
       catchError((httpErrorResponse: HttpErrorResponse) => { throw new Error(httpErrorResponse.message); }),
       map((response: string) => parser.parseFromString(response, 'text/html')),
       map((document: HTMLDocument) => document.querySelector('.lyricbox')),
-      map(elem => { if (!e
+      map(elem => { if (!elem) { throw new Error('Lyrics box not found!'); } else { return elem; } }),
+      map(elem => elem.innerHTML
+        .trim()
+        .replace(/<br>/g, '\n')
+        .replace(/<.*?>/g, '')
+        .replace(/<div class="lyricsbreak"><\/div>/, '')
+      ),
+      map(lyrics => {
+        if (lyrics.includes('Unfortunatel
