@@ -56,4 +56,7 @@ export class LyricsService {
     const finalUrl = CoreUtils.resolveUrl('/api/proxy/' + encodeURIComponent(url));
     const parser = new DOMParser();
     return this.httpClient.get(finalUrl, { responseType: 'text'}).pipe(
- 
+      catchError((httpErrorResponse: HttpErrorResponse) => { throw new Error(httpErrorResponse.message); }),
+      map((response: string) => parser.parseFromString(response, 'text/html')),
+      map((document: HTMLDocument) => document.querySelector('.lyricbox')),
+      map(elem => { if (!e
