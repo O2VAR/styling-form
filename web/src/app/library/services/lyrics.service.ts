@@ -89,4 +89,14 @@ export class LyricsService {
       ),
       // FIX: since lyrics.ovh looks on wikia.com too this might happen:
       map(lyrics => {
-        if (lyrics.includes('Unfortunately, we are not licensed to displ
+        if (lyrics.includes('Unfortunately, we are not licensed to display the full lyrics for this song')) {
+          throw new Error('No license for this song');
+        } else {
+          return lyrics;
+        }
+      })
+    );
+  }
+
+  saveLyrics(lyrics: string, artist: string, title: string): void {
+    this.httpSocketClient.post('/api/lyrics/' + encodeURI(artist) + '/' + encodeUR
