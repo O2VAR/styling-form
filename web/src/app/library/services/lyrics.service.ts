@@ -67,4 +67,14 @@ export class LyricsService {
         .replace(/<div class="lyricsbreak"><\/div>/, '')
       ),
       map(lyrics => {
-        if (lyrics.includes('Unfortunatel
+        if (lyrics.includes('Unfortunately, we are not licensed to display the full lyrics for this song')) {
+          throw new Error('No license for this song');
+        } else {
+          return lyrics;
+        }
+      })
+    );
+  }
+
+  getLyricsFromLyricsOvh(track: Track): Observable<string> {
+    return this.h
