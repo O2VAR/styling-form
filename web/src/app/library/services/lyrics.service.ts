@@ -51,4 +51,9 @@ export class LyricsService {
 
   getLyricsFromWikia(track: Track): Observable<string> {
     const url = 'http://lyrics.wikia.com/wiki/' +
-      encodeURICo
+      encodeURIComponent(track.artist.replace(/ /g, '_')) + ':' +
+      encodeURIComponent(track.title.replace(/ /g, '_'));
+    const finalUrl = CoreUtils.resolveUrl('/api/proxy/' + encodeURIComponent(url));
+    const parser = new DOMParser();
+    return this.httpClient.get(finalUrl, { responseType: 'text'}).pipe(
+ 
