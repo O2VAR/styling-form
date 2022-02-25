@@ -106,4 +106,16 @@ export class LyricsService {
   }
 
   getLyrics(): Observable<string> {
-    return th
+    return this.store.select(fromLibrary.getLyrics);
+  }
+
+  getLoading(): Observable<boolean> {
+    return this.store.select(fromLibrary.getLyricsLoading);
+  }
+
+  getError(): Observable<string> {
+    return this.store.select(fromLibrary.getLyricsError);
+  }
+
+  getSource(): Observable<string> {
+    return this.store.select
