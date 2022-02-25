@@ -99,4 +99,11 @@ export class LyricsService {
   }
 
   saveLyrics(lyrics: string, artist: string, title: string): void {
-    this.httpSocketClient.post('/api/lyrics/' + encodeURI(artist) + '/' + encodeUR
+    this.httpSocketClient.post('/api/lyrics/' + encodeURI(artist) + '/' + encodeURI(title), { lyrics: lyrics }).subscribe(
+      () => console.log('Lyrics saved!'), // this.snack.open('Lyrics saved!', 'OK', {duration: 2000}),
+      error => console.log('Failed to save lyrics on the server: ' + error.error)
+    );
+  }
+
+  getLyrics(): Observable<string> {
+    return th
