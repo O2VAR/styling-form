@@ -118,4 +118,7 @@ export class LyricsService {
   }
 
   getSource(): Observable<string> {
-    return this.store.select
+    return this.store.select(fromLibrary.getLyricsSource);
+  }
+
+}
