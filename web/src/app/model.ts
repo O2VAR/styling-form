@@ -21,4 +21,22 @@ export interface Track {
   // warn?: boolean;
 }
 
-export type ImmutableTrack = ImmutableMap<Trac
+export type ImmutableTrack = ImmutableMap<Track>;
+
+export interface Artist {
+  name: string;
+  songs: number;
+  avatarUrl?: string;
+  // warn?: boolean;
+}
+
+export interface Album {
+  artist: string;
+  title: string;
+  songs: number;
+  avatarUrl?: string;
+  // warn?: boolean;
+}
+
+export interface Playlist {
+  name: string
