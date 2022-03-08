@@ -60,4 +60,14 @@ export class ArtistsComponent implements OnChanges {
 
   displayedArtists: Artist[];
 
-  _sea
+  _search = '';
+  set search(value: string) {
+    this._search = value;
+    this.displayedArtists = this.filter(this.artists);
+  }
+  get search() {
+    return this._search;
+  }
+
+  primaryFunc = (artist: Artist) => artist.name;
+  secondaryFunc = (artist: Artist) => artist.songs + ' song' + (artist.songs 
