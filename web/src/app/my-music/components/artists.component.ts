@@ -19,3 +19,13 @@ import {DomSanitizer} from '@angular/platform-browser';
         </mat-placeholder>
         <button mat-button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="search=''">
           <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <app-box-list [center]="true"
+                  [list]="displayedArtists"
+                  [primaryFunc]="primaryFunc"
+                  [secondaryFunc]="secondaryFunc"
+                  (itemClicked)="play($event)">
+    </app-bo
