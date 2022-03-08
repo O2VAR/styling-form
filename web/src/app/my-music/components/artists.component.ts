@@ -12,4 +12,10 @@ import {DomSanitizer} from '@angular/platform-browser';
       </a>
       <div class="filler"></div>
       <mat-form-field floatLabel="never" class="search">
-        <input #searchInput matInput title="Search" [(ngModel)]="search" spellc
+        <input #searchInput matInput title="Search" [(ngModel)]="search" spellcheck="false">
+        <mat-placeholder>
+          <mat-icon class="search-icon">search</mat-icon>
+          Search
+        </mat-placeholder>
+        <button mat-button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="search=''">
+          <mat-icon>close</mat-icon>
