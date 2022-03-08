@@ -39,4 +39,20 @@ export interface Album {
 }
 
 export interface Playlist {
-  name: string
+  name: string;
+  tracks: Track[];
+}
+
+export type ImmutablePlaylist = ImmutableMap<{
+  name: string;
+  tracks: Set<Track>;
+}>;
+
+export interface LyricsOptions {
+  useService: boolean;
+  services: {
+    wikia: boolean;
+    lyricsOvh: boolean;
+  };
+  automaticSave: boolean;
+}
