@@ -28,4 +28,19 @@ import {DomSanitizer} from '@angular/platform-browser';
                   [primaryFunc]="primaryFunc"
                   [secondaryFunc]="secondaryFunc"
                   (itemClicked)="play($event)">
-    </app-bo
+    </app-box-list>
+  `,
+  styles: [`
+    .controls {
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .play-all {
+      margin: 1rem 0
+    }
+    .play-all mat-icon {
+      vertical-align: middle;
+      margin-right: 
