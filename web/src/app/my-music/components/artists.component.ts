@@ -4,4 +4,12 @@ import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-my-music-artists',
-  temp
+  template: `
+    <div class="controls">
+      <a class="play-all">
+        <mat-icon>shuffle</mat-icon>
+        Play all randomly ({{ artists.length }})
+      </a>
+      <div class="filler"></div>
+      <mat-form-field floatLabel="never" class="search">
+        <input #searchInput matInput title="Search" [(ngModel)]="search" spellc
