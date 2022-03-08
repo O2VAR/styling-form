@@ -43,4 +43,21 @@ import {DomSanitizer} from '@angular/platform-browser';
     }
     .play-all mat-icon {
       vertical-align: middle;
-      margin-right: 
+      margin-right: 0.2rem;
+    }
+    .filler {
+      flex-grow: 1;
+    }
+    .search {
+      min-width: 13rem;
+    }
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class ArtistsComponent implements OnChanges {
+
+  @Input() artists: Artist[];
+
+  displayedArtists: Artist[];
+
+  _sea
