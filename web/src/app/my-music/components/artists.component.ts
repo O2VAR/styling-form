@@ -70,4 +70,16 @@ export class ArtistsComponent implements OnChanges {
   }
 
   primaryFunc = (artist: Artist) => artist.name;
-  secondaryFunc = (artist: Artist) => artist.songs + ' song' + (artist.songs 
+  secondaryFunc = (artist: Artist) => artist.songs + ' song' + (artist.songs > 1 ? 's' : '');
+
+  constructor(private sanitizer: DomSanitizer) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.artists) {
+      const artists = changes.artists.currentValue;
+      this.displayedArtists = this.filter(artists);
+    }
+  }
+
+  getAvatarStyle(artist: Artist) {
+    return artist.avatarUrl ? this.sanitizer.byp
