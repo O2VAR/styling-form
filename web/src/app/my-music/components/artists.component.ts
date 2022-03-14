@@ -91,4 +91,7 @@ export class ArtistsComponent implements OnChanges {
 
   filter(artists: Artist[]): Artist[] {
     const toStringAlbum = (artist: Artist) => `${artist.name}`;
-    return artists.filter(artist => toStringAlbum
+    return artists.filter(artist => toStringAlbum(artist).toLowerCase().includes(this._search.toLowerCase().trim()));
+  }
+
+}
