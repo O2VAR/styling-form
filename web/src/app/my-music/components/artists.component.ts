@@ -82,4 +82,13 @@ export class ArtistsComponent implements OnChanges {
   }
 
   getAvatarStyle(artist: Artist) {
-    return artist.avatarUrl ? this.sanitizer.byp
+    return artist.avatarUrl ? this.sanitizer.bypassSecurityTrustStyle(`background-image: url("${artist.avatarUrl}")`) : '';
+  }
+
+  play(album: Artist | Album) {
+    console.log(album);
+  }
+
+  filter(artists: Artist[]): Artist[] {
+    const toStringAlbum = (artist: Artist) => `${artist.name}`;
+    return artists.filter(artist => toStringAlbum
