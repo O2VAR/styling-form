@@ -109,3 +109,138 @@ import {SelectionModel} from '@angular/cdk/collections';
       background: unset !important;
     }
     mat-row, mat-header-row {
+      min-height: 40px;
+    }
+    mat-cell {
+      /*white-space: nowrap;*/
+      /*overflow: hidden;*/
+      /*text-overflow: ellipsis;*/
+    }
+    .mat-column-year, .mat-column-duration {
+      max-width: 5rem;
+      justify-content: flex-end;
+      overflow: visible;
+    }
+    .mat-column-artist, .mat-column-album, .mat-column-year, .mat-column-duration {
+      font-size: 12px;
+    }
+    .mat-column-select {
+      overflow: initial;
+      max-width: 2.5rem;
+    }
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class TracksComponent implements OnChanges {
+
+  @Input() tracks: Track[];
+
+  columns = ['select', 'title', 'artist', 'album', 'year', 'duration'];
+
+  paginatedTracks: Track[];
+  filteredTracks: Track[];
+
+  initialSelection = [];
+  allowMultiSelect = true;
+  selection = new SelectionModel<Track>(this.allowMultiSelect, this.initialSelection);
+
+  private _search = '';
+  set search(value: string) {
+    this._search = value;
+    this._update();
+  }
+  get search() {
+    return this._search;
+  }
+
+  private _sortState: Sort = {
+    active: 'url',
+    direction: 'asc'
+  };
+  set sortState(value: Sort) {
+    this._sortState = value;
+    this._update();
+  }
+
+  private _pageEvent: PageEvent = {
+    pageIndex: 0,
+    previousPageIndex: 0,
+    pageSize: 500,
+    length: 0
+  };
+  set pageEvent(value: PageEvent) {
+    this._pageEvent = value;
+    this._update();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.tracks) {
+      this._update();
+    }
+  }
+
+  filter(tracks: Track[]): Track[] {
+    const toString = (track: Track) => `${track.album}${track.albumArtist}${track.artist}${track.title}${track.year}`;
+    return tracks.filter(track => toString(track).toLowerCase().includes(this.search.toLowerCase().trim()));
+  }
+
+  sort(tracks: Track[]): Track[] {
+    function compare(a, b, isAsc) {
+      return (a.localeCompare(b)) * (isAsc ? 1 : -1);
+    }
+    function compareNum(a, b, isAsc) {
+      return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+    }
+    return tracks.sort((a, b) => {
+      let isAsc = this._sortState.direction === 'asc';
+      let active = this._sortState.active;
+      if (!this._sortState.direction) {
+        active = 'url';
+        isAsc = true;
+      }
+      switch (active) {
+        case 'url': return compare(a.url, b.url, isAsc);
+        case 'title': return compare(a.title, b.title, isAsc);
+        case 'artist': return compare(
+          a.albumArtist + a.album,
+          b.albumArtist + b.album,
+          isAsc
+        );
+        case 'album': return compare(a.album, b.album, isAsc);
+        case 'year': return compare(
+          a.year ? a.year : '3000',
+          b.year ? b.year : '3000',
+          isAsc
+        );
+        case 'duration': return compareNum(a.duration, b.duration.toString(), isAsc);
+        default: return 0;
+      }
+    });
+  }
+
+  paginate(tracks: Track[]): Track[] {
+    const index = this._pageEvent.pageIndex;
+    const size = this._pageEvent.pageSize;
+    return tracks.slice(index * size, (index + 1) * size);
+  }
+
+  _update() {
+    this.filteredTracks = this.sort(this.filter(this.tracks));
+    this.paginatedTracks = this.paginate(this.filteredTracks);
+  }
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.filteredTracks.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.filteredTracks.forEach(row => this.selection.select(row));
+  }
+
+}
