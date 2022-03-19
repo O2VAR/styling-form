@@ -12,4 +12,12 @@ import {Album, Artist, Track} from '@app/model';
           <app-my-music-artists [artists]="artists$ | async">
           </app-my-music-artists>
         </mat-tab>
-       
+        <mat-tab [label]="'Albums'">
+          <app-my-music-albums [albums]="albums$ | async">
+          </app-my-music-albums>
+        </mat-tab>
+        <mat-tab [label]="'Tracks'">
+          <app-my-music-tracks [tracks]="tracks$ | async">
+          </app-my-music-tracks>
+        </mat-tab>
+      </mat-ta
