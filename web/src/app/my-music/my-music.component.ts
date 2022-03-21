@@ -36,4 +36,9 @@ export class MyMusicComponent {
   albums$: Observable<Album[]>;
 
   constructor(private library: LibraryService) {
-    
+    this.tracks$ = library.getAllTracks();
+    this.artists$ = library.getAllArtists();
+    this.albums$ = library.getAllAlbums();
+  }
+
+}
