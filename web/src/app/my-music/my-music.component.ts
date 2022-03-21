@@ -20,4 +20,20 @@ import {Album, Artist, Track} from '@app/model';
           <app-my-music-tracks [tracks]="tracks$ | async">
           </app-my-music-tracks>
         </mat-tab>
-      </mat-ta
+      </mat-tab-group>
+    </div>
+  `,
+  styles: [`
+    .my-music {
+    }
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class MyMusicComponent {
+
+  tracks$: Observable<Track[]>;
+  artists$: Observable<Artist[]>;
+  albums$: Observable<Album[]>;
+
+  constructor(private library: LibraryService) {
+    
