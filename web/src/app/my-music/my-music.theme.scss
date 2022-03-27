@@ -30,4 +30,9 @@
     }
 
     mat-row:hover {
-      background-color: mat-
+      background-color: mat-color($background, hover);
+    }
+
+  }
+
+}
