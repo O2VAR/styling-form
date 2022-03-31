@@ -27,4 +27,12 @@ import {MatTable} from '@angular/material';
           <mat-checkbox (click)="$event.stopPropagation()"
                         (change)="$event ? selection.toggle(row) : null"
                         [checked]="selection.isSelected(row)"
-                        color="
+                        color="primary">
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <mat-cell *matCellDef="let track" class="title">
+          <mat-icon class="equalizer" *ngIf="currentTrack ? currentTrack.url === track.url : false">equalizer</mat-icon>
+          
