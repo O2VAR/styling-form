@@ -22,4 +22,9 @@ import {MatTable} from '@angular/material';
     <em *ngIf="playlist.length === 0" class="empty">Playlist is empty</em>
     <mat-table [dataSource]="playlist" #table>
 
-      <ng-cont
+      <ng-container matColumnDef="select">
+        <mat-cell *matCellDef="let row" class="select">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)"
+                        color="
