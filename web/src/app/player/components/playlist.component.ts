@@ -35,4 +35,13 @@ import {MatTable} from '@angular/material';
       <ng-container matColumnDef="title">
         <mat-cell *matCellDef="let track" class="title">
           <mat-icon class="equalizer" *ngIf="currentTrack ? currentTrack.url === track.url : false">equalizer</mat-icon>
-          
+          <div #title class="inner" [attr.data-url]="track.url">
+            {{ track.title }}
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="artist">
+        <mat-cell *matCellDef="let track" class="artist">
+          <div class="inner">
+            {{ track
