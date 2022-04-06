@@ -62,4 +62,16 @@ import {MatTable} from '@angular/material';
       </ng-container>
 
       <ng-container matColumnDef="duration">
-        <mat-cell *matCellDef="let track" class="duration">{{ track.duration | sgTime }
+        <mat-cell *matCellDef="let track" class="duration">{{ track.duration | sgTime }}</mat-cell>
+      </ng-container>
+
+      <mat-row *matRowDef="let row; columns: columns;"
+               [class.current]="currentTrack ? currentTrack.url === row.url : false"
+               (click)="trackClicked.emit(row)">
+      </mat-row>
+
+    </mat-table>
+  `,
+  styles: [`
+    .empty {
+     
