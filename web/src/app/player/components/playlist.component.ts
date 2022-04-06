@@ -44,4 +44,17 @@ import {MatTable} from '@angular/material';
       <ng-container matColumnDef="artist">
         <mat-cell *matCellDef="let track" class="artist">
           <div class="inner">
-            {{ track
+            {{ track.artist }}
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="album">
+        <mat-cell *matCellDef="let track" class="album">
+          <div class="inner">
+            {{ track.album }}
+          </div>
+        </mat-cell>
+      </ng-container>
+
+ 
