@@ -57,4 +57,9 @@ import {MatTable} from '@angular/material';
         </mat-cell>
       </ng-container>
 
- 
+      <ng-container matColumnDef="year">
+        <mat-cell *matCellDef="let track" class="year">{{ track.year | sgYear }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="duration">
+        <mat-cell *matCellDef="let track" class="duration">{{ track.duration | sgTime }
