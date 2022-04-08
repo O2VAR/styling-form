@@ -89,4 +89,23 @@ import {MatTable} from '@angular/material';
     .inner {
       padding-right: 0.5rem;
       overflow: hidden;
-    
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .title {
+      flex-grow: 2;
+    }
+    .artist, .album {
+      flex-grow: 1;
+    }
+    .select {
+      max-width: 2.5rem;
+    }
+    .year, .duration {
+      max-width: 3.5rem;
+      justify-content: flex-end;
+    }
+    mat-row {
+      cursor: pointer;
+    }
+    .equalize
