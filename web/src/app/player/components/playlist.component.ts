@@ -108,4 +108,20 @@ import {MatTable} from '@angular/material';
     mat-row {
       cursor: pointer;
     }
-    .equalize
+    .equalizer {
+      display: none;
+      font-size: 20px;
+    }
+    .current .equalizer {
+      display: inline-block;
+    }
+    .album, .year {
+      display: none;
+    }
+    @media screen and (min-width: 599px) {
+      .album, .year {
+        display: flex;
+      }
+    }
+  `],
+  changeDetection: ChangeD
