@@ -124,4 +124,15 @@ import {MatTable} from '@angular/material';
       }
     }
   `],
-  changeDetection: ChangeD
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class PlayerPlaylistComponent implements OnChanges {
+
+  @Input() playlist: Track[];
+  @Input() currentTrack: Track;
+
+  @Output() trackClicked = new EventEmitter<Track>();
+
+  columns = [/*'select',*/ 'title', 'artist', 'album', 'year', 'duration'];
+
+  
