@@ -135,4 +135,14 @@ export class PlayerPlaylistComponent implements OnChanges {
 
   columns = [/*'select',*/ 'title', 'artist', 'album', 'year', 'duration'];
 
-  
+  initialSelection = [];
+  allowMultiSelect = true;
+  selection = new SelectionModel<Track>(this.allowMultiSelect, this.initialSelection);
+
+  @ViewChildren('title')
+  titles: QueryList<ElementRef>;
+
+  @ViewChild('table')
+  table: MatTable<any>;
+
+  // Scroll into view the current trac
