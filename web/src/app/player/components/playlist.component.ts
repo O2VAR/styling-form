@@ -145,4 +145,12 @@ export class PlayerPlaylistComponent implements OnChanges {
   @ViewChild('table')
   table: MatTable<any>;
 
-  // Scroll into view the current trac
+  // Scroll into view the current track if hidden
+  ngOnChanges(changes: SimpleChanges): void {
+    if ((changes.currentTrack || changes.playlist) && this.titles && this.table) {
+      setTimeout(() => this.scrollCurrentTrackIntoView());
+    }
+  }
+
+  scrollCurrentTrackIntoView() {
+    const element = this.titles.find(el => el.nativeElement.getAttribute(
