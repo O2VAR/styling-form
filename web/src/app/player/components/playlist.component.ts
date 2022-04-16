@@ -153,4 +153,10 @@ export class PlayerPlaylistComponent implements OnChanges {
   }
 
   scrollCurrentTrackIntoView() {
-    const element = this.titles.find(el => el.nativeElement.getAttribute(
+    const element = this.titles.find(el => el.nativeElement.getAttribute('data-url') === this.currentTrack.url);
+    if (element && !CoreUtils.isScrolledIntoView(element.nativeElement, this.table['_elementRef'].nativeElement.parentElement)) {
+      element.nativeElement.parentElement.scrollIntoView({block: 'start', inline: 'nearest', behavior: 'smooth'});
+    }
+  }
+
+}
