@@ -30,4 +30,19 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
       min-height: 36px;
     }
     mat-slider {
-     
+      flex-grow: 1;
+      margin: 0 8px;
+    }
+    mat-progress-bar {
+      margin: 0 22px;
+      height: 2px;
+      flex-grow: 1;
+    }
+    .time-elapsed, .time-total {
+      width: 2.5rem;
+    }
+    .time-total {
+      text-align: right;
+    }
+  `],
+  changeDetection: ChangeDetectio
