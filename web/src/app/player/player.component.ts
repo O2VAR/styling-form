@@ -44,3 +44,172 @@ import {LibraryService} from '@app/library/services/library.service';
                            (setMute)="setMute($event)"
                            (setVolume)="setVolume($event)"
                            (showInLibrary)="showInLibrary()"
+                           (clearPlaylist)="clearPlaylist()"
+                           (savePlaylist)="savePlaylist()"
+                           (loadPlaylist)="loadPlaylist($event)"
+                           (addAllToPlaylist)="addAllToPlaylist($event)">
+      </app-player-controls>
+      <app-player-playlist [playlist]="playlist$ | async"
+                           [currentTrack]="currentTrack$ | async"
+                           (trackClicked)="play($event)">
+      </app-player-playlist>
+      <!--<app-player-status [playlist]="playlist$ | async"
+                         [currentTrack]="currentTrack$ | async">
+      </app-player-status>-->
+    </div>
+  `,
+  styles: [`
+    .player-background {
+      position: fixed;
+      z-index: 1;
+      top: 1px;
+      left: 1px;
+      right: 1px;
+      bottom: 1px;
+    }
+    .b1, .b2 {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    .b1 {
+      background-size: cover;
+      background-position: center;
+      filter: blur(10px);
+    }
+    .player {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    app-player-playlist {
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+  `]
+})
+export class PlayerComponent {
+
+  currentTrack$: Observable<Track>;
+  playlist$: Observable<Track[]>;
+  playlists$: Observable<Playlist[]>;
+  repeat$: Observable<boolean>;
+  shuffle$: Observable<boolean>;
+  isFavorite$: Observable<boolean>;
+
+  volume$: Observable<number>;
+  muted$: Observable<boolean>;
+  playing$: Observable<boolean>;
+  loading$: Observable<boolean>;
+  currentTime$: Observable<number>;
+  duration$: Observable<number>;
+
+  constructor(
+    private library: LibraryService,
+    private sanitizer: DomSanitizer,
+    private dialog: MatDialog,
+    private router: Router
+  ) {
+    this.currentTrack$ = library.getCurrentTrack();
+    this.playlist$ = library.getPlaylist();
+    this.playlists$ = library.getPlaylists();
+    this.repeat$ = library.getRepeat();
+    this.shuffle$ = library.getShuffle();
+    this.volume$ = library.getAudioVolume();
+    this.muted$ = library.getAudioMuted();
+    this.playing$ = library.getAudioPlaying();
+    this.loading$ = library.getAudioLoading();
+    this.currentTime$ = library.getAudioCurrentTime();
+    this.duration$ = library.getAudioDuration();
+    this.isFavorite$ = this.currentTrack$.pipe(mergeMap(t => this.library.isFavorite(t)));
+  }
+
+  getAvatarStyle(track: Track) {
+    return track && track.coverUrl ? this.sanitizer.bypassSecurityTrustStyle(`background-image: url("${track.coverUrl}")`) : '';
+  }
+
+  seekTo(time: number) {
+    this.library.seekTo(time);
+  }
+
+  pause() {
+    this.library.pause();
+  }
+
+  resume() {
+    this.library.play();
+  }
+
+  setRepeat(value: boolean) {
+    this.library.setRepeat(value);
+  }
+
+  setShuffle(value: boolean) {
+    this.library.setShuffle(value);
+  }
+
+  playNext() {
+    this.library.playNextTrack();
+  }
+
+  playPrevious() {
+    this.library.playPreviousTrack();
+  }
+
+  toggleFavorite(track: Track) {
+    this.library.isFavorite(track).pipe(
+      take(1),
+      tap(isFav => isFav ? this.library.removeFromFavorites(track) : this.library.addToFavorites(track))
+    ).subscribe();
+  }
+
+  setMute(muted: boolean) {
+    this.library.setMuted(muted);
+  }
+
+  setVolume(volume: number) {
+    this.library.setVolume(volume);
+  }
+
+  play(track: Track) {
+    this.library.playTrack(track);
+  }
+
+  showInLibrary() {
+    this.router.navigate(['library']).then(() => {
+      this.playlist$.pipe(take(1)).subscribe(
+        next => this.library.selectInLibrary(next)
+      );
+    });
+  }
+
+  clearPlaylist() {
+    this.library.clearPlaylist();
+  }
+
+  savePlaylist() {
+    const dialogRef = this.dialog.open(PlaylistsDialogComponent, {});
+    dialogRef.afterClosed().subscribe(playlistName => {
+      if (playlistName) {
+        this.playlist$.pipe(take(1)).subscribe(
+          next => this.library.savePlaylist(playlistName, next)
+        );
+      }
+    });
+  }
+
+  loadPlaylist(playlist: Playlist) {
+    this.library.loadPlaylist(playlist);
+  }
+
+  addAllToPlaylist(playlist: Playlist) {
+    this.playlist$.pipe(take(1)).subscribe(
+      next => this.library.addToPlaylist(next, playlist.name)
+    );
+  }
+
+}
