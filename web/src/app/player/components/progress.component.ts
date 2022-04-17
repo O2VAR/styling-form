@@ -45,4 +45,14 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
       text-align: right;
     }
   `],
-  changeDetection: ChangeDetectio
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class PlayerProgressComponent {
+
+  @Input() loading: boolean;
+  @Input() currentTime: number;
+  @Input() duration: number;
+
+  @Output() seekTo = new EventEmitter<number>();
+
+}
