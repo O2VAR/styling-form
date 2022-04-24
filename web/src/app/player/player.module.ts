@@ -19,4 +19,9 @@ export const COMPONENTS = [
   imports: [
     SharedModule
   ],
- 
+  declarations: COMPONENTS,
+  exports: COMPONENTS,
+})
+export class PlayerModule {
+
+}
