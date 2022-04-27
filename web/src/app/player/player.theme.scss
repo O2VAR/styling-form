@@ -18,4 +18,21 @@
   .player {
 
     .no-art {
-      border: 1px solid mat-color($foreground, disabled)
+      border: 1px solid mat-color($foreground, disabled);
+    }
+
+    .cover mat-icon {
+      color: mat-color($foreground, disabled);
+    }
+
+    mat-row:hover {
+      background-color: mat-color($background, hover);
+    }
+
+    mat-row.current mat-cell {
+      color: mat-color($primary);
+    }
+
+  }
+
+}
