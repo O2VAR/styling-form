@@ -6,4 +6,10 @@ import {combineLatest, Observable} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
 
 import {Playlist} from '@app/model';
-import {InfoComp
+import {InfoComponent} from '@app/shared/dialogs/info.component';
+import {LibraryService} from '@app/library/services/library.service';
+import {LibraryUtils} from '@app/library/library.utils';
+import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
+
+@Component({
+  selector: '
