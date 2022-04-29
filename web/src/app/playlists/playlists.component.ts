@@ -12,4 +12,10 @@ import {LibraryUtils} from '@app/library/library.utils';
 import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
 
 @Component({
-  selector: '
+  selector: 'app-playlists',
+  template: `
+    <div class="playlists">
+      <h2>System Playlists</h2>
+      <ul class="list center">
+        <li class="item favorites" *ngIf="favoritePlaylist | async; let pl;">
+          <div class="covers noCover" (click)
