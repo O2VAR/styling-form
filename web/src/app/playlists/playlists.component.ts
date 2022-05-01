@@ -18,4 +18,11 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
       <h2>System Playlists</h2>
       <ul class="list center">
         <li class="item favorites" *ngIf="favoritePlaylist | async; let pl;">
-          <div class="covers noCover" (click)
+          <div class="covers noCover" (click)="itemClicked(pl)">
+            <mat-icon class="avatar-icon">favorite</mat-icon>
+            <mat-icon class="play-icon">play_circle_outline</mat-icon>
+          </div>
+          <span class="primary">Favorites</span>
+          <span class="secondary">{{ pl.tracks.length }} songs</span>
+        </li>
+ 
