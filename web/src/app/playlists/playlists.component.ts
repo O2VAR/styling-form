@@ -29,4 +29,9 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
           <div class="covers noCover" (click)="itemClicked(pl)">
             <mat-icon class="avatar-icon">schedule</mat-icon>
             <mat-icon class="play-icon">play_circle_outline</mat-icon>
-       
+          </div>
+          <span class="primary">Recently Played</span>
+          <span class="secondary">{{ pl.tracks.length }} songs</span>
+        </li>
+        <li class="item favorites" *ngIf="allPlaylist | async; let pl;">
+          <div class="covers noCover" (click)="itemClicked(pl)"
