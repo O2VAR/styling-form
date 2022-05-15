@@ -68,4 +68,12 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
               <div [style]="getStyle(cover)" class="cover">&nbsp;</div>
             </ng-container>
             <mat-icon class="play-icon">play_circle_outline</mat-icon>
-            <button mat-button mat-icon-button class="more" (click)="$event.stopPropagation()" [matMenuTriggerFor]="playlis
+            <button mat-button mat-icon-button class="more" (click)="$event.stopPropagation()" [matMenuTriggerFor]="playlistMenu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          </div>
+          <mat-menu #playlistMenu="matMenu">
+            <button mat-menu-item (click)="itemClicked(item)">
+              <mat-icon>playlist_play</mat-icon>
+              <span>Load Playlist</span>
+            </button>
