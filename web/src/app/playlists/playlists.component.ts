@@ -48,4 +48,10 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
         <li class="item" *ngIf="(playlists | async).length === 0" (click)="openInfoDialog()">
           <div class="covers noCover">
             <mat-icon class="avatar-icon">bookmark_border</mat-icon>
-           
+            <mat-icon class="play-icon">bookmark</mat-icon>
+          </div>
+          <span class="primary" style="opacity: .5">My First Playlist</span>
+          <!--<span class="secondary">0 songs</span>-->
+        </li>
+        <li class="item" *ngFor="let item of playlists | async">
+          <div class="covers
