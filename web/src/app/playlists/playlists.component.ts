@@ -77,3 +77,10 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
               <mat-icon>playlist_play</mat-icon>
               <span>Load Playlist</span>
             </button>
+            <button mat-menu-item (click)="deletePlaylist(item)">
+              <mat-icon>delete</mat-icon>
+              <span>Delete Playlist</span>
+            </button>
+          </mat-menu>
+          <span class="primary" [matTooltip]="item.name">{{ item.name }}</span>
+          <span class="secondary">{
