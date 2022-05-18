@@ -83,4 +83,13 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
             </button>
           </mat-menu>
           <span class="primary" [matTooltip]="item.name">{{ item.name }}</span>
-          <span class="secondary">{
+          <span class="secondary">{{ item.tracks.length }} songs</span>
+        </li>
+      </ul>
+      <mat-divider></mat-divider>
+      <h2>Main Artists</h2>
+      <ul class="list center">
+        <li class="item" *ngFor="let item of artistsPlaylists | async">
+          <div class="covers"
+               [ngClass]="{
+                  noCover: getCov
