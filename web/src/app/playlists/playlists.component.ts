@@ -98,4 +98,9 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
                   c9: getCovers(item).length >= 9 && getCovers(item).length < 16,
                   c16: getCovers(item).length >= 16
                }"
-          
+               (click)="itemClicked(item)">
+            <mat-icon class="avatar-icon">music_note</mat-icon>
+            <ng-container *ngFor="let cover of getCovers(item).slice(0, 16)">
+              <div [style]="getStyle(cover)" class="cover">&nbsp;</div>
+            </ng-container>
+            <mat-icon class="play-icon">play_circle
