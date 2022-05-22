@@ -112,4 +112,10 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
       <mat-divider></mat-divider>
       <h2>
         Suggested Albums
-        
+        <mat-icon class="info" matTooltip="A random list of albums based on your favorites and music you played recently.">info</mat-icon>
+      </h2>
+      <ul class="list center">
+        <li class="item" *ngFor="let item of suggestedAlbumsPlaylists | async">
+          <div class="covers"
+               [ngClass]="{
+         
