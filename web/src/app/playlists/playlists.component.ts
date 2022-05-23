@@ -127,4 +127,11 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
                (click)="itemClicked(item)">
             <mat-icon class="avatar-icon">music_note</mat-icon>
             <ng-container *ngFor="let cover of getCovers(item).slice(0, 16)">
-              <div [style]="getStyle(cover)" class="c
+              <div [style]="getStyle(cover)" class="cover">&nbsp;</div>
+            </ng-container>
+            <mat-icon class="play-icon">play_circle_outline</mat-icon>
+          </div>
+          <span class="primary" [matTooltip]="item.name">{{ item.name }}</span>
+          <span class="secondary">{{ item.tracks.length }} songs</span>
+        </li>
+      <
