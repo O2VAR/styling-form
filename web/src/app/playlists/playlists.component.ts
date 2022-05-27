@@ -134,4 +134,22 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
           <span class="primary" [matTooltip]="item.name">{{ item.name }}</span>
           <span class="secondary">{{ item.tracks.length }} songs</span>
         </li>
-      <
+      </ul>
+    </div>
+  `,
+  styles: [`
+    h2 {
+      margin: 0.5rem 1rem 0;
+    }
+    .playlists {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .list {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      margin: 0;
+      padding: .5rem;
+ 
