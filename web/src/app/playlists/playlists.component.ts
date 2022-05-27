@@ -152,4 +152,20 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
       list-style: none;
       margin: 0;
       padding: .5rem;
- 
+      overflow-x: scroll;
+    }
+    .list {
+      padding-bottom: 6px;
+    }
+    .list::-webkit-scrollbar {
+      display: none;
+    }
+    .list:hover {
+      padding-bottom: 0;
+    }
+    .list:hover::-webkit-scrollbar {
+      display: unset;
+    }
+    .item {
+      width: 150px;
+      m
