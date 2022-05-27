@@ -168,4 +168,17 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
     }
     .item {
       width: 150px;
-      m
+      margin: 0.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .item:hover .covers {
+      box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.2);
+    }
+    .covers {
+      position: relative;
+      box-sizing: border-box;
+      width: 150px;
+      height: 150px;
+      background-size: cover;
+      margi
