@@ -181,4 +181,19 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
       width: 150px;
       height: 150px;
       background-size: cover;
-      margi
+      margin-bottom: 0.5rem;
+      display: flex;
+      cursor: pointer;
+      flex-wrap: wrap;
+      overflow: hidden;
+    }
+    .covers .play-icon, .covers .avatar-icon {
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+      font-size: 60px;
+      user-select: none;
+    }
+    .cover {
+      background-size: cover;
+    
