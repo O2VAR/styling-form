@@ -196,4 +196,20 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
     }
     .cover {
       background-size: cover;
-    
+    }
+    .c16 .cover {
+      flex-basis: 25%;
+      height: 25%;
+    }
+    .c9 .cover {
+      flex-basis: 33.3333%;
+      height: 33.3333%;
+    }
+    .c4 .cover {
+      flex-basis: 50%;
+      height: 50%;
+    }
+    .c1 .cover {
+      flex-basis: 100%;
+      height: 100%;
+ 
