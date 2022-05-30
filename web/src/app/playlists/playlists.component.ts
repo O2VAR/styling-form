@@ -212,4 +212,19 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
     .c1 .cover {
       flex-basis: 100%;
       height: 100%;
- 
+    }
+    .play-icon {
+      color: white;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      display: none;
+      position: absolute;
+      left: 44px;
+      top: 44px;
+    }
+    .more {
+      position: absolute;
+      right: 2px;
+      bottom: 2px;
+      display: none;
+    }
+    .covers:hover .play-icon, .covers
