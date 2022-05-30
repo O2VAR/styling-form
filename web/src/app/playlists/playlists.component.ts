@@ -227,4 +227,17 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
       bottom: 2px;
       display: none;
     }
-    .covers:hover .play-icon, .covers
+    .covers:hover .play-icon, .covers:hover .more {
+      display: unset;
+    }
+    .covers .avatar-icon {
+      display: none;
+    }
+    .covers.noCover {
+      justify-items: center;
+      align-items: center;
+      align-content: center;
+      justify-content: center;
+    }
+    .noCover .avatar-icon {
+      display: un
