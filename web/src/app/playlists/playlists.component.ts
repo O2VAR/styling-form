@@ -240,4 +240,20 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
       justify-content: center;
     }
     .noCover .avatar-icon {
-      display: un
+      display: unset;
+    }
+    .covers:hover .avatar-icon {
+      display: none;
+    }
+    .primary {
+      font-weight: 500;
+      white-space: nowrap;
+      max-width: 150px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .secondary {
+      font-weight: 300;
+      font-size: 12px;
+    }
+    .center .primary, .cent
