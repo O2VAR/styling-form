@@ -271,4 +271,19 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
       position: relative;
       top: 2px;
     }
-    @media screen and
+    @media screen and (min-width: 599px){
+      .item {
+        margin: 1rem;
+      }
+      .list {
+        flex-wrap: wrap;
+        overflow-x: auto;
+        padding-bottom: 0 !important;
+      }
+    }
+  `]
+})
+export class PlaylistsComponent {
+
+  playlists: Observable<Playlist[]>;
+  favoritePlaylist: Observable<Playlist
