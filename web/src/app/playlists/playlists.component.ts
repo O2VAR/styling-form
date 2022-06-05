@@ -286,4 +286,15 @@ import {ConfirmComponent} from '@app/shared/dialogs/confirm.component';
 export class PlaylistsComponent {
 
   playlists: Observable<Playlist[]>;
-  favoritePlaylist: Observable<Playlist
+  favoritePlaylist: Observable<Playlist>;
+  recentPlaylist: Observable<Playlist>;
+  allPlaylist: Observable<Playlist>;
+
+  artistsPlaylists: Observable<Playlist[]>;
+  suggestedAlbumsPlaylists: Observable<Playlist[]>;
+
+  constructor(
+    private library: LibraryService,
+    private sanitizer: DomSanitizer,
+    private router: Router,
+    private d
