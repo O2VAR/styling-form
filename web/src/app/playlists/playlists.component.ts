@@ -297,4 +297,11 @@ export class PlaylistsComponent {
     private library: LibraryService,
     private sanitizer: DomSanitizer,
     private router: Router,
-    private d
+    private dialog: MatDialog
+  ) {
+    this.playlists = library.getPlaylists();
+    this.favoritePlaylist = this.library.getFavorites().pipe(
+      map(favorites => ({ name: '_favorites', tracks: favorites}))
+    );
+    this.recentPlaylist = this.library.getRecentTracks().pipe(
+  
