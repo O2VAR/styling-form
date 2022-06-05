@@ -304,4 +304,10 @@ export class PlaylistsComponent {
       map(favorites => ({ name: '_favorites', tracks: favorites}))
     );
     this.recentPlaylist = this.library.getRecentTracks().pipe(
-  
+      map(favorites => ({ name: '_recent', tracks: favorites}))
+    );
+    this.allPlaylist = this.library.getAllTracks().pipe(
+      map(favorites => ({ name: '_all', tracks: favorites}))
+    );
+    this.artistsPlaylists = this.library.getAllArtists().pipe(
+      map(artists => [.
