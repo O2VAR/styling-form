@@ -329,4 +329,13 @@ export class PlaylistsComponent {
       map(metas => LibraryUtils.uniqBy(metas, obj => obj.id)),
       map(metas => LibraryUtils.shuffleArray(metas).slice(0, 15)),
       switchMap(objs =>
-        combineLatest(objs.map(meta => this.library.g
+        combineLatest(objs.map(meta => this.library.getTracksByAlbumId(meta.id).pipe(
+          map(tracks => ({name: meta.name, tracks: tracks}))
+        )))
+      )
+    );
+  }
+
+  openInfoDialog() {
+    this.dialog.open(InfoComponent, {data: {title: 'Custom Playlists', message: `
+      You don't have any custo
