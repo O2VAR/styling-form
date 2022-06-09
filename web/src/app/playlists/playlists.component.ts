@@ -323,4 +323,10 @@ export class PlaylistsComponent {
     this.suggestedAlbumsPlaylists = combineLatest(this.library.getFavorites(), this.library.getRecentTracks()).pipe(
       map(array => [...array[0], ...array[1]]),
       map(tracks => tracks.map(track => ({
-        id: track.albumArtist + 
+        id: track.albumArtist + '-' + track.album,
+        name: `${track.album} • ${track.albumArtist}`
+      }))),
+      map(metas => LibraryUtils.uniqBy(metas, obj => obj.id)),
+      map(metas => LibraryUtils.shuffleArray(metas).slice(0, 15)),
+      switchMap(objs =>
+        combineLatest(objs.map(meta => this.library.g
