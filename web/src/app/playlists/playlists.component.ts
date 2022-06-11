@@ -338,4 +338,13 @@ export class PlaylistsComponent {
 
   openInfoDialog() {
     this.dialog.open(InfoComponent, {data: {title: 'Custom Playlists', message: `
-      You don't have any custo
+      You don't have any custom playlist yet.<br>
+      To create a new playlist select "Save playlist" from the player menu and it will appear on this page.
+    `}});
+  }
+
+  getCovers(playlist: Playlist) {
+    let covers = playlist.tracks
+      .map(track => track.coverUrl)
+      .filter(cover => !!cover);
+    covers = LibraryUtils.uniq(co
