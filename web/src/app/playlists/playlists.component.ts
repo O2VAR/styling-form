@@ -360,4 +360,14 @@ export class PlaylistsComponent {
     if (item.tracks.length > 0) {
       this.library.playTrack(item.tracks[0]);
     }
-    this.router.n
+    this.router.navigate(['/playing']);
+  }
+
+  deletePlaylist(item: Playlist) {
+    const message = `Are you sure that you want to delete the playlist "${item.name}"?`;
+    this.dialog
+      .open(ConfirmComponent, { data: { title: 'Confirm deletion', message: message }})
+      .afterClosed()
+      .subscribe(answer => {
+        if (answer) {
+          this.l
