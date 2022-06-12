@@ -370,4 +370,9 @@ export class PlaylistsComponent {
       .afterClosed()
       .subscribe(answer => {
         if (answer) {
-          this.l
+          this.library.deletePlaylist(item.name);
+        }
+      });
+  }
+
+}
