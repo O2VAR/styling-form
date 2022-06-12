@@ -347,4 +347,17 @@ export class PlaylistsComponent {
     let covers = playlist.tracks
       .map(track => track.coverUrl)
       .filter(cover => !!cover);
-    covers = LibraryUtils.uniq(co
+    covers = LibraryUtils.uniq(covers);
+    return covers;
+  }
+
+  getStyle(cover: string) {
+    return this.sanitizer.bypassSecurityTrustStyle(`background-image: url("${cover}")`);
+  }
+
+  itemClicked(item: Playlist) {
+    this.library.loadPlaylist(item);
+    if (item.tracks.length > 0) {
+      this.library.playTrack(item.tracks[0]);
+    }
+    this.router.n
