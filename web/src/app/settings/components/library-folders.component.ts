@@ -11,4 +11,11 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
           <mat-icon>close</mat-icon>
         </button>
       </mat-list-item>
-      <mat-list-item *ngIf="loadi
+      <mat-list-item *ngIf="loading">
+        <mat-spinner mat-list-icon [diameter]="24"></mat-spinner>
+        <span matLine>Loading...</span>
+      </mat-list-item>
+    </mat-list>
+    <button mat-button tabindex="0" (click)="addFolder.emit()">
+      <mat-icon mat-list-icon>create_new_folder</mat-icon>
+      <span matLine
