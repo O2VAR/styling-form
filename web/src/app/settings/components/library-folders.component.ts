@@ -18,4 +18,10 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
     </mat-list>
     <button mat-button tabindex="0" (click)="addFolder.emit()">
       <mat-icon mat-list-icon>create_new_folder</mat-icon>
-      <span matLine
+      <span matLine>Add a new folder</span>
+    </button>
+    <button mat-button [disabled]="folders.length == 0" tabindex="0" (click)="scanRequest.emit()">
+      <mat-icon mat-list-icon>sync</mat-icon>
+      <span matLine>Scan library</span>
+    </button>
+    <p class="error" *ngIf="error">Error: {{ er
