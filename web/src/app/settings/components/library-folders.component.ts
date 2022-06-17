@@ -24,4 +24,18 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
       <mat-icon mat-list-icon>sync</mat-icon>
       <span matLine>Scan library</span>
     </button>
-    <p class="error" *ngIf="error">Error: {{ er
+    <p class="error" *ngIf="error">Error: {{ error }}</p>
+    <mat-menu></mat-menu>
+  `,
+  styles: [`
+    mat-list {
+      padding-top: 0 !important;
+      margin-bottom: 12px;
+      max-width: 500px;
+    }
+    button:not(.close) mat-icon {
+      margin-right: 0.5rem;
+    }
+    mat-spinner {
+      width: 16px !important;
+      heig
