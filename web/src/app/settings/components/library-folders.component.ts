@@ -38,4 +38,16 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
     }
     mat-spinner {
       width: 16px !important;
-      heig
+      height: 16px !important;;
+    }
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class LibraryFoldersComponent {
+
+  @Input() folders: string[];
+  @Input() error: string;
+  @Input() loading: boolean;
+
+  @Output() addFolder = new EventEmitter<void>();
+  @Output() removeFolder = new EventE
