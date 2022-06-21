@@ -50,4 +50,7 @@ export class LibraryFoldersComponent {
   @Input() loading: boolean;
 
   @Output() addFolder = new EventEmitter<void>();
-  @Output() removeFolder = new EventE
+  @Output() removeFolder = new EventEmitter<string>();
+  @Output() scanRequest = new EventEmitter<void>();
+
+}
