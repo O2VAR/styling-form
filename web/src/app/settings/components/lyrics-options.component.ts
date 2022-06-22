@@ -11,4 +11,8 @@ import {LyricsOptions} from '@app/model';
     </p>
     <p class="sub">
       <mat-slide-toggle color="primary" [(ngModel)]="lyricsOpts.services.wikia"
-                    [disabl
+                    [disabled]="!lyricsOpts.useService" (change)="toggleService()">
+        Search on lyrics.wikia.com
+        <a href="http://lyrics.wikia.com" target="_blank"
+           aria-label="http://lyrics.wikia.com" class="open" (click)="linkClicked.emit($event)">
+          <mat-icon class="small">open_i
