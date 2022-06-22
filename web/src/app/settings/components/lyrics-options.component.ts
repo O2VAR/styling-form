@@ -23,3 +23,11 @@ import {LyricsOptions} from '@app/model';
       <mat-slide-toggle color="primary" [(ngModel)]="lyricsOpts.services.lyricsOvh"
                     [disabled]="!lyricsOpts.useService" (change)="toggleService()">
         Use the lyrics.ovh service
+        <a href="http://lyrics.ovh" target="_blank"
+           aria-label="https://lyrics.ovh" class="open" (click)="linkClicked.emit($event)">
+          <mat-icon class="small">open_in_new</mat-icon>
+        </a>
+      </mat-slide-toggle>
+    </p>
+    <p class="sub">
+      <mat-slide-toggle color="pr
