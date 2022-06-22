@@ -15,4 +15,11 @@ import {LyricsOptions} from '@app/model';
         Search on lyrics.wikia.com
         <a href="http://lyrics.wikia.com" target="_blank"
            aria-label="http://lyrics.wikia.com" class="open" (click)="linkClicked.emit($event)">
-          <mat-icon class="small">open_i
+          <mat-icon class="small">open_in_new</mat-icon>
+        </a>
+      </mat-slide-toggle>
+    </p>
+    <p class="sub">
+      <mat-slide-toggle color="primary" [(ngModel)]="lyricsOpts.services.lyricsOvh"
+                    [disabled]="!lyricsOpts.useService" (change)="toggleService()">
+        Use the lyrics.ovh service
