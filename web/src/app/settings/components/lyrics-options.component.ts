@@ -30,4 +30,9 @@ import {LyricsOptions} from '@app/model';
       </mat-slide-toggle>
     </p>
     <p class="sub">
-      <mat-slide-toggle color="pr
+      <mat-slide-toggle color="primary" [(ngModel)]="lyricsOpts.automaticSave" [disabled]="!lyricsOpts.useService" (change)="save()">
+        Save found lyrics automatically
+        <mat-icon class="small" [matTooltip]="lyricsSaveTooltip">info</mat-icon>
+      </mat-slide-toggle>
+    </p>
+  `
