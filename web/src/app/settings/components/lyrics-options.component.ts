@@ -35,4 +35,20 @@ import {LyricsOptions} from '@app/model';
         <mat-icon class="small" [matTooltip]="lyricsSaveTooltip">info</mat-icon>
       </mat-slide-toggle>
     </p>
-  `
+  `,
+  styles: [`
+    mat-icon.small {
+      margin-left: 0.25rem;
+      font-size: 18px;
+      height: 18px;
+      width: 18px;
+      position: relative;
+      top: 4px
+    }
+    .sub {
+      padding-left: 1.2rem;
+    }
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class LyricsOptionsCompone
