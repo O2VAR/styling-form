@@ -51,4 +51,10 @@ import {LyricsOptions} from '@app/model';
   `],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LyricsOptionsCompone
+export class LyricsOptionsComponent {
+
+  @Input() lyricsOpts: LyricsOptions;
+  @Output() linkClicked: EventEmitter<Event> = new EventEmitter();
+  @Output() optionsChanged: EventEmitter<LyricsOptions> = new EventEmitter();
+
+  lyricsSaveTooltip = 'If you enable this option, every time lyrics are found they are saved 
