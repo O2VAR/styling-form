@@ -57,4 +57,15 @@ export class LyricsOptionsComponent {
   @Output() linkClicked: EventEmitter<Event> = new EventEmitter();
   @Output() optionsChanged: EventEmitter<LyricsOptions> = new EventEmitter();
 
-  lyricsSaveTooltip = 'If you enable this option, every time lyrics are found they are saved 
+  lyricsSaveTooltip = 'If you enable this option, every time lyrics are found they are saved on disk for future use.' +
+    ' Otherwise they are saved on disk only if you edit them.';
+
+  toggleService() {
+    if (!this.lyricsOpts.services.wikia && !this.lyricsOpts.services.lyricsOvh) {
+      this.lyricsOpts.useService = false;
+    }
+    this.save();
+  }
+
+  toggleUseService() {
+    if (this.ly
