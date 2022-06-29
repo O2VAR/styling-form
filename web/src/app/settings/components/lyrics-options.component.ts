@@ -68,4 +68,15 @@ export class LyricsOptionsComponent {
   }
 
   toggleUseService() {
-    if (this.ly
+    if (this.lyricsOpts.useService && !(this.lyricsOpts.services.wikia || this.lyricsOpts.services.lyricsOvh)) {
+      this.lyricsOpts.services.wikia = true;
+      this.lyricsOpts.services.lyricsOvh = true;
+    }
+    this.save();
+  }
+
+  save() {
+    this.optionsChanged.emit(this.lyricsOpts);
+  }
+
+}
