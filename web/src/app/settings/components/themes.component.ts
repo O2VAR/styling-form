@@ -28,4 +28,6 @@ export class ThemesComponent {
   @Input() themes: Theme[];
   @Input() currentTheme: Theme;
 
-  @Output() changeTheme = new EventEmitter<Theme
+  @Output() changeTheme = new EventEmitter<Theme>();
+
+}
