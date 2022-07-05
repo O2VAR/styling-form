@@ -15,4 +15,17 @@ import {Theme} from '@app/core/core.utils';
     </mat-radio-group>
   `,
   styles: [`
-    
+    mat-radio-button {
+      display: block;
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+    }
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class ThemesComponent {
+
+  @Input() themes: Theme[];
+  @Input() currentTheme: Theme;
+
+  @Output() changeTheme = new EventEmitter<Theme
