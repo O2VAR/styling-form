@@ -9,4 +9,19 @@ export interface State {
   loading: boolean;
 }
 
-con
+const initialState: State = {
+  folders: [],
+  error: '',
+  loading: false
+};
+
+/**
+ * Reducer
+ */
+export function reducer(
+  state: State = initialState,
+  action: SettingsActionsUnion
+): State {
+  switch (action.type) {
+
+    case SettingsActionTypes.LoadLibraryFoldersSucc
