@@ -24,4 +24,19 @@ export function reducer(
 ): State {
   switch (action.type) {
 
-    case SettingsActionTypes.LoadLibraryFoldersSucc
+    case SettingsActionTypes.LoadLibraryFoldersSuccess:
+      return {
+        ...state,
+        folders: action.payload,
+        error: '',
+        loading: false
+      };
+
+    case SettingsActionTypes.LoadLibraryFoldersFailure:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false
+      };
+
+    
