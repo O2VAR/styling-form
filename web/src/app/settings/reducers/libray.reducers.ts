@@ -49,4 +49,14 @@ export function reducer(
 
     case SettingsActionTypes.AddLibraryFolderFailure:
       return {
-       
+        ...state,
+        error: action.payload,
+        loading: false
+      };
+
+    case SettingsActionTypes.RemoveLibraryFolderSuccess:
+      return {
+        ...state,
+        folders: state.folders.filter(folder => folder !== action.payload),
+        error: '',
+        lo
