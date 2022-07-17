@@ -39,4 +39,14 @@ export function reducer(
         loading: false
       };
 
-    
+    case SettingsActionTypes.AddLibraryFolderSuccess:
+      return {
+        ...state,
+        folders: [...state.folders, action.payload],
+        error: '',
+        loading: false
+      };
+
+    case SettingsActionTypes.AddLibraryFolderFailure:
+      return {
+       
