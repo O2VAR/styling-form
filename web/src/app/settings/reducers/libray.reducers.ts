@@ -59,4 +59,17 @@ export function reducer(
         ...state,
         folders: state.folders.filter(folder => folder !== action.payload),
         error: '',
-        lo
+        loading: false
+      };
+
+    case SettingsActionTypes.RemoveLibraryFolderFailure:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false
+      };
+
+    case SettingsActionTypes.LoadLibraryFolders:
+    case SettingsActionTypes.AddLibraryFolder:
+    case SettingsActionTypes.RemoveLibraryFolder:
+    
