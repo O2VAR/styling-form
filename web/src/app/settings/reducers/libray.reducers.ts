@@ -72,4 +72,19 @@ export function reducer(
     case SettingsActionTypes.LoadLibraryFolders:
     case SettingsActionTypes.AddLibraryFolder:
     case SettingsActionTypes.RemoveLibraryFolder:
-    
+      return {
+        ...state,
+        loading: true
+      };
+
+    default:
+      return state;
+  }
+}
+
+/**
+ * Selectors
+ */
+export const getLibraryFolders = (state: State) => state.folders;
+export const getError = (state: State) => state.error;
+export const getLoading = (state: State) => state.loading;
