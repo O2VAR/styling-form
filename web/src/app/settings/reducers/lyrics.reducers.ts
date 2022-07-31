@@ -14,3 +14,23 @@ export interface State extends LyricsOptions {
 }
 
 const initialState: State = {
+  useService: true,
+  services: {
+    wikia: true,
+    lyricsOvh: true
+  },
+  automaticSave: true
+};
+
+/**
+ * Reducer
+ */
+export function reducer(
+  state: State = initialState,
+  action: SettingsActionsUnion
+): State {
+  switch (action.type) {
+
+    case SettingsActionTypes.SetLyricsOptions:
+      return {
+        ...sta
