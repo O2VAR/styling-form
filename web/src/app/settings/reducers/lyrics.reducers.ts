@@ -33,4 +33,16 @@ export function reducer(
 
     case SettingsActionTypes.SetLyricsOptions:
       return {
-        ...sta
+        ...state,
+        ...action.payload
+      };
+
+    default:
+      return state;
+  }
+}
+
+/**
+ * Selectors
+ */
+export const getLyricsOptions = (state: State) => state;
