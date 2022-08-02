@@ -116,3 +116,35 @@ export class SettingsService {
         this.snackBar.open(`An error occurred!`, '', {duration: 2000});
         console.log(error);
         this.uploadSubscription.unsubscribe();
+        this.uploadSubscription = null;
+        // this.files = [];
+      },
+      () => {
+        this.snackBar.open(`${this.files.length} file(s) uploaded successfully.`, '', {duration: 2000});
+        this.uploadSubscription.unsubscribe();
+        this.uploadSubscription = null;
+        this.files = [];
+      }
+    );
+  }*/
+
+  // geLibraryFolders(): Observable<string[]> {
+  //   return this.httpSocketClient.get('/api/libraries')
+  //     .publishLast()
+  //     .refCount() as Observable<string[]>;
+  // }
+  //
+  // addLibraryFolder(folder: string): Observable<void> {
+  //   return this.httpSocketClient
+  //     .post('/api/libraries', folder)
+  //     .map(() => {}); // as Observable<void>
+  // }
+  //
+  // removeLibraryFolder(folder: string): Observable<void> {
+  //   return this.httpSocketClient
+  //     ._delete('/api/libraries/' + encodeURIComponent(folder))
+  //     .map(() => {});
+  // }
+
+}
+
