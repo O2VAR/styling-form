@@ -11,4 +11,14 @@ import {ConfirmComponent} from '../shared/dialogs/confirm.component';
 import {environment} from '@env/environment';
 import {CoreUtils, Theme} from '../core/core.utils';
 import {ElectronService} from '@app/core/services/electron.service';
-import {CoreService} from '@app/core/se
+import {CoreService} from '@app/core/services/core.service';
+import {LyricsOptions} from '@app/model';
+import {LibraryService} from '@app/library/services/library.service';
+
+@Component({
+  selector: 'app-settings',
+  template: `
+    <div class="wrapper">
+      <div class="settings">
+        <h2>Settings</h2>
+        <mat-tab-group animationDuration="0m
