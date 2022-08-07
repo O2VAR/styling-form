@@ -21,4 +21,10 @@ import {LibraryService} from '@app/library/services/library.service';
     <div class="wrapper">
       <div class="settings">
         <h2>Settings</h2>
-        <mat-tab-group animationDuration="0m
+        <mat-tab-group animationDuration="0ms">
+          <mat-tab label="Library">
+            <p>
+              Specify which folders contain your music and make up your library.<br>
+              Currently we are watching the following folder(s):
+            </p>
+            <app-library-folders [folders]="li
