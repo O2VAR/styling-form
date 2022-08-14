@@ -27,4 +27,8 @@ import {LibraryService} from '@app/library/services/library.service';
               Specify which folders contain your music and make up your library.<br>
               Currently we are watching the following folder(s):
             </p>
-            <app-library-folders [folders]="li
+            <app-library-folders [folders]="libraryFolders$ | async"
+                                 [error]="error$ | async"
+                                 [loading]="loading$ | async"
+                                 (addFolder)="addFolderDialog()"
+                                 (removeFolder)="removeFolderDialog($even
