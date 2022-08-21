@@ -46,4 +46,9 @@ import {LibraryService} from '@app/library/services/library.service';
               You can stream your music to your home devices on your local network by connecting to:
             </p>
             <div *ngIf="hostIps$ | async; let ips">
-  
+              <ul *ngIf="ips.length > 0">
+                <li *ngFor="let ip of ips">
+                  <a [href]="'http://' + ip + ':8080'" (click)="openExternally($event)" target="_blank">{{ 'http://' + ip + ':8080' }}</a>
+                </li>
+              </ul>
+              <p *ngIf="ip
