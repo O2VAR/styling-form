@@ -31,4 +31,11 @@ import {LibraryService} from '@app/library/services/library.service';
                                  [error]="error$ | async"
                                  [loading]="loading$ | async"
                                  (addFolder)="addFolderDialog()"
-                                 (removeFolder)="removeFolderDialog($even
+                                 (removeFolder)="removeFolderDialog($event)"
+                                 (scanRequest)="requestLibraryScan()">
+            </app-library-folders>
+          </mat-tab>
+          <mat-tab label="Theme">
+            <app-themes [themes]="themes"
+                        [currentTheme]="currentTheme$ | async"
+                        (changeTheme)="cha
