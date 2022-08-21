@@ -38,4 +38,12 @@ import {LibraryService} from '@app/library/services/library.service';
           <mat-tab label="Theme">
             <app-themes [themes]="themes"
                         [currentTheme]="currentTheme$ | async"
-                        (changeTheme)="cha
+                        (changeTheme)="changeTheme($event)">
+            </app-themes>
+          </mat-tab>
+          <mat-tab label="Streaming" *ngIf="isElectron">
+            <p>
+              You can stream your music to your home devices on your local network by connecting to:
+            </p>
+            <div *ngIf="hostIps$ | async; let ips">
+  
