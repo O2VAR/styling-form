@@ -51,4 +51,11 @@ import {LibraryService} from '@app/library/services/library.service';
                   <a [href]="'http://' + ip + ':8080'" (click)="openExternally($event)" target="_blank">{{ 'http://' + ip + ':8080' }}</a>
                 </li>
               </ul>
-              <p *ngIf="ip
+              <p *ngIf="ips.length === 0">No network connection detected.</p>
+            </div>
+            <div>
+              <mat-slide-toggle (change)="toggleSleepPrevent($event)" color="primary">
+                Prevent the system from going to sleep
+              </mat-slide-toggle>
+            </div>
+        
