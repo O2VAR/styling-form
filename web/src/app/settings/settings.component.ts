@@ -58,4 +58,10 @@ import {LibraryService} from '@app/library/services/library.service';
                 Prevent the system from going to sleep
               </mat-slide-toggle>
             </div>
-        
+          </mat-tab>
+          <mat-tab label="Lyrics">
+            <app-lyrics-options [lyricsOpts]="lyricsOpts$ | async"
+                                (optionsChanged)="saveLyricsOptions($event)"
+                                (linkClicked)="openExternally($event)">
+            </app-lyrics-options>
+          </
