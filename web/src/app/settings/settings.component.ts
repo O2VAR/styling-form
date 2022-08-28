@@ -64,4 +64,12 @@ import {LibraryService} from '@app/library/services/library.service';
                                 (optionsChanged)="saveLyricsOptions($event)"
                                 (linkClicked)="openExternally($event)">
             </app-lyrics-options>
-          </
+          </mat-tab>
+          <mat-tab label="Cache">
+            <p>
+              Musicalypse stores some data in a local cache.<br>
+              If you experience any issue or want a clean slate you can clear your cache here.
+            </p>
+            <ul class="cache">
+              <li>
+        
