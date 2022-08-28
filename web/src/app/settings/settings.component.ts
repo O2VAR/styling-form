@@ -72,4 +72,10 @@ import {LibraryService} from '@app/library/services/library.service';
             </p>
             <ul class="cache">
               <li>
-        
+                <mat-checkbox color="primary" [(ngModel)]="cache.favorites">Favorites</mat-checkbox>
+              </li>
+              <li>
+                <mat-checkbox color="primary" [(ngModel)]="cache.recent">Recent tracks</mat-checkbox>
+              </li>
+              <li>
+                <mat-checkbox color="p
