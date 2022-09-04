@@ -78,4 +78,10 @@ import {LibraryService} from '@app/library/services/library.service';
                 <mat-checkbox color="primary" [(ngModel)]="cache.recent">Recent tracks</mat-checkbox>
               </li>
               <li>
-                <mat-checkbox color="p
+                <mat-checkbox color="primary" [(ngModel)]="cache.playlist">Current playlist</mat-checkbox>
+              </li>
+              <li>
+                <mat-checkbox color="primary" [(ngModel)]="cache.playlists">Saved playlists</mat-checkbox>
+              </li>
+              <li>
+                <mat-checkbox color="primary" [(ngModel)]="cache.theme">Th
