@@ -84,4 +84,10 @@ import {LibraryService} from '@app/library/services/library.service';
                 <mat-checkbox color="primary" [(ngModel)]="cache.playlists">Saved playlists</mat-checkbox>
               </li>
               <li>
-                <mat-checkbox color="primary" [(ngModel)]="cache.theme">Th
+                <mat-checkbox color="primary" [(ngModel)]="cache.theme">Theme</mat-checkbox>
+              </li>
+              <li>
+                <mat-checkbox color="primary" [(ngModel)]="cache.player">Player (volume, shuffle, repeat)</mat-checkbox>
+              </li>
+            </ul>
+            <button mat-button (click)="selectCacheA
