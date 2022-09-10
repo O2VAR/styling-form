@@ -90,4 +90,14 @@ import {LibraryService} from '@app/library/services/library.service';
                 <mat-checkbox color="primary" [(ngModel)]="cache.player">Player (volume, shuffle, repeat)</mat-checkbox>
               </li>
             </ul>
-            <button mat-button (click)="selectCacheA
+            <button mat-button (click)="selectCacheAll()">
+              Select all
+            </button>
+            <button mat-button
+                    class="clear"
+                    (click)="clearCache()"
+                    [disabled]="!hasSelectedCacheOption()">
+              Clear selected
+            </button>
+          </mat-tab>
+          <mat-tab label="Me
