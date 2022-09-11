@@ -105,4 +105,10 @@ import {LibraryService} from '@app/library/services/library.service';
               Musicalypse stores extracted covers and lyrics in separate files on disk.<br>
               If you want to delete those files, for instance if you have edited your covers using an external software, you can do it here.
             </p>
-            <ul class="cache"
+            <ul class="cache">
+              <!--<li class="select-all-wrapper">
+                <button mat-icon-button id="select-all-meta" (click)="selectMetadataAll()">
+                  <mat-icon>select_all</mat-icon>
+                </button>
+                <label for="select-all-meta">Select all</label>
+   
