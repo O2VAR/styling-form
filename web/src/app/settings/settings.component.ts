@@ -100,4 +100,9 @@ import {LibraryService} from '@app/library/services/library.service';
               Clear selected
             </button>
           </mat-tab>
-          <mat-tab label="Me
+          <mat-tab label="Metadata">
+            <p>
+              Musicalypse stores extracted covers and lyrics in separate files on disk.<br>
+              If you want to delete those files, for instance if you have edited your covers using an external software, you can do it here.
+            </p>
+            <ul class="cache"
