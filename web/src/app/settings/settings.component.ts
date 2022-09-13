@@ -111,4 +111,10 @@ import {LibraryService} from '@app/library/services/library.service';
                   <mat-icon>select_all</mat-icon>
                 </button>
                 <label for="select-all-meta">Select all</label>
-   
+              </li>-->
+              <li>
+                <mat-checkbox color="primary" [(ngModel)]="metadata.covers">Covers</mat-checkbox>
+              </li>
+              <li>
+                <mat-checkbox color="primary" [(ngModel)]="metadata.lyrics">Lyrics</mat-checkbox>
+       
