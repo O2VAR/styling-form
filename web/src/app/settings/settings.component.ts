@@ -117,4 +117,13 @@ import {LibraryService} from '@app/library/services/library.service';
               </li>
               <li>
                 <mat-checkbox color="primary" [(ngModel)]="metadata.lyrics">Lyrics</mat-checkbox>
-       
+              </li>
+            </ul>
+            <button mat-button
+                    class="clear"
+                    (click)="clearMetadata()"
+                    [disabled]="!hasSelectedMetadataOption()">
+              Clear selected
+            </button>
+          </mat-tab>
+        </mat-tab-g
