@@ -126,4 +126,20 @@ import {LibraryService} from '@app/library/services/library.service';
               Clear selected
             </button>
           </mat-tab>
-        </mat-tab-g
+        </mat-tab-group>
+      </div>
+    </div>
+  `,
+  styles: [`
+    .wrapper {
+      display: flex;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .settings {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      max-width: 900px;
+      width: 100%;
+      padding: 0.
