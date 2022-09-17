@@ -142,4 +142,21 @@ import {LibraryService} from '@app/library/services/library.service';
       flex-wrap: wrap;
       max-width: 900px;
       width: 100%;
-      padding: 0.
+      padding: 0.5rem 1rem;
+      box-sizing: border-box;
+    }
+    mat-spinner {
+      margin-left: 0.5rem;
+    }
+    mat-divider {
+      margin: 1rem 0;
+    }
+    .cache {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .cache li {
+      list-style: none;
+      padding-left: 1rem;
+      margin-bottom:
