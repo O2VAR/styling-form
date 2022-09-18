@@ -175,4 +175,19 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   themes = CoreUtils.allThemes;
 
-  lyric
+  lyricsOpts$: Observable<LyricsOptions>;
+
+  cache: {
+    favorites: boolean,
+    recent: boolean,
+    playlist: boolean,
+    playlists: boolean,
+    theme: boolean,
+    player: boolean
+  } = {
+    favorites: false,
+    recent: false,
+    playlist: false,
+    playlists: false,
+    theme: false,
+    player
