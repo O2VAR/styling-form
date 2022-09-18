@@ -159,4 +159,20 @@ import {LibraryService} from '@app/library/services/library.service';
     .cache li {
       list-style: none;
       padding-left: 1rem;
-      margin-bottom:
+      margin-bottom: 1rem;
+    }
+    button.clear {
+      max-width: 8rem;
+    }
+    @media screen and (max-width: 598px){
+    }
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class SettingsComponent implements OnInit, OnDestroy {
+
+  isElectron = environment.electron;
+
+  themes = CoreUtils.allThemes;
+
+  lyric
