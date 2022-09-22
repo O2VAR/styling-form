@@ -190,4 +190,19 @@ export class SettingsComponent implements OnInit, OnDestroy {
     playlist: false,
     playlists: false,
     theme: false,
-    player
+    player: false
+  };
+
+  metadata: {
+    covers: boolean,
+    lyrics: boolean
+  } = {
+    covers: false,
+    lyrics: false,
+  };
+
+  error$: Observable<string>;
+  loading$: Observable<boolean>;
+  libraryFolders$: Observable<string[]>;
+  currentTheme$: Observable<Theme>;
+  hostIps$: Ob
