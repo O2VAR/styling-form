@@ -205,4 +205,14 @@ export class SettingsComponent implements OnInit, OnDestroy {
   loading$: Observable<boolean>;
   libraryFolders$: Observable<string[]>;
   currentTheme$: Observable<Theme>;
-  hostIps$: Ob
+  hostIps$: Observable<string[]>;
+
+  constructor(
+    private settings: SettingsService,
+    private dialog: MatDialog,
+    private snack: MatSnackBar,
+    private router: Router,
+    private coreService: CoreService,
+    private zone: NgZone,
+    private httpSocketClient: HttpSocketClientService,
+    private elec
