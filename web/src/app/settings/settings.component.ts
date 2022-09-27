@@ -215,4 +215,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
     private coreService: CoreService,
     private zone: NgZone,
     private httpSocketClient: HttpSocketClientService,
-    private elec
+    private electronService: ElectronService,
+    private library: LibraryService
+  ) {
+    this.error$ = this.settings.getLibraryError();
+    this.loading$ = this.settings.getLibraryLoading();
+    this.libraryFolders$ = this.settings.getLibraryFolders();
+    this.currentTheme$ = this.coreService.getCurrentTheme();
+    this.ho
