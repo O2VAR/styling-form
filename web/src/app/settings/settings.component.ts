@@ -232,4 +232,16 @@ export class SettingsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.settings.loadLibraryFolders();
     this.electronService.onIpc('selected-directory', this.ipcAddFolder);
-  
+  }
+
+  ngOnDestroy(): void {
+    this.electronService.removeIpc('selected-directory');
+  }
+
+  ipcAddFolder = (e, folder) => this.zone.run(() => this.addLibraryFolder(folder[0]));
+
+  addLibraryFolder(folder: string) {
+    this.settings.addLibraryFolder(folder);
+   }
+
+  removeLibraryFolder(folder
