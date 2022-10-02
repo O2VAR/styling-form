@@ -222,4 +222,14 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.loading$ = this.settings.getLibraryLoading();
     this.libraryFolders$ = this.settings.getLibraryFolders();
     this.currentTheme$ = this.coreService.getCurrentTheme();
-    this.ho
+    this.hostIps$ = this.httpSocketClient.get('/api/host').pipe(
+      map((response: string[]) => response),
+      share()
+    );
+    this.lyricsOpts$ = this.settings.getLyricsOptions();
+  }
+
+  ngOnInit() {
+    this.settings.loadLibraryFolders();
+    this.electronService.onIpc('selected-directory', this.ipcAddFolder);
+  
