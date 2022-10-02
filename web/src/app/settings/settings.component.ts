@@ -244,4 +244,12 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.settings.addLibraryFolder(folder);
    }
 
-  removeLibraryFolder(folder
+  removeLibraryFolder(folder: string) {
+    this.settings.removeLibraryFolder(folder);
+  }
+
+  /*addFiles(files: FileList) {
+    if (!this.settings.isUploading()) {
+      const names = _.map(this.settings.files, f => f._file.name);
+      _.forEach(files, (file: File) => {
+        if (!_.includes(names, f
