@@ -252,4 +252,15 @@ export class SettingsComponent implements OnInit, OnDestroy {
     if (!this.settings.isUploading()) {
       const names = _.map(this.settings.files, f => f._file.name);
       _.forEach(files, (file: File) => {
-        if (!_.includes(names, f
+        if (!_.includes(names, file.name) && file.name.endsWith('.mp3')) {
+          this.settings.files.push({_file: file, progress: 0});
+        }
+      });
+    }
+  }*/
+
+  addFolderDialog() {
+    if (environment.electron) {
+      this.electronService.send('open-file-dialog');
+    } else {
+      const dialogRef = this
