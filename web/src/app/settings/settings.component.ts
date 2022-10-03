@@ -275,4 +275,13 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   removeFolderDialog(folder: string) {
-    const dialogRef = this.d
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      minWidth: '400px',
+      data: {
+        title: 'Please confirm',
+        message: 'Are you sure you want to remove the folder "' + folder + '" from the library?'
+      }
+    });
+    dialogRef.afterClosed().subscribe(confirmed => {
+      if (confirmed) {
+        this.removeLibrar
