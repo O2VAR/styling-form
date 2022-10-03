@@ -263,4 +263,16 @@ export class SettingsComponent implements OnInit, OnDestroy {
     if (environment.electron) {
       this.electronService.send('open-file-dialog');
     } else {
-      const dialogRef = this
+      const dialogRef = this.dialog.open(FolderComponent, {
+        minWidth: '400px'
+      });
+      dialogRef.afterClosed().subscribe(folder => {
+        if (folder) {
+          this.addLibraryFolder(folder);
+        }
+      });
+    }
+  }
+
+  removeFolderDialog(folder: string) {
+    const dialogRef = this.d
