@@ -284,4 +284,19 @@ export class SettingsComponent implements OnInit, OnDestroy {
     });
     dialogRef.afterClosed().subscribe(confirmed => {
       if (confirmed) {
-        this.removeLibrar
+        this.removeLibraryFolder(folder);
+      }
+    });
+  }
+
+  requestLibraryScan() {
+    this.router.navigate(['/']); // .then(() => this.library.scan());
+    this.settings.scanTracks();
+  }
+
+  changeTheme(theme: Theme) {
+    this.coreService.changeTheme(theme);
+  }
+
+  openExternally(event: Event) {
+    i
