@@ -299,4 +299,15 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   openExternally(event: Event) {
-    i
+    if (this.isElectron) {
+      this.electronService.openExternal(event.srcElement.getAttribute('href'));
+      event.preventDefault();
+    }
+  }
+
+  clearCache() {
+    if (this.cache.favorites) {
+      console.log('clearing favorites');
+      CoreUtils.save('favorites', JSON.stringify([]));
+    }
+    if (this
