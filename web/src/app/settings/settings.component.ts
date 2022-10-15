@@ -310,4 +310,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
       console.log('clearing favorites');
       CoreUtils.save('favorites', JSON.stringify([]));
     }
-    if (this
+    if (this.cache.recent) {
+      console.log('clearing recent tracks');
+      CoreUtils.save('recent', JSON.stringify([]));
+    }
+    if (this.cache.playlist) {
+      console.log('clearing current playlist');
+      CoreUtils.save('playlist', JSON.stringify([]));
+      CoreUtils.remove('cur
