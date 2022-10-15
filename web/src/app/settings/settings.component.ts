@@ -317,4 +317,14 @@ export class SettingsComponent implements OnInit, OnDestroy {
     if (this.cache.playlist) {
       console.log('clearing current playlist');
       CoreUtils.save('playlist', JSON.stringify([]));
-      CoreUtils.remove('cur
+      CoreUtils.remove('current');
+    }
+    if (this.cache.playlists) {
+      console.log('clearing playlists');
+      CoreUtils.save('playlists', JSON.stringify([]));
+    }
+    if (this.cache.theme) {
+      console.log('clearing saved theme');
+      CoreUtils.remove('theme');
+    }
+    if (this.cache.playe
