@@ -346,4 +346,17 @@ export class SettingsComponent implements OnInit, OnDestroy {
           if (environment.electron) {
             this.electronService.getWindow().loadURL(document.location.toString() + '/../index.html');
           } else {
-            docum
+            document.location.reload();
+          }
+        }
+      }
+    );
+  }
+
+  toggleSleepPrevent(event: MatSlideToggleChange) {
+    if (event.checked) {
+      this.electronService.send('prevent-app-suspension-on');
+    } else {
+      this.electronService.send('prevent-app-suspension-off');
+    }
+  
