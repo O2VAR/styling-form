@@ -337,4 +337,13 @@ export class SettingsComponent implements OnInit, OnDestroy {
       ConfirmComponent,
       { data: {
         title: 'Cache cleared!',
-        message: 'You have cleared your cache. You should reload
+        message: 'You have cleared your cache. You should reload Musicalypse for it to take effect. Reload now?'
+      }}
+    ).afterClosed()
+    .subscribe(
+      reload => {
+        if (reload) {
+          if (environment.electron) {
+            this.electronService.getWindow().loadURL(document.location.toString() + '/../index.html');
+          } else {
+            docum
