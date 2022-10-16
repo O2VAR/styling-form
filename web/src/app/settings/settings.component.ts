@@ -327,4 +327,14 @@ export class SettingsComponent implements OnInit, OnDestroy {
       console.log('clearing saved theme');
       CoreUtils.remove('theme');
     }
-    if (this.cache.playe
+    if (this.cache.player) {
+      console.log('clearing player state');
+      CoreUtils.remove('volume');
+      CoreUtils.remove('shuffle');
+      CoreUtils.remove('repeat');
+    }
+    this.dialog.open(
+      ConfirmComponent,
+      { data: {
+        title: 'Cache cleared!',
+        message: 'You have cleared your cache. You should reload
