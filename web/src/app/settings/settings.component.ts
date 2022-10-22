@@ -359,4 +359,16 @@ export class SettingsComponent implements OnInit, OnDestroy {
     } else {
       this.electronService.send('prevent-app-suspension-off');
     }
-  
+  }
+
+  hasSelectedCacheOption() {
+    return Object.values(this.cache).reduce((x, y) => x || y);
+  }
+
+  selectCacheAll() {
+    if (Object.values(this.cache).reduce((x, y) => x && y)) {
+      this.cache = {
+        favorites: false,
+        recent: false,
+        playlist: false,
+        playli
