@@ -371,4 +371,20 @@ export class SettingsComponent implements OnInit, OnDestroy {
         favorites: false,
         recent: false,
         playlist: false,
-        playli
+        playlists: false,
+        theme: false,
+        player: false
+      };
+    } else {
+      this.cache = {
+        favorites: true,
+        recent: true,
+        playlist: true,
+        playlists: true,
+        theme: true,
+        player: true
+      };
+    }
+  }
+
+  saveLyricsOptions(options: Lyrics
