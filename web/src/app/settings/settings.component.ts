@@ -387,4 +387,16 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }
   }
 
-  saveLyricsOptions(options: Lyrics
+  saveLyricsOptions(options: LyricsOptions) {
+    this.settings.saveLyricsOptions(options);
+  }
+
+  hasSelectedMetadataOption() {
+    return Object.values(this.metadata).reduce((x, y) => x || y);
+  }
+
+  clearMetadata() {
+    let needsRescan = false;
+    if (this.metadata.covers) {
+      needsRescan = true;
+      console.log('clearing
