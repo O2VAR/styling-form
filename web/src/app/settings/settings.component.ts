@@ -399,4 +399,14 @@ export class SettingsComponent implements OnInit, OnDestroy {
     let needsRescan = false;
     if (this.metadata.covers) {
       needsRescan = true;
-      console.log('clearing
+      console.log('clearing covers');
+      this.httpSocketClient.delete('/api/covers').subscribe();
+    }
+    if (this.metadata.lyrics) {
+      console.log('clearing lyrics');
+      this.httpSocketClient.delete('/api/lyrics').subscribe();
+    }
+    if (needsRescan) {
+      this.dialog.open(
+        ConfirmComponent,
+        { d
