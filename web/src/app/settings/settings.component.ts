@@ -409,4 +409,12 @@ export class SettingsComponent implements OnInit, OnDestroy {
     if (needsRescan) {
       this.dialog.open(
         ConfirmComponent,
-        { d
+        { data: {
+            title: 'Metadata cleared!',
+            message: 'You have deleted metadata files from disk. To generate new covers you should scan your library. Do it now?'
+          }}
+      ).afterClosed()
+        .subscribe(
+          reload => {
+            if (reload) {
+              this.lib
