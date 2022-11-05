@@ -417,4 +417,15 @@ export class SettingsComponent implements OnInit, OnDestroy {
         .subscribe(
           reload => {
             if (reload) {
-              this.lib
+              this.library.scanTracks();
+            }
+          }
+        );
+    } else {
+      this.snack.open('Metadata files cleared.', 'OK', {duration: 2000});
+    }
+
+  }
+
+
+}
