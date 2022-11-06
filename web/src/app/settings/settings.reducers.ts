@@ -6,4 +6,18 @@ import * as fromRoot from '@app/app.reducers';
 
 export interface SettingsState {
   library: fromLibraryFolders.State;
-  lyrics: fromLyr
+  lyrics: fromLyrics.State;
+}
+
+export interface State extends fromRoot.State {
+  settings: SettingsState;
+}
+
+export const reducers: ActionReducerMap<SettingsState> = {
+  library: fromLibraryFolders.reducer,
+  lyrics: fromLyrics.reducer
+};
+
+export const getSettingsState = createFeatureSelector<SettingsState>('settings');
+
+export 
