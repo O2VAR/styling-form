@@ -20,4 +20,19 @@ export const reducers: ActionReducerMap<SettingsState> = {
 
 export const getSettingsState = createFeatureSelector<SettingsState>('settings');
 
-export 
+export const getLibraryFoldersState = createSelector(
+  getSettingsState,
+  state => state.library
+);
+
+export const getLyricsState = createSelector(
+  getSettingsState,
+  state => state.lyrics
+);
+
+export const getLibraryFolders = createSelector(
+  getLibraryFoldersState,
+  fromLibraryFolders.getLibraryFolders
+);
+
+export const ge
