@@ -35,4 +35,17 @@ export const getLibraryFolders = createSelector(
   fromLibraryFolders.getLibraryFolders
 );
 
-export const ge
+export const getSettingsError = createSelector(
+  getLibraryFoldersState,
+  fromLibraryFolders.getError
+);
+
+export const getSettingsLoading = createSelector(
+  getLibraryFoldersState,
+  fromLibraryFolders.getLoading
+);
+
+export const getLyricsOptions = createSelector(
+  getLyricsState,
+  fromLyrics.getLyricsOptions
+);
