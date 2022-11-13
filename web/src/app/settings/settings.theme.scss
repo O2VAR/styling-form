@@ -13,3 +13,23 @@
     a {
       color: mat-color($foreground, text);
     }
+
+    .error {
+      color: mat-color($warn);
+    }
+
+    .mat-tab-label {
+      min-width: 100px !important;
+    }
+
+    .mat-tab-body {
+      padding: 1rem 0;
+    }
+
+    .mat-tab-body-content {
+      overflow: unset !important;
+    }
+
+  }
+
+}
