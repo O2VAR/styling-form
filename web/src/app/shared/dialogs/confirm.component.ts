@@ -14,4 +14,12 @@ import {MAT_DIALOG_DATA} from '@angular/material';
     </div>
   `,
   styles: [``],
-  changeDetection: ChangeDetectionStrategy.OnPu
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class ConfirmComponent implements OnInit {
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  ngOnInit() {}
+
+}
