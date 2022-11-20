@@ -9,4 +9,10 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
     <div mat-dialog-content>
       <mat-grid-list cols="2" rowHeight="fit" gutterSize="1rem">
         <mat-grid-tile [colspan]="2">
-  
+          <mat-form-field>
+            <input matInput placeholder="Title" [(ngModel)]="data.track.title" spellcheck="false" disabled>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Artist(s)" [(ngModel)]="d
