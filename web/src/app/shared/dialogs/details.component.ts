@@ -21,4 +21,13 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
         <mat-grid-tile>
           <mat-form-field>
             <input matInput placeholder="Album" [(ngModel)]="data.track.album" spellcheck="false" disabled>
-          </mat-form-fi
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput placeholder="Album Artist" [(ngModel)]="data.track.albumArtist" spellcheck="false" disabled>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field>
+      
