@@ -30,4 +30,9 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-form-field>
-      
+            <input matInput placeholder="Year" [(ngModel)]="data.track.year" disabled>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2">
+          <mat-form-field>
+            <input class="location" matInput placeholder="Location" disabled [value
