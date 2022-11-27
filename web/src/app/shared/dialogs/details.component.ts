@@ -35,4 +35,12 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
         </mat-grid-tile>
         <mat-grid-tile [colspan]="2">
           <mat-form-field>
-            <input class="location" matInput placeholder="Location" disabled [value
+            <input class="location" matInput placeholder="Location" disabled [value]="data.track.location">
+            <!--<button mat-button matSuffix mat-icon-button (click)="download()">
+              <mat-icon>file_download</mat-icon>
+            </button>-->
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+    <div mat-dialog-actions>
