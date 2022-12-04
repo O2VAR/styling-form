@@ -67,4 +67,20 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 export class DetailsComponent implements OnInit {
 
   constructor(
-    public dialogRef: MatDialogRef<DetailsComponen
+    public dialogRef: MatDialogRef<DetailsComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
+
+  ngOnInit() {
+  }
+
+  cancel() {
+    this.dialogRef.close();
+  }
+
+/*  download() {
+    window.open(CoreUtils.resolveUrl(this.data.track.url), '_blank');
+  }*/
+
+}
+
