@@ -44,3 +44,14 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
       </mat-grid-list>
     </div>
     <div mat-dialog-actions>
+      <button mat-button (click)="cancel()">Ok</button>
+      <!--<button mat-button (click)="cancel()">Cancel</button>
+      <button mat-button [mat-dialog-close]="data.track">Save</button>-->
+    </div>
+  `,
+  styles: [`
+    mat-form-field {
+      width: 100%;
+      display: block;
+    }
+  
