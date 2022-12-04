@@ -54,4 +54,17 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
       width: 100%;
       display: block;
     }
-  
+    mat-grid-list {
+      height: 300px;
+      width: 452px;
+    }
+    /*.location, .url {
+      font-size: 80%;
+    }*/
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class DetailsComponent implements OnInit {
+
+  constructor(
+    public dialogRef: MatDialogRef<DetailsComponen
