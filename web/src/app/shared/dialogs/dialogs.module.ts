@@ -31,4 +31,4 @@ export const COMPONENTS = [
   declarations: COMPONENTS,
   exports: COMPONENTS,
 })
-export class DialogsModule {
+export class DialogsModule {}
