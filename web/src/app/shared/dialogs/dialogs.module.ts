@@ -14,4 +14,21 @@ import {InfoComponent} from '@app/shared/dialogs/info.component';
 export const COMPONENTS = [
   ConfirmComponent,
   DetailsComponent,
-  FolderComponen
+  FolderComponent,
+  InfoComponent,
+  PlaylistsDialogComponent,
+  NewPlaylistDialogComponent
+];
+
+@NgModule({
+  imports: [
+    CommonModule,
+    MaterialModule,
+    RouterModule,
+    FormsModule
+  ],
+  entryComponents: COMPONENTS,
+  declarations: COMPONENTS,
+  exports: COMPONENTS,
+})
+export class DialogsModule {
