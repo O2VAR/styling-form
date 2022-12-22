@@ -6,4 +6,17 @@ describe('FolderComponent', () => {
   let component: FolderComponent;
   let fixture: ComponentFixture<FolderComponent>;
 
-  beforeEach(asy
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ FolderComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(FolderComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  i
