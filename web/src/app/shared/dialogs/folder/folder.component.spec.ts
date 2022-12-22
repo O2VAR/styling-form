@@ -19,4 +19,7 @@ describe('FolderComponent', () => {
     fixture.detectChanges();
   });
 
-  i
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
