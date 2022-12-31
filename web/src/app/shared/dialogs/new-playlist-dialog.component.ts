@@ -12,4 +12,16 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="cancel()">Cancel</button>
-      <button mat-button [mat-dialog-close]="playlistName" [disabled]="!pla
+      <button mat-button [mat-dialog-close]="playlistName" [disabled]="!playlistName">Save</button>
+    </div>
+  `,
+  styles: [``],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class NewPlaylistDialogComponent {
+
+  playlistName: '';
+
+  constructor(
+    public dialogRef: MatDialogRef<NewPlaylistDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
