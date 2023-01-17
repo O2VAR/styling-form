@@ -32,3 +32,17 @@ import {
 
 @Injectable()
 export class MyHammerConfig extends GestureConfig {
+  buildHammer(element: HTMLElement) {
+    const mc = <HammerManager>super.buildHammer(element);
+    mc.set({ touchAction: 'pan-y' });
+    return mc;
+  }
+}
+
+const MATERIAL_MODULES = [
+  MatButtonModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatGrid
