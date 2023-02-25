@@ -61,4 +61,20 @@ const MATERIAL_MODULES = [
   MatSnackBarModule,
   MatSortModule,
   MatTableModule,
-  MatTa
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule
+];
+
+@NgModule({
+  imports: MATERIAL_MODULES,
+  exports: MATERIAL_MODULES,
+  providers: [
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig
+    },
+    BreakpointObserver
+  ]
+})
+export class MaterialModule {}
