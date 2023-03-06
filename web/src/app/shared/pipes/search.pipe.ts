@@ -9,4 +9,8 @@ export class SearchPipe implements PipeTransform {
     if (!search) {
       return value;
     }
-    const reg = RegExp(search, 'g
+    const reg = RegExp(search, 'gi');
+    return value.replace(reg, sub => `<span class="accent">${sub}</span>`);
+  }
+
+}
