@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="186mm" height="186mm" clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" version="1.1" viewBox="0 0 18600 18600" xml:
+<svg width="186mm" height="186mm" clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" version="1.1" viewBox="0 0 18600 18600" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(-1202,-4917)">
+  <circle class="fil0 str0" cx="10502" cy="14217" r="9e3" fill="#303030" stroke="#8bc34a" stroke-width="600"/>
+  <g fill="#8bc34a">
+    <path class="fil1" d="m10919 19799v-5582c0-149 80-287 209-361 128-7
