@@ -1,0 +1,10 @@
+{
+  "name": "Musicalypse",
+  "short_name": "Musicalypse",
+  "theme_color": "#303030",
+  "background_color": "#303030",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "ic
