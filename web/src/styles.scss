@@ -51,4 +51,17 @@ $blue-theme:  (
     raised-button: map-get($mat-blue-grey, 800),
     focused-button: $light-focused,
     selected-button: map_get($mat-blue-grey, 900),
-    selected-disabled-button: map_get($
+    selected-disabled-button: map_get($mat-blue-grey, 800),
+    disabled-button-toggle: black,
+    unselected-chip: map_get($mat-blue-grey, 700),
+    disabled-list-option: black,
+  ),
+);
+
+$pink-theme:  (
+  primary: mat-palette($mat-pink),
+  accent: mat-palette($mat-light-blue),
+  warn: mat-palette($mat-red),
+  is-dark: false,
+  foreground: (
+    base
