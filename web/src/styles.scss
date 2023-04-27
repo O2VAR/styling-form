@@ -28,4 +28,12 @@ $blue-theme:  (
     base:              white,
     divider:           $light-dividers,
     dividers:          $light-dividers,
-    disabled:          $light-disabled
+    disabled:          $light-disabled-text,
+    disabled-button:   rgba(white, 0.3),
+    disabled-text:     $light-disabled-text,
+    hint-text:         $light-disabled-text,
+    secondary-text:    $light-secondary-text,
+    icon:              white,
+    icons:             white,
+    text:              white,
+    slid
