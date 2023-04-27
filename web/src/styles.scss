@@ -1,0 +1,10 @@
+@import "~material-design-icons/iconfont/material-icons.css";
+@import '~@angular/material/_theming.scss';
+
+$typo: mat-typography-config(
+  $font-family: 'Roboto, sans-serif'
+);
+
+@include mat-core($typo);
+
+$lig
