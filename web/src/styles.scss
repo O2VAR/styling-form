@@ -20,4 +20,12 @@ $dark-theme: mat-dark-theme(
 );
 
 $blue-theme:  (
-  primary: mat-pa
+  primary: mat-palette($mat-orange, 600),
+  accent: mat-palette($mat-light-blue),
+  warn: mat-palette($mat-deep-orange, A200),
+  is-dark: true,
+  foreground: (
+    base:              white,
+    divider:           $light-dividers,
+    dividers:          $light-dividers,
+    disabled:          $light-disabled
