@@ -88,4 +88,14 @@ $pink-theme:  (
     dialog:     white,
     disabled-button: rgba(black, 0.12),
     raised-button: white,
-    focused-button: $dark-focus
+    focused-button: $dark-focused,
+    selected-button: map_get($mat-pink, 300),
+    selected-disabled-button: map_get($mat-pink, 400),
+    disabled-button-toggle: map_get($mat-pink, 200),
+    unselected-chip: map_get($mat-pink, 200),
+    disabled-list-option: map_get($mat-pink, 200),
+  ),
+);
+
+@import 'app/core/core.theme';
+@import 'app/libra
