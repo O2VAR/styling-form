@@ -98,4 +98,13 @@ $pink-theme:  (
 );
 
 @import 'app/core/core.theme';
-@import 'app/libra
+@import 'app/library/library.theme';
+//@import 'app/my-music/my-music.theme';
+@import 'app/player/player.theme';
+@import 'app/playlists/playlists.theme';
+@import 'app/settings/settings.theme';
+
+@mixin custom-components-theme($theme) {
+  @include core-theme($theme);
+  @include library-component-theme($theme);
+  //@in
