@@ -79,4 +79,13 @@ $pink-theme:  (
     slider-off:        rgba(black, 0.26),
     slider-off-active: rgba(black, 0.38),
   ),
-  background
+  background: (
+    status-bar: map_get($mat-pink, 300),
+    app-bar:    map_get($mat-pink, 100),
+    background: map_get($mat-pink, 50),
+    hover:      rgba(black, 0.04),
+    card:       white,
+    dialog:     white,
+    disabled-button: rgba(black, 0.12),
+    raised-button: white,
+    focused-button: $dark-focus
