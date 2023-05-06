@@ -107,4 +107,15 @@ $pink-theme:  (
 @mixin custom-components-theme($theme) {
   @include core-theme($theme);
   @include library-component-theme($theme);
-  //@in
+  //@include my-music-component-theme($theme);
+  @include player-component-theme($theme);
+  @include playlists-component-theme($theme);
+  @include settings-theme($theme);
+}
+
+.light-theme {
+  @include angular-material-theme($light-theme);
+  @include custom-components-theme($light-theme);
+}
+.dark-theme {
+  @i
