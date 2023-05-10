@@ -118,4 +118,13 @@ $pink-theme:  (
   @include custom-components-theme($light-theme);
 }
 .dark-theme {
-  @i
+  @include angular-material-theme($dark-theme);
+  @include custom-components-theme($dark-theme);
+}
+.blue-theme {
+  @include angular-material-theme($blue-theme);
+  @include custom-components-theme($blue-theme);
+}
+.pink-theme {
+  @include angular-material-theme($pink-theme);
+  @include custom-components-them
