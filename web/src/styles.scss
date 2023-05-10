@@ -127,4 +127,26 @@ $pink-theme:  (
 }
 .pink-theme {
   @include angular-material-theme($pink-theme);
-  @include custom-components-them
+  @include custom-components-theme($pink-theme);
+}
+
+body {
+  font-family: Roboto, sans-serif;
+}
+
+app-root {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.carousel {
+  .mat-tab-header {
+    .mat-tab-labels {
+      padding-left: 1rem;
+    }
+    .mat-tab-label {
+      min-width: unset;
+      width: 100px;
