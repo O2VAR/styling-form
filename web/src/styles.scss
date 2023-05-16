@@ -150,3 +150,18 @@ app-root {
     .mat-tab-label {
       min-width: unset;
       width: 100px;
+      box-sizing: content-box;
+      padding: 0;
+      mat-icon {
+        margin-right: 0.5rem;
+      }
+    }
+    .mat-tab-label-content {
+      line-height: 0; // fix
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+  .mat-tab-group {
+    height: 100%;
