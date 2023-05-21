@@ -165,3 +165,18 @@ app-root {
   }
   .mat-tab-group {
     height: 100%;
+  }
+  .mat-tab-body-wrapper {
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 598px) {
+  .carousel {
+    .mat-tab-header {
+       border-bottom: none !important;
+      .mat-tab-labels {
+        padding-left: 0;
+        display: flex;
+        flex-direction: row;
+        alig
