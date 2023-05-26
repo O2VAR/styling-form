@@ -216,4 +216,19 @@ app-root {
   .a2 .controls .back {
     display: none;
   }
-  .player .
+  .player .back {
+    visibility: hidden;
+  }
+}
+@media screen and (min-width: 1319px) {
+  .a3 .controls .back {
+    display: none;
+  }
+}
+
+// Fix padding right on mat-list-items
+.list {
+  .mat-list-item-content {
+    padding-right: 0.5rem !important;
+  }
+}
