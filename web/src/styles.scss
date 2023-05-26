@@ -198,4 +198,22 @@ app-root {
 
 // Fix search input length
 .search {
-  .mat
+  .mat-form-field-infix {
+    width: auto;
+  }
+}
+
+// Hide some controls.
+@media screen and (min-width: 599px) {
+  .a3 .controls .back {
+    display: none;
+  }
+}
+@media screen and (min-width: 959px) {
+  .a3 .controls .back {
+    display: block;
+  }
+  .a2 .controls .back {
+    display: none;
+  }
+  .player .
